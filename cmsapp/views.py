@@ -34,6 +34,10 @@ class ReportView(FormView):
     form_class = CallCenterReportForm
     success_url = "/report/"
 
+    def get_context_data(self, **kwargs):
+        context = super(ReportView, self).get_context_data(**kwargs)
+        context["form"] = CallCenterReportForm
+        return context
 
     def form_valid(self, form):
         form.save()
