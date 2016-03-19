@@ -19,6 +19,7 @@ class HomeView(TemplateView):
         context["is_dm"] = self.request.user.groups.filter(name='Decision Maker').exists()
         context["is_ccs"] = self.request.user.groups.filter(name='Call Center Staff').exists()
         context["is_agency"] = self.request.user.groups.filter(name='Agency Staff').exists()
+        context["user_authenticated"] = self.request.user.is_authenticated()
         return context
 
 class DashboardView(FormView):
