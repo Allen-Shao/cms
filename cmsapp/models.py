@@ -50,7 +50,10 @@ class Crisis(models.Model):
     Crisis description
     """
 
-    type_of_crisis = models.CharField(max_length=20)
+    type_of_crisis = models.CharField(max_length=20, unique=True)
+
+    def __unicode__(self):
+        return self.type_of_crisis
 
 class Notification(models.Model):
     """
