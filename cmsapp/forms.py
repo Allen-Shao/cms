@@ -1,6 +1,6 @@
 from django import forms
 
-from models import Notification
+from models import Notification, CallCenterReport
 
 class LoginForm(forms.Form):
     """
@@ -27,3 +27,12 @@ class NotificationForm(forms.ModelForm):
     class Meta:
         model = Notification
         fields = ['decision','description','agency']
+
+class CallCenterReportForm(forms.ModelForm):
+    """
+    Form for call center report
+    """
+
+    class Meta:
+        model = CallCenterReport
+        exclude = ["status", "date_time"]

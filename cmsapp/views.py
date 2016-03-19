@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login
-from forms import LoginForm
+from forms import LoginForm, CallCenterReportForm
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -18,9 +18,16 @@ class NotificationView(TemplateView):
 
     template_name = "login.html"
 
-class ReportView(TemplateView):
+class ReportView(FormView):
 
-    template_name = "login.html"
+    template_name = "report.html"
+    form_class = CallCenterReportForm
+    success_url = "/report/"
+
+
+    def form_valid(self, form):
+        form.save()
+        return super(ReportView, self).form_valid(form)
 
 class ResourceView(TemplateView):
 
