@@ -58,10 +58,20 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>    
+            <li><a href="#about">About</a></li>
+            {% if is_ccs %}
+              <!-- if user is a call centre staff -->
+              <li><a href="/report/">Report</a></li>
+            {% endif %}
+            {% if is_agency %}
+              <li><a href="/resource/">Resource Request</a></li>
+            {% endif %}
+            {% if is_dm %}
+              <li><a href="/dashboard/">Decision</a></li>
+            {% endif %}    
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Sign In</a></li>
+            <li><a href="/login/">Sign In</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -16,7 +16,9 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        context["user_type"] = self.request.user.groups.all()[0]
+        context["is_dm"] = self.request.user.groups.filter(name='Decision Maker').exists()
+        context["is_ccs"] = self.request.user.groups.filter(name='Call Center Staff').exists()
+        context["is_agency"] = self.request.user.groups.filter(name='Agency Staff').exists()
         return context
 
 class DashboardView(FormView):
