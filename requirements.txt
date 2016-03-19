@@ -1,0 +1,7 @@
+Django==1.9.4
+facebook-sdk
+twilio
+python-twitter
+djangorestframework
+markdown
+django-filter
