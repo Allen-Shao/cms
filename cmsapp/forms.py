@@ -1,6 +1,6 @@
 from django import forms
-
-from models import Notification
+from django.contrib.auth.models import User
+from .models import Notification, ResourceRequest, CallCenterReport
 
 class LoginForm(forms.Form):
     """
@@ -19,11 +19,34 @@ class LoginForm(forms.Form):
 # 	description = forms.Ch
 # 	agency = forms.
 
-
+		
 class NotificationForm(forms.ModelForm):
+	"""
+	Form for Notification
+	"""
+	class Meta:
+		model = Notification
+		fields = ['decision','description','agency']
+		
+class ResourceForm(forms.ModelForm):
+	"""
+	Form for Resources
+	"""
+
+	crisis = forms.CharField()
+	resource = forms.CharField()
+	description = forms.CharField()
+
+	class Meta:
+		model = ResourceRequest
+		fields = ['crisis','resource','description']
+
+
+class CallCenterReportForm(forms.ModelForm):
     """
-    Form for Notification
+    Form for call center report
     """
+
     class Meta:
-        model = Notification
-        fields = ['decision','description','agency']
+        model = CallCenterReport
+        exclude = ["status", "date_time"]
