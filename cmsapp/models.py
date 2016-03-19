@@ -40,6 +40,7 @@ class Decision(models.Model):
     type_of_crisis = models.ForeignKey("Crisis")
     description = models.TextField()
     date_time = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
 
     def __unicode__(self):
         return "%s - %s" % (self.id, self.type_of_crisis)
