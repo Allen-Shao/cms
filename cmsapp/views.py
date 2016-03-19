@@ -1,9 +1,9 @@
 from django.http import HttpResponse
 # just for testing
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, RedirectView
 from django.views.generic.edit import FormView
 from .models import ResourceRequest
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceForm, DecisionForm
 
@@ -109,3 +109,16 @@ class LoginView(FormView):
                 return HttpResponse("disabled")
         else:
             return HttpResponse("no user")
+
+class LogoutView(RedirectView):
+    url = "/"
+    def get_redirect_url(self, *args, **kwargs):
+        logout(self.request)
+        return super(LogoutView, self).get_redirect_url(*args, **kwargs)
+
+    # def get(self, request):
+    #     if request.user.is_authenticated():
+    #         logout(request)
+    #         HttpResponse("Your have successfully signed out!")
+    #     else:
+    #         HttpResponse("Error! You have not logged in!")

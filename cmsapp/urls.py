@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.conf.urls import url, include
-from views import HomeView, DashboardView, NotificationView, LoginView, ReportView, ResourceView
+from views import HomeView, DashboardView, NotificationView, LoginView, ReportView, ResourceView, LogoutView
 
 app_name="cmsapp"
 
@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^report/$', ReportView.as_view(), name="report"),
     url(r'^notification/$', NotificationView.as_view(), name="notification"),
     url(r'^login/$', LoginView.as_view(), name="login"),
-    url(r'^resource/$', ResourceView.as_view(), name="resource")
+    url(r'^resource/$', ResourceView.as_view(), name="resource"),
+    url(r'^logout/$', LogoutView.as_view(), name="logout")
 ]
