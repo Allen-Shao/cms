@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <!-- <link rel="icon" href="../../favicon.ico"> -->
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Report Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
     <!-- <link href="../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -45,13 +45,13 @@
 
     <div class="container">
 
-      <form class="form-horizontal" role = "form">
+      <form class="form-horizontal" role = "form" action="/report/" method="post">
         {% csrf_token %}
         <h2>Crisis Report Form</h2>
         <!-- name -->
         <div class = "form-group">
           <label for="inputName" class="control-label col-sm-2">Reporter Name: </label>
-          <div class="col-sm-2"> 
+          <div class="col-sm-4"> 
             <input type="text" name="name" id="name" class="form-control" placeholder="Reporter Name" required autofocus>
           </div>
         </div>
@@ -59,8 +59,8 @@
         <!-- mobile number -->
         <div class = "form-group">
           <label for="inputMobileNumber" class="control-label col-sm-2">Mobile Number: </label>
-          <div class="col-sm-2"> 
-            <input type="number" name="mobile_number" id="mobilenumber" class="form-control" placeholder="Mobile Number" required>
+          <div class="col-sm-4"> 
+            <input type="text" name="mobile_number" id="mobilenumber" class="form-control" placeholder="Mobile Number" required>
           </div>
         </div>
         
@@ -68,7 +68,7 @@
         <!-- location -->
         <div class = "form-group">
           <label for="inputLocation" class="control-label col-sm-2">Location: </label>
-          <div class="col-sm-2"> 
+          <div class="col-sm-8"> 
             <textarea type="text" name="location" id="location" class="form-control" placeholder="Location" required></textarea>
           </div>
         </div>
@@ -76,19 +76,47 @@
         <!-- Description -->
         <div class = "form-group">
           <label for="inputDescription" class="control-label col-sm-2">Description: </label>
-          <div class="col-sm-2"> 
+          <div class="col-sm-8"> 
             <textarea type="text" name="description" id="description" class="form-control" placeholder="Please discribe the crisis in detail" required></textarea> 
           </div>
         </div>
 
-
-
         <!-- Type of crisis -->
+        <div class = "form-group">
+          <label for="inputTypeofCrisis" class="control-label col-sm-2">Type of Crisis: </label>
+          <div class="col-sm-8"> 
+            <select class="form-control" type="text" name="type_of_crisis" id="typepfcrisis">
+              <option value="" selected="selected">---------</option> 
+              {% for report in form.type_of_crisis.field.queryset %}
+                <option value="{{report.id}}">
+                  {{report.type_of_crisis}}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <!-- Type of assistance -->
+        <div class = "form-group">
+          <label for="inputTypeofAssistance" class="control-label col-sm-2">Type of Assistance: </label>
+          <div class="col-sm-8"> 
+            <select class="form-control" type="text" name="type_of_assistance" id="typepfassistance">
+              {% for report in form.type_of_assistance.field.choices %}
+                <option value="{{report}}">
+                  {{ form.instance.get_type_of_assistance_display }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+
         
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <div class="col-lg-3"> 
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button> 
+        </div>
       </form>
-
     </div> <!-- /container -->
 
 
