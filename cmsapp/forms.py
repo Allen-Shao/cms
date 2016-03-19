@@ -1,5 +1,6 @@
 from django import forms
-from django.contrib.auth.models import User
+
+from models import Notification
 
 class LoginForm(forms.Form):
     """
@@ -18,12 +19,11 @@ class LoginForm(forms.Form):
 # 	description = forms.Ch
 # 	agency = forms.
 
-		
-class NotificationForm(form.ModelForm):
-	"""
-	Form for Notification
-	"""
-	class Meta:
-		model = Notification
-		fields = ['decision','description','agency']
-		
+
+class NotificationForm(forms.ModelForm):
+    """
+    Form for Notification
+    """
+    class Meta:
+        model = Notification
+        fields = ['decision','description','agency']
