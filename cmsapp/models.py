@@ -91,3 +91,16 @@ class UsefulPlace(Place):
 
     def __unicode__(self):
         return self.name
+
+class ResourceRequest(models.Model):
+    """
+    Resource requests information
+    """
+
+    crisis = models.ForeignKey("Decision")
+    resource = models.CharField(max_length=50)
+    description = models.TextField()
+    date_time = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return "%s - %s" % (self.crisis, self.resource)
