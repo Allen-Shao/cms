@@ -12,7 +12,7 @@ from models import CallCenterReport
 # Create your views here.
 class HomeView(TemplateView):
 
-    template_name = "base.html"
+    template_name = "home.html"
 
 class DashboardView(FormView):
 
@@ -70,7 +70,7 @@ class ResourceView(FormView):
     form_class = ResourceForm
     success_url = "/resource/"
     #NOTE: For testing, remove later
-    #Make the crisis a dropdown menu 
+    #Make the crisis a dropdown menu
     def get_context_data(self, **kwargs):
         context = super(ResourceView, self).get_context_data(**kwargs)
         context["form"] = ResourceForm

@@ -19,7 +19,7 @@ class LoginForm(forms.Form):
 # 	description = forms.Ch
 # 	agency = forms.
 
-		
+
 class NotificationForm(forms.ModelForm):
 	"""
 	Form for Notification
@@ -27,7 +27,7 @@ class NotificationForm(forms.ModelForm):
 	class Meta:
 		model = Notification
 		fields = ['decision','description','agency']
-		
+
 class ResourceForm(forms.ModelForm):
 	"""
 	Form for Resources
