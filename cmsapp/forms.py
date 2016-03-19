@@ -8,3 +8,22 @@ class LoginForm(forms.Form):
 
     username = forms.CharField()
     password = forms.CharField()
+
+# class NotificationForm(forms.Form):
+# 	"""
+# 	Form for Notification
+# 	"""
+
+# 	decision = forms.
+# 	description = forms.Ch
+# 	agency = forms.
+
+		
+class NotificationForm(form.ModelForm):
+	"""
+	Form for Notification
+	"""
+	class Meta:
+		model = Notification
+		fields = ['decision','description','agency']
+		
