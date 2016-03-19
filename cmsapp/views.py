@@ -48,18 +48,20 @@ class ReportView(FormView):
 class ResourceView(FormView):
     template_name = "resource.html"
     form_class = ResourceForm
+    success_url = "/resource/"
     #NOTE: For testing, remove later
     #Make the crisis a dropdown menu 
-    context = {'form':ResourceForm}
+    def get_context_data(self, **kwargs):
+        context = super(ResourceView, self).get_context_data(**kwargs)
+        context["form"] = ResourceForm
+        return context
 
     def form_valid(self, form):
+        resourceRequest = form.save(commit=False)
         crisis = form.cleaned_data["crisis"]
-        resource = form.cleaned_data["resource"]
-        description = form.cleaned_data["description"]
-        resourceRequest = ResourceRequest(crisis=Crisis.objects.get(type_of_crisis=crisis), 
-            resource = resource, description = description)
+        resourceRequest.crisis = Crisis.objects.get(type_of_crisis=crisis)
         resourceRequest.save()
-        return redirect('cmsapp:home')
+        return super(ResourceView, self).form_valid(form)
         # NOTE: Send an SMS/Email to respective agency
 
 class LoginView(FormView):
