@@ -15,12 +15,13 @@ Including another URLconf
 """
 
 from django.conf.urls import url, include
+from views import HomeView, DashboardView, NotificationView, LoginView, ReportView, ResourceView
 
 urlpatterns = [
-    url(r'^$', ),
-    url(r'^dashboard/$', ),
-    url(r'^report/$', ),
-    url(r'^notification/$', ),
-    url(r'^login/$', ),
-    url(r'^resource/$', )
+    url(r'^$', HomeView.as_view()),
+    url(r'^dashboard/$', DashboardView.as_view()),
+    url(r'^report/$', ReportView.as_view()),
+    url(r'^notification/$', NotificationView.as_view()),
+    url(r'^login/$', LoginView.as_view()),
+    url(r'^resource/$', ResourceView.as_view())
 ]

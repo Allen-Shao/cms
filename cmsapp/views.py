@@ -1,26 +1,28 @@
 from django.shortcuts import render
+# just for testing
+from django.views.generic.base import TemplateView
 
 # Create your views here.
-class HomeView():
+class HomeView(TemplateView):
 
-    pass
+    template_name = "login.html"
 
-class DashboardView():
+class DashboardView(TemplateView):
 
-    pass
+    template_name = "login.html"
 
-class NotificationView():
+class NotificationView(TemplateView):
 
-    pass
+    template_name = "login.html"
 
-class ReportView():
+class ReportView(TemplateView):
 
-    pass
+    template_name = "login.html"
 
-class ResourceView():
+class ResourceView(TemplateView):
 
-    pass
+    template_name = "login.html"
 
-class LoginView():
+class LoginView(TemplateView):
 
-    pass
+    template_name = "login.html"
