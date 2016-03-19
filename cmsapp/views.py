@@ -5,16 +5,31 @@ from django.views.generic.edit import FormView
 from .models import ResourceRequest
 from django.contrib.auth import authenticate, login
 
-from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceForm
+from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceForm, DecisionForm
+
+from models import CallCenterReport
 
 # Create your views here.
 class HomeView(TemplateView):
 
     template_name = "base.html"
 
-class DashboardView(TemplateView):
+class DashboardView(FormView):
 
-    template_name = "login.html"
+    template_name = "dashboard.html"
+    form_class = DecisionForm
+    success_url="/dashboard/"
+
+    def get_context_data(self, **kwargs):
+        context = super(DashboardView, self).get_context_data(**kwargs)
+        context["form"] = DecisionForm
+        context["reports"] = CallCenterReport.objects.all()
+        return context
+
+    def form_valid(self, form):
+        form.save()
+        return super(DashboardView, self).form_valid(form)
+
 
 class NotificationView(FormView):
 
@@ -62,10 +77,7 @@ class ResourceView(FormView):
         return context
 
     def form_valid(self, form):
-        resourceRequest = form.save(commit=False)
-        crisis = form.cleaned_data["crisis"]
-        resourceRequest.crisis = Crisis.objects.get(type_of_crisis=crisis)
-        resourceRequest.save()
+        form.save()
         return super(ResourceView, self).form_valid(form)
         # NOTE: Send an SMS/Email to respective agency
 
