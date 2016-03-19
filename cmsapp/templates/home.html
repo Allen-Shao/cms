@@ -1,32 +1,33 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <! The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags 
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Fixed Top Navbar Example for Bootstrap</title>
+    <title>CMS</title>
 
-    <!-- Latest compiled and minified CSS -->
+    <! Latest compiled and minified CSS 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-    <!-- Optional theme -->
+    <! Optional theme 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-    <!-- Latest compiled and minified JavaScript -->
+    <! Latest compiled and minified JavaScript 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<!--     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+    <! IE10 viewport hack for Surface/desktop Windows 8 bug 
+<!     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> 
 
-    <!-- Custom styles for this template -->
-    <link href="{% static "navbar-fixed-top.css" %"} rel="stylesheet">
+    <! Custom styles for this template 
+    {% load staticfiles %}
+    <link href="{% static "css/navbar-fixed-top.css" %"} rel="stylesheet">
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <! Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 <!--     <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
 
@@ -36,6 +37,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    {% extends 'base.html' %}
+    {% block block_body %}
     <script
     src="http://maps.googleapis.com/maps/api/js">
     </script>
@@ -51,49 +54,9 @@
     }
     google.maps.event.addDomListener(window, 'load', initialize);
 </script>
+{% endblock %}
 
-  </head>
-
-  <body>
-
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">CMS</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            {% ifequal user_type 'Call Centre Staff' %}
-              <!-- if user is a call centre staff -->
-              <li><a href="/report/">report</a></li>
-            {% endifequal %}
-            {% ifequal user.groups.all.0 'Agency Staff' %}
-              <!-- if user is a call centre staff -->
-              <li><a href="/resource/">Resource Request</a></li>
-            {% endifequal %}
-            {% if user_type == "Decision Maker" %}
-              <!-- if user is a call centre staff -->
-              <li><a href="/dashboard/">Decision</a></li>
-            {% endif %}
-            
-            <li><a href="#about">About</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/login/">Sign In</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-    <div class="container">
+    {% block content %}
       <div class="jumbotron">
         <h1>Crisis Management System</h1>
         <p>Bling!!!This is our super excellent PROJECT!!</p>
@@ -123,17 +86,14 @@
         </div><!--/.col3-->
 
       </div><!-- /.row -->
+ {% endblock %}
 
-    </div><!-- /.container -->
-
-
+{% block js %}
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
-</html>
+    <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+{% endblock %}
