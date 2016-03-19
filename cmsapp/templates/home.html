@@ -71,7 +71,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            {% ifequal user.groups.all.0 'Call Centre Staff' %}
+            {% ifequal user_type 'Call Centre Staff' %}
               <!-- if user is a call centre staff -->
               <li><a href="/report/">report</a></li>
             {% endifequal %}
@@ -79,10 +79,10 @@
               <!-- if user is a call centre staff -->
               <li><a href="/resource/">Resource Request</a></li>
             {% endifequal %}
-            {% ifequal user.groups.all.0 'Decision Maker' %}
+            {% if user_type == "Decision Maker" %}
               <!-- if user is a call centre staff -->
               <li><a href="/dashboard/">Decision</a></li>
-            {% endifequal %}
+            {% endif %}
             
             <li><a href="#about">About</a></li>
           </ul>

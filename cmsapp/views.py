@@ -14,6 +14,11 @@ class HomeView(TemplateView):
 
     template_name = "home.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context["user_type"] = self.request.user.groups.all()[0]
+        return context
+
 class DashboardView(FormView):
 
     template_name = "dashboard.html"
