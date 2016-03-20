@@ -10,16 +10,6 @@ class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField()
 
-# class NotificationForm(forms.Form):
-# 	"""
-# 	Form for Notification
-# 	"""
-
-# 	decision = forms.
-# 	description = forms.Ch
-# 	agency = forms.
-
-
 class NotificationForm(forms.ModelForm):
 	"""
 	Form for Notification
@@ -27,6 +17,10 @@ class NotificationForm(forms.ModelForm):
 	class Meta:
 		model = Notification
 		fields = ['decision','description','agency']
+        #widgets = {
+        #    #"decision": Select(attrs={"class": "form-control"})
+        #    "decision": BootstrapSelect
+        #}
 
 class ResourceForm(forms.ModelForm):
 	"""
