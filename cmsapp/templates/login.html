@@ -10,15 +10,11 @@
 <form class="form-signin" action="/login/" method="post">
   {% csrf_token %}
   <h2 class="form-signin-heading">Please sign in</h2>
-  
-  {% if messages %}
-        {% for message in messages %}
-          {% if message.tags == "error" %} 
-              <div class="alert alert-danger" role="alert">
-                <strong>Wrong username or password!</strong> Please enter the username and password again!
-              </div>
-          {% endif %}>
-    {% endfor %}
+
+  {% if failed %}
+  <div class="alert alert-danger" role="alert">
+    <strong>Wrong username or password!</strong> Please enter the username and password again!
+  </div>
   {% endif %}
 
   <label for="inputUsername" class="sr-only">Username</label>

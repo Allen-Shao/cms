@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import render_to_response
 # just for testing
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.base import TemplateView, RedirectView, ContextMixin
@@ -116,7 +117,10 @@ class LoginView(CmsBaseView, SuccessMessageMixin, FormView):
                 # Return a 'disabled account' error message
                 return HttpResponse("disabled")
         else:
-            return HttpResponse("no user")
+            context = self.get_context_data()
+            #messages.add_message(self.request, messages.ERROR, "no_user")
+            context["failed"] = True
+            return render_to_response(self.template_name, context)
 
 class LogoutView(RedirectView):
 
