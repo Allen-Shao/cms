@@ -27,6 +27,7 @@ class HomeView(CmsBaseView, TemplateView):
 
     def get_context_data(self, **kwargs):
        context = super(HomeView, self).get_context_data(**kwargs)
+       context["home_active"] = "active"
        context["user_authenticated"] = self.request.user.is_authenticated()
        return context
 
@@ -39,6 +40,7 @@ class DashboardView(CmsBaseView, FormView):
     def get_context_data(self, **kwargs):
         context = super(DashboardView, self).get_context_data(**kwargs)
         context["form"] = DecisionForm
+        context["dashboard_active"] = "active"
         context["reports"] = CallCenterReport.objects.all()
         return context
 
@@ -60,6 +62,7 @@ class NotificationView(CmsBaseView, FormView):
     def get_context_data(self, **kwargs):
         context = super(NotificationView, self).get_context_data(**kwargs)
         context["form"] = NotificationForm
+        #context["notification_view"]
         return context
 
 
@@ -72,6 +75,7 @@ class ReportView(CmsBaseView, FormView):
     def get_context_data(self, **kwargs):
         context = super(ReportView, self).get_context_data(**kwargs)
         context["form"] = CallCenterReportForm
+        context["report_active"] = "active"
         return context
 
     def form_valid(self, form):
@@ -88,6 +92,7 @@ class ResourceView(CmsBaseView, FormView):
     def get_context_data(self, **kwargs):
         context = super(ResourceView, self).get_context_data(**kwargs)
         context["form"] = ResourceForm
+        context["resource_active"] = "active"
         return context
 
     def form_valid(self, form):
