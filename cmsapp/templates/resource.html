@@ -3,12 +3,8 @@
     <title>CMS - Resource Form</title>
 {% endblock %}
 
-<<<<<<< HEAD
-      <form class="form-horizantol" role = "form" action="/resource/" method="post">
-=======
 {% block content %}
-      <form class="form-signin" action="/login/" method="post">
->>>>>>> ea1ae76ab9c0abaab43ab7db0cda5f7ea2e9a833
+      <form class="form-horizantol" role = "form" action="/resource/" method="post">
         {% csrf_token %}
         <h2>Request Resource</h2>
         
@@ -43,7 +39,10 @@
           </div>
         </div>
         
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <div class="col-lg-3"> 
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button> 
+        </div>
+        
       </form>
 
 {% endblock %}

@@ -7,6 +7,7 @@
       <form class="form-horizontal" role = "form" action="/report/" method="post">
         {% csrf_token %}
         <h2>Crisis Report Form</h2>
+
         <!-- name -->
         <div class = "form-group">
           <label for="inputName" class="control-label col-sm-2">Reporter Name: </label>
@@ -23,7 +24,6 @@
           </div>
         </div>
         
-
         <!-- location -->
         <div class = "form-group">
           <label for="inputLocation" class="control-label col-sm-2">Location: </label>
