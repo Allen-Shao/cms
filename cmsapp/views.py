@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 # just for testing
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.base import TemplateView, RedirectView, ContextMixin
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login, logout
@@ -96,11 +97,12 @@ class ResourceView(CmsBaseView, FormView):
         return super(ResourceView, self).form_valid(form)
         # NOTE: Send an SMS/Email to respective agency
 
-class LoginView(CmsBaseView, FormView):
+class LoginView(CmsBaseView, FormView, SuccessMessageMixin):
 
     template_name = "login.html"
     form_class = LoginForm
     success_url = "/"
+    success_message = "fail"
 
     def form_valid(self, form):
         username = form.cleaned_data["username"]
@@ -110,6 +112,7 @@ class LoginView(CmsBaseView, FormView):
             if user.is_active:
                 login(self.request, user)
                 # Redirect to a success page.
+                self.success_message = "success"
                 return super(LoginView, self).form_valid(form)
             else:
                 # Return a 'disabled account' error message
