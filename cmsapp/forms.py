@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.widgets import Select
 from django.contrib.auth.models import User
 from .models import Notification, ResourceRequest, CallCenterReport, Decision
 
@@ -40,6 +41,9 @@ class CallCenterReportForm(forms.ModelForm):
     class Meta:
         model = CallCenterReport
         exclude = ["status", "date_time"]
+        widgets = {
+            "type_of_assistance": Select(attrs={"class": "form-control"})
+        }
 
 class DecisionForm(forms.ModelForm):
     """

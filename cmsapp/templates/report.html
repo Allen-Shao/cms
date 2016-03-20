@@ -59,13 +59,7 @@
         <div class = "form-group">
           <label for="inputTypeofAssistance" class="control-label col-sm-2">Type of Assistance: </label>
           <div class="col-sm-8"> 
-            <select class="form-control" type="text" name="type_of_assistance" id="typepfassistance">
-              {% for report in form.type_of_assistance.field.choices %}
-                <option value="{{report}}">
-                  {{ form.instance.get_type_of_assistance_display }}
-                </option>
-              {% endfor %}
-            </select>
+              {{ form.type_of_assistance }}
           </div>
         </div>
 
