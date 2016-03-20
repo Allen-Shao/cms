@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block block_body %}
+{% block head_extra %}
 {% endblock %}
 
 {% block content %}
@@ -16,8 +16,8 @@
         <div class ="col-md-4">
             {{ report.type_of_crisis }}
         </div>
-      </div>{% endfor %} 
-      {% else %} 
+      </div>{% endfor %}
+      {% else %}
       <div class = "row">
         <p>No Reports Available</p>
       </div>

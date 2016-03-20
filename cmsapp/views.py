@@ -45,9 +45,6 @@ class NotificationView(FormView):
     success_url="/notification/"
 
     def form_valid(self, form):
-        decision = form.cleaned_data["decision"]
-        description = form.cleaned_data["description"]
-        agency = form.cleaned_data["agency"]
         form.save()
         return super(NotificationView, self).form_valid(form)
 
@@ -73,6 +70,7 @@ class ReportView(FormView):
         return super(ReportView, self).form_valid(form)
 
 class ResourceView(FormView):
+
     template_name = "resource.html"
     form_class = ResourceForm
     success_url = "/resource/"
