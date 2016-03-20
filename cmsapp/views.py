@@ -31,6 +31,7 @@ class HomeView(CmsBaseView, TemplateView):
        context["user_authenticated"] = self.request.user.is_authenticated()
        return context
 
+
 class DashboardView(CmsBaseView, FormView):
 
     template_name = "dashboard.html"
@@ -134,3 +135,7 @@ class LogoutView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         logout(self.request)
         return super(LogoutView, self).get_redirect_url(*args, **kwargs)
+
+class AboutView(TemplateView):
+
+    template_name = "about.html"
