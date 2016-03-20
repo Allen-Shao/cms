@@ -26,9 +26,11 @@
         <p>Bling!!!This is our super excellent PROJECT!!</p>
       </div>
       <!-- <div class="row"> -->
-      <div id="mydiv" class="alert alert-success">
-        <strong>Success!</strong> You are now logged in.
-      </div>
+      {% if user_authenticated %}
+        <div id="mydiv" class="alert alert-success">
+          <strong>Success!</strong> You are now logged in.
+        </div>
+      {% endif %}
       <!--google map display-->
       <div id="googleMap" style="width:100%;height:650px;"></div>
       <hr>
