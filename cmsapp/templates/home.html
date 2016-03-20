@@ -1,5 +1,6 @@
-    {% extends 'base.html' %}
-    {% block head_extra %}
+{% extends 'base.html' %}
+{% block head_extra %}
+    <title>Crisis Management System</title>
     <script
     src="http://maps.googleapis.com/maps/api/js">
     </script>
@@ -17,6 +18,7 @@
     google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 {% endblock %}
+
 {% block content %}
 
       <div class="jumbotron">

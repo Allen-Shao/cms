@@ -1,12 +1,12 @@
-<html>
-    <head>
-        <title>notification</title>
-    </head>
-    <body>
+{% extends 'base.html' %}
+{% block head-extra %}
+    <title>CMS - notification</title>
+{% endblock %}
+
+{% block content %}
         <form action="/notification/" method="post">
             {% csrf_token %}
             {{ form }}
             <input type="submit" value="Submit" />
         </form>
-    </body>
-</html>
+{% endblock %}
