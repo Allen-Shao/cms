@@ -2,7 +2,7 @@ import facebook
 
 graph = facebook.GraphAPI(access_token='452462581629614', version='2.5')
 
-def shareonfacebook(message, caption, name, description):
+def share_on_facebook(message, caption, name, description):
 
 	attachment =  {
 	    'name': name,
