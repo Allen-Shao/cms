@@ -4,14 +4,14 @@
 {% endblock %}
 
 {% block content %}
-      <form class="form-horizantol" role = "form" action="/resource/" method="post">
+      <form class="form-horizontal" role = "form" action="/resource/" method="post">
         {% csrf_token %}
         <h2>Request Resource</h2>
         
         <!-- Type of crisis -->
         <div class = "form-group">
           <label for="inputTypeofCrisis" class="control-label col-sm-2">Type of Crisis: </label>
-          <div class="col-sm-8"> 
+          <div class="col-sm-4"> 
             <select class="form-control" type="text" name="crisis" id="crisis">
               <option value="" selected="selected">---------</option> 
               {% for report in form.crisis.field.queryset %}
