@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.template import RequestContext
 from django.shortcuts import render_to_response
 # just for testing
 from django.contrib.messages.views import SuccessMessageMixin
@@ -124,8 +125,8 @@ class LoginView(CmsBaseView, SuccessMessageMixin, FormView):
                 return HttpResponse("disabled")
         else:
             context = self.get_context_data()
-            #messages.add_message(self.request, messages.ERROR, "no_user")
             context["failed"] = True
+            context = RequestContext(self.request, context)
             return render_to_response(self.template_name, context)
 
 class LogoutView(RedirectView):
