@@ -52,18 +52,18 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/about/">About</a></li>
+            <li class = "{{ home_active }}"><a href="/">Home</a></li>
             {% if is_ccs %}
               <!-- if user is a call centre staff -->
-              <li><a href="/report/">Report</a></li>
+              <li class = "{{ report_active }}"><a href="/report/">Report</a></li>
             {% endif %}
             {% if is_agency %}
-              <li><a href="/resource/">Resource Request</a></li>
+              <li class = "{{ resource_active }}"><a href="/resource/">Resource Request</a></li>
             {% endif %}
             {% if is_dm %}
-              <li><a href="/dashboard/">Decision</a></li>
+              <li class = "{{ dashboard_active }}"><a href="/dashboard/">Decision</a></li>
             {% endif %}
+            <li class = "{{ about_active }}"><a href="/about/">About</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if user_authenticated %}
