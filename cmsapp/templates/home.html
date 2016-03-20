@@ -26,10 +26,20 @@
         <p>Bling!!!This is our super excellent PROJECT!!</p>
       </div>
       <!-- <div class="row"> -->
-      {% if user_authenticated %}
+     <!--  {% if login_msg %}
         <div id="mydiv" class="alert alert-success">
           <strong>Success!</strong> You are now logged in.
         </div>
+      {% endif %} -->
+
+      {% if messages %}
+        {% for message in messages %}
+          {% if message.tags=="success" %} 
+            <div id="mydiv" class="alert alert-success">
+              <strong>Success!</strong> You are now logged in.
+            </div>
+          {% endif %}>
+        {% endfor %}
       {% endif %}
       <!--google map display-->
       <div id="googleMap" style="width:100%;height:650px;"></div>
