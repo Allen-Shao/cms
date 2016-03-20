@@ -94,7 +94,7 @@ class ResourceView(CmsBaseView, FormView):
         return super(ResourceView, self).form_valid(form)
         # NOTE: Send an SMS/Email to respective agency
 
-class LoginView(CmsBaseView, FormView, SuccessMessageMixin):
+class LoginView(CmsBaseView, SuccessMessageMixin, FormView):
 
     template_name = "login.html"
     form_class = LoginForm
@@ -110,6 +110,7 @@ class LoginView(CmsBaseView, FormView, SuccessMessageMixin):
                 login(self.request, user)
                 # Redirect to a success page.
                 self.success_message = "success"
+                print self.success_message
                 return super(LoginView, self).form_valid(form)
             else:
                 # Return a 'disabled account' error message
