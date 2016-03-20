@@ -4,9 +4,51 @@
 {% endblock %}
 
 {% block content %}
-        <form action="/notification/" method="post">
-            {% csrf_token %}
-            
-            <input type="submit" value="Submit" />
-        </form>
+    <form class="form-horizontal" role = "form" action="/notification/" method="post">
+        {% csrf_token %}
+        <h2>Notification</h2>
+        
+        <!-- Decision -->
+        <div class = "form-group">
+          <label for="inputDescision" class="control-label col-sm-2">Decision: </label>
+          <div class="col-sm-4"> 
+            <select class="form-control" type="text" name="decision" id="decision">
+              <option value="" selected="selected">---------</option> 
+              {% for notification in form.decision.field.queryset %}
+                <option value="{{notification.id}}">
+                  {{notification}}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+     
+        <!-- Description -->
+        <div class = "form-group">
+          <label for="inputDescription" class="control-label col-sm-2">Description: </label>
+          <div class="col-sm-8"> 
+            <textarea type="text" name="description" id="description" class="form-control" placeholder="Please discribe the notification in detail" required></textarea> 
+          </div>
+        </div>
+
+        <!-- Agency -->
+        <div class = "form-group">
+          <label for="inputDescision" class="control-label col-sm-2">Agency: </label>
+          <div class="col-sm-4"> 
+            <select class="form-control" type="text" name="agency" id="agency">
+              <option value="" selected="selected">---------</option> 
+              {% for notification in form.agency.field.queryset %}
+                <option value="{{notification.id}}">
+                  {{notification}}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        
+        <div class="col-lg-3"> 
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button> 
+        </div>
+
+      </form>    
 {% endblock %}
