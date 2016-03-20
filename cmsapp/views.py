@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 # just for testing
-from django.views.generic.base import TemplateView, RedirectView
+from django.views.generic.base import TemplateView, RedirectView, ContextMixin
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login, logout
 
@@ -9,19 +9,29 @@ from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceFor
 from models import CallCenterReport
 
 # Create your views here.
-class HomeView(TemplateView):
-
-    template_name = "home.html"
+class CmsBaseView(ContextMixin):
 
     def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
+        context = super(CmsBaseView, self).get_context_data(**kwargs)
         context["is_dm"] = self.request.user.groups.filter(name='Decision Maker').exists()
         context["is_ccs"] = self.request.user.groups.filter(name='Call Center Staff').exists()
         context["is_agency"] = self.request.user.groups.filter(name='Agency Staff').exists()
         context["user_authenticated"] = self.request.user.is_authenticated()
         return context
 
-class DashboardView(FormView):
+class HomeView(CmsBaseView, TemplateView):
+
+    template_name = "home.html"
+
+    #def get_context_data(self, **kwargs):
+    #    context = super(HomeView, self).get_context_data(**kwargs)
+    #    context["is_dm"] = self.request.user.groups.filter(name='Decision Maker').exists()
+    #    context["is_ccs"] = self.request.user.groups.filter(name='Call Center Staff').exists()
+    #    context["is_agency"] = self.request.user.groups.filter(name='Agency Staff').exists()
+    #    context["user_authenticated"] = self.request.user.is_authenticated()
+    #    return context
+
+class DashboardView(CmsBaseView, FormView):
 
     template_name = "dashboard.html"
     form_class = DecisionForm
@@ -38,7 +48,7 @@ class DashboardView(FormView):
         return super(DashboardView, self).form_valid(form)
 
 
-class NotificationView(FormView):
+class NotificationView(CmsBaseView, FormView):
 
     template_name = "Notification.html"
     form_class = NotificationForm
@@ -54,7 +64,7 @@ class NotificationView(FormView):
         return context
 
 
-class ReportView(FormView):
+class ReportView(CmsBaseView, FormView):
 
     template_name = "report.html"
     form_class = CallCenterReportForm
@@ -69,7 +79,7 @@ class ReportView(FormView):
         form.save()
         return super(ReportView, self).form_valid(form)
 
-class ResourceView(FormView):
+class ResourceView(CmsBaseView, FormView):
 
     template_name = "resource.html"
     form_class = ResourceForm
@@ -86,7 +96,7 @@ class ResourceView(FormView):
         return super(ResourceView, self).form_valid(form)
         # NOTE: Send an SMS/Email to respective agency
 
-class LoginView(FormView):
+class LoginView(CmsBaseView, FormView):
 
     template_name = "login.html"
     form_class = LoginForm
