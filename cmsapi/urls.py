@@ -13,11 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+
 from django.conf.urls import url, include
-from django.contrib import admin
+from views import ReportViewSet
+
+app_name="cmsapp"
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^api/', include('cmsapi.urls')),
-    url(r'^', include('cmsapp.urls'))
+    url(r'^reports/$', ReportViewSet.as_view({"get": "list"}), name="reports")
 ]
