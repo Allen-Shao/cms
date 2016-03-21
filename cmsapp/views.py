@@ -137,9 +137,10 @@ class LogoutView(RedirectView):
         logout(self.request)
         return super(LogoutView, self).get_redirect_url(*args, **kwargs)
 
-class AboutView(TemplateView):
+class AboutView(CmsBaseView, TemplateView):
 
     template_name = "about.html"
+
     def get_context_data(self, **kwargs):
         context = super(AboutView, self).get_context_data(**kwargs)
         context["about_active"] = "active"
