@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block head_extra %}
     <title>CMS</title>
-    <script
-    src="http://maps.googleapis.com/maps/api/js">
+    <script async defer
+      src="http://maps.googleapis.com/maps/api/js">
     </script>
 
+
     <script>
-    function initialize() {
+    function initMap() {
       var mapProp = {
         center:new google.maps.LatLng(1.354241, 103.819417),
         //center:new google.maps.LatLng(51.508742,-0.120850),
@@ -14,9 +15,14 @@
         mapTypeId:google.maps.MapTypeId.ROADMAP
       };
       var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+      var marker = new google.maps.Marker({
+          position: {lat: 1.354241, lng: 103.819417},
+          map: map,
+          title: 'Hello World!'
+      });
     }
-    google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+    google.maps.event.addDomListener(window, 'load', initMap);
+    </script>
 {% endblock %}
 
 {% block content %}
