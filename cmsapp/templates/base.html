@@ -63,6 +63,9 @@
             {% if is_dm %}
               <li class = "{{ dashboard_active }}"><a href="/dashboard/">Decision</a></li>
             {% endif %}
+            {% if is_staff %}
+              <li><a href="/admin/">Admin</a></li>
+            {% endif %}
             <li class = "{{ about_active }}"><a href="/about/">About</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

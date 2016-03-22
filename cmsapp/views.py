@@ -19,6 +19,7 @@ class CmsBaseView(ContextMixin):
         context["is_dm"] = self.request.user.groups.filter(name='Decision Maker').exists()
         context["is_ccs"] = self.request.user.groups.filter(name='Call Center Staff').exists()
         context["is_agency"] = self.request.user.groups.filter(name='Agency Staff').exists()
+        context["is_staff"] = self.request.user.is_staff
         context["user_authenticated"] = self.request.user.is_authenticated()
         return context
 

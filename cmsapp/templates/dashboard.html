@@ -5,7 +5,7 @@
 
 {% block content %}
     <h3>Reports</h3>
-      {% if reports %} {% for report in reports %}
+      <!-- {% if reports %} {% for report in reports %}
       <div class="row">
         <div class ="col-md-4">
             {{ report.name }}
@@ -21,7 +21,9 @@
       <div class = "row">
         <p>No Reports Available</p>
       </div>
-      {% endif %}
+      {% endif %} -->
+
+    <div id="AJAXreports"></div>
 
 
     <h3>Declare Crisis</h3>
@@ -33,4 +35,6 @@
 {% endblock %}
 
 {% block js %}
+{% load staticfiles %}
+<script src="{% static "js/AJAX-reports.js" %}"></script>
 {% endblock %}
