@@ -6,15 +6,15 @@ var new_l = 0;
 
 $("#AJAXreports").append("<div class='container-fluid' id='AJAXcontent'></div>");
 
-setInterval(pullReports, 30000);
+setInterval(pullReports, 5000);
 
 function pullReports() {
   var html = '';
-  $.ajax({ 
+  $.ajax({
      type: "GET",
      dataType: "json",
-     url: "http://localhost:8888/api/reports",
-     success: function(data){        
+     url: "http://localhost:8888/api/reports/",
+     success: function(data){
         new_l = data.length;
 
         if (new_l != old_l) {
