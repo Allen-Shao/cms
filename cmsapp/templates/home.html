@@ -62,7 +62,10 @@
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
     <!-- load initMap() -->
     <script src="{% static "js/map.js" %}"></script>
-    <script async defer
+    <script
+      src="{% static "js/markerwithlabel_packed.js" %}">
+    </script>
+    <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGj5ZV0D8vf7pIhN29NbzJk9EzON8sIMI&callback=initMap">
     </script>
 {% endblock %}
