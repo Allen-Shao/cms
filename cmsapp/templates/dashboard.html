@@ -23,15 +23,55 @@
         <p>No Reports Available</p>
       </div>
       {% endif %} -->
+    <div class= 'row' style="margin-top:20px">
+      <div class ='col-md-2'>
+        <h4> NAME </h4>
+      </div>
+      <div class ='col-md-2'>
+        <h4> LOCATION </h4>
+      </div>
+      <div class ='col-md-3'>
+        <h4> DESCRIPTION </h4>
+      </div>
+      <div class ='col-md-3'>
+        <h4> TYPE OF ASSISTANCE </h4>
+      </div>
+      <div class ='col-md-2'>
+        <h4> TYPE OF CRISIS </h4>
+      </div>
+    </div>
 
     <div id="AJAXreports"></div>
 
 
+    <hr>
+
     <h3>Declare Crisis</h3>
-      <form class="form-vertical" role = "form">
+      <form class="form-horizontal" role = "form" style="margin-top:40px">
         {% csrf_token %}
-        {{ form }}
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+<!--         {{ form }} -->
+        <div class = "form-group">
+          <label for="inputTypeofCrisis" class="control-label col-sm-2">Type of Crisis: </label>
+          <div class="col-sm-2">
+            <select class="form-control" type="text" name="type_of_crisis" id="typepfcrisis">
+              <option value="" selected="selected"> --------- </option>
+              {% for report in form.type_of_crisis.field.queryset %}
+                <option value="{{report.id}}">
+                  {{report.type_of_crisis}}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class = "form-group">
+          <label for="inputDescription" class="control-label col-sm-2">Description: </label>
+          <div class="col-sm-6">
+            <textarea type="text" name="description" rows="5"id="description" class="form-control" placeholder="Please discribe the crisis in detail" required></textarea>
+          </div>
+        </div>
+        <div class="col-sm-2 col-sm-offset-2">
+        <button class="btn btn-sm btn-primary btn-block" type="submit">Submit</button>
+        </div>
       </form>
 {% endblock %}
 

@@ -4,7 +4,7 @@
 var old_l = 0;
 var new_l = 0;
 
-$("#AJAXreports").append("<div class='container-fluid' id='AJAXcontent'></div>");
+$("#AJAXreports").append("<div id='AJAXcontent'></div>");
 
 setInterval(pullReports, 5000);
 
@@ -26,10 +26,10 @@ function pullReports() {
             html += "<div class='col-md-2'>";
             html += data[x].location;
             html += "</div>";
-            html += "<div class='col-md-2'>";
+            html += "<div class='col-md-3'>";
             html += data[x].description;
             html += "</div>";
-            html += "<div class='col-md-2'>";
+            html += "<div class='col-md-3'>";
             html += data[x].type_of_assistance;
             html += "</div>";
             html += "<div class='col-md-2'>";
