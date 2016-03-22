@@ -4,44 +4,60 @@
 var old_l = 0;
 var new_l = 0;
 
-$("#AJAXreports").append("<div id='AJAXcontent'></div>");
+// $("#AJAXreports").append("<table class='table table-striped'><tbody id='AJAXcontent'></tbody></table>");
 
 setInterval(pullReports, 5000);
 
 function pullReports() {
   var html = '';
   $.ajax({
-     type: "GET",
-     dataType: "json",
-     url: "http://localhost:8888/api/reports/",
-     success: function(data){
-        new_l = data.length;
+   type: "GET",
+   dataType: "json",
+   url: "http://localhost:8888/api/reports/",
+   success: function(data){
+    new_l = data.length;
 
-        if (new_l != old_l) {
-          for (var x = old_l; x < data.length; x++) {
-            html += "<div class='row'>";
-            html += "<div class='col-md-2'>";
+    if (new_l != old_l) {
+      for (var x = old_l; x < data.length; x++) {
+
+            // html += "<div class='row'>";
+            // html += "<div class='col-md-2'>";
+            // html += data[x].name;
+            // html += "</div>";
+            // html += "<div class='col-md-2'>";
+            // html += data[x].location;
+            // html += "</div>";
+            // html += "<div class='col-md-3'>";
+            // html += data[x].description;
+            // html += "</div>";
+            // html += "<div class='col-md-3'>";
+            // html += data[x].type_of_assistance;
+            // html += "</div>";
+            // html += "<div class='col-md-2'>";
+            // html += data[x].type_of_crisis;
+            // html += "</div>";
+            // html += "</div>";
+            html += "<tr>";
+            html += "<th class='col-md-2'>";
             html += data[x].name;
-            html += "</div>";
-            html += "<div class='col-md-2'>";
+            html += "</th><th class='col-md-2'>";
             html += data[x].location;
-            html += "</div>";
-            html += "<div class='col-md-3'>";
+            html += "</th><th class='col-md-3'>";
             html += data[x].description;
-            html += "</div>";
-            html += "<div class='col-md-3'>";
+            html += "</th><th class='col-md-3'>";
             html += data[x].type_of_assistance;
-            html += "</div>";
-            html += "<div class='col-md-2'>";
+            html += "</th><th class='col-md-2'>";
             html += data[x].type_of_crisis;
-            html += "</div>";
-            html += "</div>";
+            html += "</th></tr>";
+
+            console.log(html);
             $("#AJAXcontent").append(html);
             html = '';
+          }
+
+          old_l = new_l;
         }
 
-        old_l = new_l;
-    }
-}
-});
+      }
+    });
 }

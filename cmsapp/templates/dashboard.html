@@ -23,25 +23,21 @@
         <p>No Reports Available</p>
       </div>
       {% endif %} -->
-    <div class= 'row' style="margin-top:20px">
-      <div class ='col-md-2'>
-        <h4> NAME </h4>
-      </div>
-      <div class ='col-md-2'>
-        <h4> LOCATION </h4>
-      </div>
-      <div class ='col-md-3'>
-        <h4> DESCRIPTION </h4>
-      </div>
-      <div class ='col-md-3'>
-        <h4> TYPE OF ASSISTANCE </h4>
-      </div>
-      <div class ='col-md-2'>
-        <h4> TYPE OF CRISIS </h4>
-      </div>
-    </div>
 
-    <div id="AJAXreports"></div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class ='col-md-2'>NAME</th>
+                <th class ='col-md-2'>LOCATION</th>
+                <th class ='col-md-3'>DESCRIPTION</th>
+                <th class ='col-md-3'>TYPE OF ASSITANCE</th>
+                <th class ='col-md-2'>TYPE OF CRISIS</th>
+              </tr>
+            </thead>
+            <tbody id='AJAXcontent'></tbody>
+      </table>
+
+    
 
 
     <hr>
