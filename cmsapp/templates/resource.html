@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block head-extra %}
+{% block head_extra %}
     <title>CMS - Resource Form</title>
 {% endblock %}
 
@@ -7,13 +7,13 @@
       <form class="form-horizontal" role = "form" action="/resource/" method="post">
         {% csrf_token %}
         <h2>Request Resource</h2>
-        
+
         <!-- Type of crisis -->
         <div class = "form-group">
           <label for="inputTypeofCrisis" class="control-label col-sm-2">Type of Crisis: </label>
-          <div class="col-sm-4"> 
+          <div class="col-sm-4">
             <select class="form-control" type="text" name="crisis" id="crisis">
-              <option value="" selected="selected">---------</option> 
+              <option value="" selected="selected">---------</option>
               {% for report in form.crisis.field.queryset %}
                 <option value="{{report.id}}">
                   {{report}}
@@ -26,7 +26,7 @@
         <!-- Resource -->
         <div class = "form-group">
           <label for="inputResource" class="control-label col-sm-2">Resource: </label>
-          <div class="col-sm-8"> 
+          <div class="col-sm-8">
             <textarea type="text" name="resource" id="resource" class="form-control" placeholder="Resouces needed" required></textarea>
           </div>
         </div>
@@ -34,13 +34,13 @@
         <!-- Description -->
         <div class = "form-group">
           <label for="inputDescription" class="control-label col-sm-2">Description: </label>
-          <div class="col-sm-8"> 
-            <textarea type="text" name="description" id="description" class="form-control" placeholder="Please discribe the request in detail" required></textarea> 
+          <div class="col-sm-8">
+            <textarea type="text" name="description" id="description" class="form-control" placeholder="Please discribe the request in detail" required></textarea>
           </div>
         </div>
-        
-        <div class="col-lg-3"> 
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button> 
+
+        <div class="col-lg-3">
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
         </div>
 
       </form>
