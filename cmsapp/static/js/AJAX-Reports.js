@@ -6,7 +6,7 @@ var new_l = 0;
 
 $("#AJAXreports").append("<div class='container-fluid' id='AJAXcontent'></div>");
 
-setInterval(pullReports, 3000);
+setInterval(pullReports, 30000);
 
 function pullReports() {
   var html = '';
