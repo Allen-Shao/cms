@@ -24,15 +24,7 @@
         <p>No Reports Available</p>
       </div>
       {% endif %} -->
-        {% if messages %}
-          {% for message in messages %}
-            {% if message.tags == "success" %}
-              <div id="fastfade" class="alert alert-success">
-                <strong>Success!</strong> Form is submitted.
-              </div>
-            {% endif %}
-          {% endfor %}
-        {% endif %}
+        
 
     <table class="table table-striped">
         <thead>
@@ -51,6 +43,17 @@
 
     <h3 style="margin-top: 50px">Declare Crisis</h3>
     <hr>
+    
+    {% if messages %}
+          {% for message in messages %}
+            {% if message.tags == "success" %}
+              <div id="fastfade" class="alert alert-success">
+                <strong>Success!</strong> Form is submitted.
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
       <form class="form-horizontal" role = "form" style="margin-top:30px">
         {% csrf_token %}
 <!--         {{ form }} -->
