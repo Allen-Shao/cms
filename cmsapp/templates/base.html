@@ -66,8 +66,11 @@
             {% endif %}
             {% if is_staff %}
               <li><a href="/admin/">Admin</a></li>
+            {% endif %}
+            {% if is_cmsstaff %}
               <li class = "{{ notification_active }}"><a href="/notification/">Notification</a></li>
             {% endif %}
+
             <li class = "{{ about_active }}"><a href="/about/">About</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
