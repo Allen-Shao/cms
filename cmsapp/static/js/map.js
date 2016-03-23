@@ -1,29 +1,5 @@
-function initMap() {
-  // create map
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 11,
-    center: {lat: 1.354241, lng: 103.819417}
-  });
-
-  // psi icon
-  var psiIcon = {
-    url: "http://cdn8.staztic.com/app/a/2742/2742678/psi-malaysia-haze-5-l-140x140.png",
-    // url: "http://10.27.161.249:8888/static/images/psi_marker_40.png",
-    scaledSize: new google.maps.Size(40, 40)
-  };
-
-  // create marker
-  // var marker = new MarkerWithLabel({
-  //   position: {lat: 1.354241, lng: 103.819417},
-  //   map: map,
-  //   draggable: false,
-  //   labelContent: "59",
-  //   icon: psiIcon
-  // });
-
-
   // MarkerWithLabel
-  function MapLabel(opt_options) {
+function MapLabel(opt_options) {
     this.set('fontFamily', 'sans-serif');
     this.set('fontSize', 12);
     this.set('fontColor', '#000000');
@@ -88,7 +64,7 @@ MapLabel.prototype.drawCanvas_ = function() {
     style.marginLeft = this.getMarginLeft_(textWidth) + 'px';
     // Bring actual text top in line with desired latitude.
     // Cheaper than calculating height of text.
-    style.marginTop = '-0.4em';
+    style.marginTop = '0 em';
   }
 };
 
@@ -196,40 +172,70 @@ MapLabel.prototype.onRemove = function() {
 };
 MapLabel.prototype['onRemove'] = MapLabel.prototype.onRemove;
 
+//PSI Markers function
 
-//PSI Markers
-
-  var mapLabel = new MapLabel({
-          text: 'Test',
-          position: new google.maps.LatLng(1.35735, 103.82000),
+function MarkersWithLabel(location, psiText, map, psiIcon){
+  var label = new MapLabel({
+          text: psiText,
+          position: location,
           map: map,
-          fontSize: 35,
+          fontSize: 20,
           align: 'center',
+  });
+  var marker = new google.maps.Marker({
+          title: 'marker',
           icon: psiIcon
   });
+  marker.bindTo('map', label);
+  marker.bindTo('position', label);
+  marker.setDraggable(false);
+}
 
 
-  var rNO = new google.maps.Marker({
-    text: 'Test',
-    position: {lat: 1.41803, lng: 103.82000},
-    map: map,
-    title: 'Hello World!',
-    icon: psiIcon
+
+function initMap() {
+  // create map
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 11,
+    center: {lat: 1.354241, lng: 103.819417}
   });
 
-  // var rCE = new google.maps.Marker({
-  //   position: {lat: 1.35735, lng: 103.82000},
+  // psi icon
+  var psiIcon = {
+    url: "http://cdn8.staztic.com/app/a/2742/2742678/psi-malaysia-haze-5-l-140x140.png",
+    // url: "http://10.27.161.249:8888/static/images/psi_marker_40.png",
+    scaledSize: new google.maps.Size(40, 40)
+  };
+
+  // create marker
+  // var marker = new MarkerWithLabel({
+  //   position: {lat: 1.354241, lng: 103.819417},
+  //   map: map,
+  //   draggable: false,
+  //   labelContent: "59",
+  //   icon: psiIcon
+  // });
+
+//Psi Markers
+
+  MarkersWithLabel({lat: 1.41803, lng: 103.82000}, 120, map, psiIcon);
+
+
+  // var rNO = new google.maps.Marker({
+  //   text: 'Test',
+  //   position: {lat: 1.41803, lng: 103.82000},
   //   map: map,
   //   title: 'Hello World!',
   //   icon: psiIcon
   // });
 
+  var rCE = new google.maps.Marker({
+    //position: {lat: 1.35735, lng: 103.82000},
+    //map: map,
+    title: 'Central Marker',
+    icon: psiIcon
+  });
   
-
-
-
-
-
 
   var rEA = new google.maps.Marker({
     position: {lat: 1.35735, lng: 103.94000},
