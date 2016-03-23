@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block head_extra %}
     <title>CMS - Home</title>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
 {% endblock %}
 
 {% block content %}
-
   <div class="jumbotron">
     <h1>Crisis Management System</h1>
   </div>
@@ -56,13 +56,13 @@
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
 
-        <div class="fb-page" 
-          data-href="https://www.facebook.com/Crisis-Management-Team-484771021710765/?skip_nax_wizard=true" 
-          data-tabs="timeline" 
-          data-width="360" 
-          data-small-header="false" 
-          data-adapt-container-width="true" 
-          data-hide-cover="false" 
+        <div class="fb-page"
+          data-href="https://www.facebook.com/Crisis-Management-Team-484771021710765/?skip_nax_wizard=true"
+          data-tabs="timeline"
+          data-width="360"
+          data-small-header="false"
+          data-adapt-container-width="true"
+          data-hide-cover="false"
           data-show-facepile="true">
           <div class="fb-xfbml-parse-ignore">
             <blockquote cite="https://www.facebook.com/Crisis-Management-Team-484771021710765/?skip_nax_wizard=true">
@@ -77,17 +77,15 @@
 
 {% block js %}
 {% load staticfiles %}
-    <script src="{% static "js/psi_update.js" %}"></script>
     <!-- <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script> -->
-    <script src="{% static "js/timeout.js" %}" ></script>
+    <script src="{% static "js/timeout.js" %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+    <script src="{% static "js/maplabel-compiled.js" %}"></script>
     <!-- load initMap() -->
     <script src="{% static "js/map.js" %}"></script>
-    <script
-      src="{% static "js/markerwithlabel_packed.js" %}">
-    </script>
-    <script
+    <script src="{% static "js/psi_update.js" %}"></script>
+    <!-- <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGj5ZV0D8vf7pIhN29NbzJk9EzON8sIMI&callback=initMap">
-    </script>
+    </script> -->
 {% endblock %}

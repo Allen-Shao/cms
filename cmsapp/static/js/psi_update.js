@@ -32,6 +32,12 @@ function updateInHome(psiData) {
   psiReading += "<p>West: " + westReading + "</p>";
   psiReading += "<p>South: " + southReading + "</p>";
 
+  MarkersWithLabel(northLatLng, northReading);
+  MarkersWithLabel(centralLatLng, centralReading);
+  MarkersWithLabel(eastLatLng, eastReading);
+  MarkersWithLabel(westLatLng, westReading);
+  MarkersWithLabel(southLatLng, southReading);
+
   // reflect change in html
   $("#weather_psi").html(psiReading);
 }
