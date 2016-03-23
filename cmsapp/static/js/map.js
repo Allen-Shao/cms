@@ -1,4 +1,19 @@
-  // MarkerWithLabel
+function initMap() {
+  // create map
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 11,
+    center: {lat: 1.354241, lng: 103.819417}
+  });
+
+  // psi icon
+  var psiIcon = {
+    url: "http://cdn8.staztic.com/app/a/2742/2742678/psi-malaysia-haze-5-l-140x140.png",
+    // url: "http://10.27.161.249:8888/static/images/psi_marker_40.png",
+    scaledSize: new google.maps.Size(40, 40)
+  };
+
+
+    // MarkerWithLabel
 function MapLabel(opt_options) {
     this.set('fontFamily', 'sans-serif');
     this.set('fontSize', 12);
@@ -172,71 +187,29 @@ MapLabel.prototype.onRemove = function() {
 };
 MapLabel.prototype['onRemove'] = MapLabel.prototype.onRemove;
 
-//PSI Markers function
-
-function MarkersWithLabel(location, psiText, map, psiIcon){
-  var label = new MapLabel({
-          text: psiText,
-          position: location,
-          map: map,
-          fontSize: 20,
-          align: 'center',
-  });
-  var marker = new google.maps.Marker({
-          title: 'marker',
-          icon: psiIcon
-  });
-  marker.bindTo('map', label);
-  marker.bindTo('position', label);
-  marker.setDraggable(false);
-}
-
-
-
-function initMap() {
-  // create map
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 11,
-    center: {lat: 1.354241, lng: 103.819417}
-  });
-
-  // psi icon
-  var psiIcon = {
-    url: "http://cdn8.staztic.com/app/a/2742/2742678/psi-malaysia-haze-5-l-140x140.png",
-    // url: "http://10.27.161.249:8888/static/images/psi_marker_40.png",
-    scaledSize: new google.maps.Size(40, 40)
-  };
-
-  // create marker
-  // var marker = new MarkerWithLabel({
-  //   position: {lat: 1.354241, lng: 103.819417},
-  //   map: map,
-  //   draggable: false,
-  //   labelContent: "59",
-  //   icon: psiIcon
-  // });
-
 //Psi Markers
 
-  MarkersWithLabel({lat: 1.41803, lng: 103.82000}, 120, map, psiIcon);
 
-
-  // var rNO = new google.maps.Marker({
-  //   text: 'Test',
-  //   position: {lat: 1.41803, lng: 103.82000},
-  //   map: map,
-  //   title: 'Hello World!',
-  //   icon: psiIcon
-  // });
-
-  var rCE = new google.maps.Marker({
-    //position: {lat: 1.35735, lng: 103.82000},
-    //map: map,
-    title: 'Central Marker',
-    icon: psiIcon
+  var labelCE = new MapLabel({
+          text: 'test',
+          position: new google.maps.LatLng(1.35735, 103.82000),
+          map: map,
+          fontSize: 20,
+          align: 'center'
   });
-  
+  var markerCE = new google.maps.Marker({
+          position: {lat: 1.35735, lng: 103.82000},
+          map: map,
+          title: 'hello world',
+          icon: psiIcon
+  });
+  markerCE.bindTo('map', labelCE);
+  markerCE.bindTo('position', labelCE);
+  markerCE.setDraggable(false);
 
+
+  
+  
   var rEA = new google.maps.Marker({
     position: {lat: 1.35735, lng: 103.94000},
     map: map,
