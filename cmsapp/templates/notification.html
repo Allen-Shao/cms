@@ -8,6 +8,16 @@
         {% csrf_token %}
         <h2>Notification</h2>
 
+    {% if messages %}
+        {% for message in messages %}
+          {% if message.tags == "success" %}
+            <div id="mydiv" class="alert alert-success">
+              <strong>Success!</strong> Form is submitted.
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
         <!-- Decision -->
         <div class = "form-group">
           <label for="inputDescision" class="control-label col-sm-2">Decision: </label>
@@ -51,4 +61,9 @@
         </div>
 
       </form>
+{% endblock %}
+
+{% block js %}
+{% load staticfiles %}
+    <script src="{% static "js/timeout.js" %}"></script>
 {% endblock %}

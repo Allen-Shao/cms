@@ -53,14 +53,16 @@ class DashboardView(CmsBaseView, FormView):
         return super(DashboardView, self).form_valid(form)
 
 
-class NotificationView(CmsBaseView, FormView):
+class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
 
     template_name = "Notification.html"
     form_class = NotificationForm
     success_url="/notification/"
+    success_message = "fail"
 
     def form_valid(self, form):
         form.save()
+        self.success_message = "success"
         return super(NotificationView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
