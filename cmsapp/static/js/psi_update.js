@@ -25,12 +25,12 @@ function updateInHome(psiData) {
   var southReading = psiData.getElementsByTagName("region")[5].getElementsByTagName("record")[0].getElementsByTagName("reading")[0].getAttribute('value');
 
   // compose html tags
-  var psiReading = "<p>Overall: " + overallReading + "</p>";
-  psiReading += "<p>North: " + northReading + "</p>";
-  psiReading += "<p>Central: " + centralReading + "</p>";
-  psiReading += "<p>East: " + eastReading + "</p>";
-  psiReading += "<p>West: " + westReading + "</p>";
-  psiReading += "<p>South: " + southReading + "</p>";
+  var psiReading = "<tr><td height</td>Overall</td>" + "<td>"+ overallReading + "</td></tr>";
+  psiReading += "<tr><td>North</td>" + "<td>" + northReading + "</td></tr>";
+  psiReading += "<tr><td>Central</td>" + "<td>" + centralReading + "</td></tr>";
+  psiReading += "<tr><td>East</td>" + "<td>" + eastReading + "</td></tr>";
+  psiReading += "<tr><td>West</td>" + "<td>" + westReading + "</td></tr>";
+  psiReading += "<tr><td>South</td>" + "<td>" + southReading + "</td></tr>";
 
   MarkersWithLabel(northLatLng, northReading);
   MarkersWithLabel(centralLatLng, centralReading);

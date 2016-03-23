@@ -47,17 +47,25 @@
   <!-- 3 components displayed-->
     <div class="row">
 
-        <div class="col-sm-4">
-          <h3>Weather/PSI</h3>
-          <div id="weather_psi"></div>
+        <div class="col-sm-3">
+          <h3 style="margin-bottom: 20px">Weather/PSI</h3>
+            <table class="table table striped">
+              <thead>
+                <tr>
+                  <th>Region</th>
+                  <th>PSI</th>
+                </tr>
+              </thead>
+              <tbody id="weather_psi"></tbody>
+            </table>
         </div><!--/.col1-->
 
-      <div class="col-sm-4">
-        <h3>Dengue</h3>
+      <div class="col-sm-3 col-sm-offset-1">
+        <h3 style="margin-bottom: 20px">Dengue</h3>
       </div><!--/.col2-->
 
-      <div class="col-sm-4">
-        <h3>Facebook</h3>
+      <div class="col-sm-4 col-sm-offset-1">
+        <h3 style="margin-bottom: 20px">Facebook</h3>
 
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
