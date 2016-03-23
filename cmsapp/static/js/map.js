@@ -7,10 +7,9 @@ function MarkersWithLabel(location, psiText){
           fontSize: 20,
           align: 'center'
   });
-  var markerCE = new google.maps.Marker({
-          position: {lat: 1.35735, lng: 103.82000},
+  var marker = new google.maps.Marker({
+          position: location,
           map: map,
-          title: 'hello world',
           icon: psiIcon
   });
   marker.bindTo('map', label);
