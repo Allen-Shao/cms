@@ -1,15 +1,16 @@
 //PSI Markers function
-
 function MarkersWithLabel(location, psiText){
   var label = new MapLabel({
           text: psiText,
           position: location,
           map: map,
           fontSize: 20,
-          align: 'center',
+          align: 'center'
   });
-  var marker = new google.maps.Marker({
-          title: 'marker',
+  var markerCE = new google.maps.Marker({
+          position: {lat: 1.35735, lng: 103.82000},
+          map: map,
+          title: 'hello world',
           icon: psiIcon
   });
   marker.bindTo('map', label);
