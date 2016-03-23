@@ -1,5 +1,8 @@
 # ignore all pyc files
 *.pyc
 
+# ignore database
+db.sqlite3
+
 # ignore virtualenv
 ENV/

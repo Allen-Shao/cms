@@ -6,6 +6,7 @@
 
 {% block content %}
     <h3>Reports</h3>
+    <hr>
       <!-- {% if reports %} {% for report in reports %}
       <div class="row">
         <div class ="col-md-4">
@@ -39,11 +40,9 @@
 
     
 
-
+    <h3 style="margin-top: 50px">Declare Crisis</h3>
     <hr>
-
-    <h3>Declare Crisis</h3>
-      <form class="form-horizontal" role = "form" style="margin-top:40px">
+      <form class="form-horizontal" role = "form" style="margin-top:30px">
         {% csrf_token %}
 <!--         {{ form }} -->
         <div class = "form-group">
