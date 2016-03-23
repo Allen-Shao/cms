@@ -65,6 +65,7 @@ class NotificationView(CmsBaseView, FormView):
     def get_context_data(self, **kwargs):
         context = super(NotificationView, self).get_context_data(**kwargs)
         context["form"] = NotificationForm
+        context["notification_active"] = "active"
         #context["notification_view"]
         return context
 
