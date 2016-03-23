@@ -43,7 +43,7 @@
 
     <h3 style="margin-top: 50px">Declare Crisis</h3>
     <hr>
-    
+
     {% if messages %}
           {% for message in messages %}
             {% if message.tags == "success" %}
@@ -54,7 +54,7 @@
           {% endfor %}
         {% endif %}
 
-      <form class="form-horizontal" role = "form" style="margin-top:30px">
+      <form class="form-horizontal" role = "form" style="margin-top:30px" action="/dashboard/" method="post">
         {% csrf_token %}
 <!--         {{ form }} -->
         <div class = "form-group">

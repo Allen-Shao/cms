@@ -52,6 +52,7 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
     def form_valid(self, form):
         form.save()
         self.success_message = "success"
+        print self.success_message
         return super(DashboardView, self).form_valid(form)
 
 
