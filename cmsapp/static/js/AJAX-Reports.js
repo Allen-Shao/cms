@@ -6,6 +6,8 @@ var new_l = 0;
 
 // $("#AJAXreports").append("<table class='table table-striped'><tbody id='AJAXcontent'></tbody></table>");
 
+pullReports();
+
 setInterval(pullReports, 5000);
 
 function pullReports() {
