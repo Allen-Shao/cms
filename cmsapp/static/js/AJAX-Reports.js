@@ -15,7 +15,7 @@ function pullReports() {
   $.ajax({
    type: "GET",
    dataType: "json",
-   url: "http://localhost:8888/api/reports/",
+   url: "/api/reports/",
    success: function(data){
     new_l = data.length;
 
