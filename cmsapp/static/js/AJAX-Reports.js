@@ -6,6 +6,8 @@ var new_l = 0;
 
 // $("#AJAXreports").append("<table class='table table-striped'><tbody id='AJAXcontent'></tbody></table>");
 
+pullReports();
+
 setInterval(pullReports, 5000);
 
 function pullReports() {
@@ -13,7 +15,7 @@ function pullReports() {
   $.ajax({
    type: "GET",
    dataType: "json",
-   url: "http://localhost:8888/api/reports/",
+   url: "/api/reports/",
    success: function(data){
     new_l = data.length;
 
