@@ -8,6 +8,16 @@
         {% csrf_token %}
         <h2>Crisis Report Form</h2>
 
+        {% if messages %}
+          {% for message in messages %}
+            {% if message.tags == "success" %}
+              <div id="fastfade" class="alert alert-success">
+                <strong>Success!</strong> Form is submitted.
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
         <!-- name -->
         <div class = "form-group">
           <label for="inputName" class="control-label col-sm-2">Reporter Name: </label>
@@ -70,4 +80,9 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+{% endblock %}
+
+{% block js %}
+{% load staticfiles %}
+    <script src="{% static "js/timeout.js" %}"></script>
 {% endblock %}

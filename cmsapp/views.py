@@ -35,11 +35,12 @@ class HomeView(CmsBaseView, TemplateView):
        return context
 
 
-class DashboardView(CmsBaseView, FormView):
+class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
 
     template_name = "dashboard.html"
     form_class = DecisionForm
     success_url="/dashboard/"
+    success_message = "fail"
 
     def get_context_data(self, **kwargs):
         context = super(DashboardView, self).get_context_data(**kwargs)
@@ -50,6 +51,7 @@ class DashboardView(CmsBaseView, FormView):
 
     def form_valid(self, form):
         form.save()
+        self.success_message = "success"
         return super(DashboardView, self).form_valid(form)
 
 
@@ -73,11 +75,12 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
         return context
 
 
-class ReportView(CmsBaseView, FormView):
+class ReportView(CmsBaseView, SuccessMessageMixin, FormView):
 
     template_name = "report.html"
     form_class = CallCenterReportForm
     success_url = "/report/"
+    success_message = "fail"
 
     def get_context_data(self, **kwargs):
         context = super(ReportView, self).get_context_data(**kwargs)
@@ -87,13 +90,15 @@ class ReportView(CmsBaseView, FormView):
 
     def form_valid(self, form):
         form.save()
+        self.success_message = "success"
         return super(ReportView, self).form_valid(form)
 
-class ResourceView(CmsBaseView, FormView):
+class ResourceView(CmsBaseView, SuccessMessageMixin ,FormView):
 
     template_name = "resource.html"
     form_class = ResourceForm
     success_url = "/resource/"
+    success_message = "fail"
     #NOTE: For testing, remove later
     #Make the crisis a dropdown menu
     def get_context_data(self, **kwargs):
@@ -104,6 +109,7 @@ class ResourceView(CmsBaseView, FormView):
 
     def form_valid(self, form):
         form.save()
+        self.success_message = "success"
         return super(ResourceView, self).form_valid(form)
         # NOTE: Send an SMS/Email to respective agency
 

@@ -24,6 +24,15 @@
         <p>No Reports Available</p>
       </div>
       {% endif %} -->
+        {% if messages %}
+          {% for message in messages %}
+            {% if message.tags == "success" %}
+              <div id="fastfade" class="alert alert-success">
+                <strong>Success!</strong> Form is submitted.
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
 
     <table class="table table-striped">
         <thead>
@@ -73,4 +82,5 @@
 {% block js %}
 {% load staticfiles %}
 <script src="{% static "js/report_update.js" %}"></script>
+<script src="{% static "js/timeout.js" %}"></script>
 {% endblock %}
