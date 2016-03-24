@@ -2,11 +2,13 @@
 {% block head_extra %}
     <title>CMS - Home</title>
     <script src="https://maps.googleapis.com/maps/api/js"></script>
+    {% load staticfiles %}
+    <link href="{% static "css/home.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-  <div class="jumbotron">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- <div class="jumbotron">
+    <!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
       <div class="carousel-inner" role="listbox">
         <div class="item active">
@@ -14,18 +16,12 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>Crisis Management System</h1>
-            </div>
+            <!-- </div>
           </div>
         </div>
       </div>
-    </div><!-- /.carousel -->
-  </div>
-      <!-- <div class="row"> -->
-     <!--  {% if login_msg %}
-        <div id="mydiv" class="alert alert-success">
-          <strong>Success!</strong> You are now logged in.
-        </div>
-      {% endif %} -->
+    </div><!-- /.carousel
+  </div> -->
 
   {% if messages %}
     {% for message in messages %}
@@ -65,7 +61,7 @@
 
         <div class="col-sm-3">
           <h3 style="margin-bottom: 20px">Weather/PSI</h3>
-            <table class="table table striped">
+            <table class="table table-striped">
               <thead>
                 <tr>
                   <th>Region</th>
@@ -74,15 +70,17 @@
               </thead>
               <tbody id="psi_table"></tbody>
             </table>
-            <table class="table table striped">
+            <!-- <div style="overflow-y:scroll; height:300px;"> -->
+            <table class="table table-striped scroll">
               <thead>
                 <tr>
                   <th>Region</th>
                   <th>Weather</th>
                 </tr>
               </thead>
-              <tbody id="weather_table"></tbody>
+              <tbody id="weather_table" class="scroll"></tbody>
             </table>
+
         </div><!--/.col1-->
 
       <div class="col-sm-3 col-sm-offset-1">
@@ -135,12 +133,12 @@
             js.id = id;
             js.src = "https://platform.twitter.com/widgets.js";
             fjs.parentNode.insertBefore(js, fjs);
-           
+
             t._e = [];
             t.ready = function(f) {
               t._e.push(f);
             };
-           
+
             return t;
           }(document, "script", "twitter-wjs"));
           </script>
@@ -148,7 +146,7 @@
       </div><!-- /.row -->
 
 
-    
+
 
  {% endblock %}
 
@@ -162,7 +160,7 @@
     <!-- load initMap() -->
     <script src="{% static "js/map.js" %}"></script>
     <script src="{% static "js/psi_update.js" %}"></script>
-    <script src="{% static "js/weather_update.js" %}"></script>    
+    <script src="{% static "js/weather_update.js" %}"></script>
     <!-- <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGj5ZV0D8vf7pIhN29NbzJk9EzON8sIMI&callback=initMap">
     </script> -->

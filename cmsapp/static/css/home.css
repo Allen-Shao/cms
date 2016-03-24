@@ -1,0 +1,21 @@
+
+.scroll thead, .scroll tbody, .scroll tr, .scroll td, .scroll th {
+  display: block; }
+
+.scroll tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.scroll tbody {
+    height: 400px;
+    overflow-y: auto;
+}
+
+
+.scroll tbody td, .scroll thead th {
+    width: 50%;
+    float: left;
+}
