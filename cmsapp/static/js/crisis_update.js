@@ -1,7 +1,5 @@
-var old_l = 0;
-var new_l = 0;
-
-
+var old_length = 0;
+var new_length = 0;
 pullDecisions();
 
 setInterval(pullDecisions, 5000);
@@ -13,10 +11,10 @@ function pullDecisions() {
    dataType: "json",
    url: "http://localhost:8888/api/decisions/",
    success: function(data){
-    new_l = data.results.length;
+    new_length = data.results.length;
 
-    if (new_l != old_l) {
-      for (var x = old_l; x < new_l; x++) {
+    if (new_length != old_length) {
+      for (var x = old_length; x < new_length; x++) {
         html = "";
           // if (data[x].active){
             html += "<tr>";
@@ -33,7 +31,7 @@ function pullDecisions() {
           // }
         }
 
-        old_l = new_l;
+        old_length = new_length;
       }
     }
   });
