@@ -87,6 +87,15 @@
 
       <div class="col-sm-3 col-sm-offset-1">
         <h3 style="margin-bottom: 20px">Dengue</h3>
+        <table class="table table striped">
+              <thead>
+                <tr>
+                  <th>Area</th>
+                  <th>Case</th>
+                </tr>
+              </thead>
+              <tbody id="dengue_table"></tbody>
+            </table>
       </div><!--/.col2-->
 
       <div class="col-sm-4 col-sm-offset-1">
@@ -131,7 +140,8 @@
     <!-- load initMap() -->
     <script src="{% static "js/map.js" %}"></script>
     <script src="{% static "js/psi_update.js" %}"></script>
-    <script src="{% static "js/weather_update.js" %}"></script>    
+    <script src="{% static "js/weather_update.js" %}"></script> 
+     <script src="{% static "js/dengue_update.js" %}"></script>     
     <!-- <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGj5ZV0D8vf7pIhN29NbzJk9EzON8sIMI&callback=initMap">
     </script> -->
