@@ -58,7 +58,7 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
 
 class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
 
-    template_name = "Notification.html"
+    template_name = "notification.html"
     form_class = NotificationForm
     success_url="/notification/"
     success_message = "fail"
