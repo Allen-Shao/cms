@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceForm, DecisionForm
 
-from models import CallCenterReport
+from models import CallCenterReport,Decision
 
 # Create your views here.
 class CmsBaseView(ContextMixin):
@@ -32,6 +32,8 @@ class HomeView(CmsBaseView, TemplateView):
        context = super(HomeView, self).get_context_data(**kwargs)
        context["home_active"] = "active"
        context["user_authenticated"] = self.request.user.is_authenticated()
+       context["active_decision"] = Decision.objects.filter(active = True).exists()
+       print context["active_decision"]
        return context
 
 
