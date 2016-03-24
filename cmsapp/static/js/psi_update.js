@@ -32,11 +32,13 @@ function updatePSIInHome(psiData) {
   psiReading += "<tr><td>West</td>" + "<td>" + westReading + "</td></tr>";
   psiReading += "<tr><td>South</td>" + "<td>" + southReading + "</td></tr>";
 
-  MarkersWithLabel(northLatLng, northReading, psiIcon, 30);
-  MarkersWithLabel(centralLatLng, centralReading, psiIcon, 30);
-  MarkersWithLabel(eastLatLng, eastReading, psiIcon, 30);
-  MarkersWithLabel(westLatLng, westReading, psiIcon, 30);
-  MarkersWithLabel(southLatLng, southReading, psiIcon, 30);
+  markers_psi = [];
+
+  MarkersWithLabel(northLatLng, northReading, psiIcon, 30, markers_psi);
+  MarkersWithLabel(centralLatLng, centralReading, psiIcon, 30, markers_psi);
+  MarkersWithLabel(eastLatLng, eastReading, psiIcon, 30, markers_psi);
+  MarkersWithLabel(westLatLng, westReading, psiIcon, 30, markers_psi);
+  MarkersWithLabel(southLatLng, southReading, psiIcon, 30, markers_psi);
 
   // reflect change in html
   $("#psi_table").html(psiReading);
