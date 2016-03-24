@@ -44,14 +44,14 @@
         <hr>
 
         <table class="table table-striped">
-        <thead>
-            <tr>
-                <th class ='col-md-2'>TYPE OF CRISIS</th>
-                <th class ='col-md-3'>DESCRIPTION</th>
-                <th class ='col-md-3'>TIME</th>
-              </tr>
-            </thead>
-            <tbody id='Crisiscontent'></tbody>
+      <thead>
+        <tr>
+          <th class ='col-md-2'>TYPE OF CRISIS</th>
+          <th class ='col-md-3'>DESCRIPTION</th>
+          <th class ='col-md-3'>TIME</th>
+          </tr>
+        </thead>
+        <tbody id='DecisionsContent'></tbody>
       </table>
 
       </div>
@@ -102,5 +102,6 @@
 {% block js %}
 {% load staticfiles %}
 <script src="{% static "js/report_update.js" %}"></script>
+<script src="{% static "js/crisis_update.js" %}"></script>
 <script src="{% static "js/timeout.js" %}"></script>
 {% endblock %}
