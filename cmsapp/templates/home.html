@@ -56,7 +56,16 @@
                   <th>PSI</th>
                 </tr>
               </thead>
-              <tbody id="weather_psi"></tbody>
+              <tbody id="psi_table"></tbody>
+            </table>
+            <table class="table table striped">
+              <thead>
+                <tr>
+                  <th>Region</th>
+                  <th>Weather</th>
+                </tr>
+              </thead>
+              <tbody id="weather_table"></tbody>
             </table>
         </div><!--/.col1-->
 
@@ -80,6 +89,7 @@
           data-href="https://www.facebook.com/Crisis-Management-Team-484771021710765/?skip_nax_wizard=true"
           data-tabs="timeline"
           data-width="360"
+          data-height = "640"
           data-small-header="false"
           data-adapt-container-width="true"
           data-hide-cover="false"
@@ -105,6 +115,7 @@
     <!-- load initMap() -->
     <script src="{% static "js/map.js" %}"></script>
     <script src="{% static "js/psi_update.js" %}"></script>
+    <script src="{% static "js/weather_update.js" %}"></script>    
     <!-- <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGj5ZV0D8vf7pIhN29NbzJk9EzON8sIMI&callback=initMap">
     </script> -->

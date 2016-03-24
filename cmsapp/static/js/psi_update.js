@@ -8,14 +8,14 @@ function updatePSI() {
     type: "GET",
     dataType: "xml",
     url: "http://www.nea.gov.sg/api/WebAPI?dataset=psi_update&keyref=781CF461BB6606AD0308169EFFAA8231021BA33828C73DAE",
-    success: updateInHome,
+    success: updatePSIInHome,
     error: function(error) {
       console.log(error);
     }
   });
 }
 
-function updateInHome(psiData) {
+function updatePSIInHome(psiData) {
   // get reading from XML
   var overallReading = psiData.getElementsByTagName("region")[1].getElementsByTagName("record")[0].getElementsByTagName("reading")[0].getAttribute('value');
   var northReading = psiData.getElementsByTagName("region")[0].getElementsByTagName("record")[0].getElementsByTagName("reading")[0].getAttribute('value');
@@ -32,12 +32,12 @@ function updateInHome(psiData) {
   psiReading += "<tr><td>West</td>" + "<td>" + westReading + "</td></tr>";
   psiReading += "<tr><td>South</td>" + "<td>" + southReading + "</td></tr>";
 
-  MarkersWithLabel(northLatLng, northReading);
-  MarkersWithLabel(centralLatLng, centralReading);
-  MarkersWithLabel(eastLatLng, eastReading);
-  MarkersWithLabel(westLatLng, westReading);
-  MarkersWithLabel(southLatLng, southReading);
+  MarkersWithLabel(northLatLng, northReading, psiIcon, 30);
+  MarkersWithLabel(centralLatLng, centralReading, psiIcon, 30);
+  MarkersWithLabel(eastLatLng, eastReading, psiIcon, 30);
+  MarkersWithLabel(westLatLng, westReading, psiIcon, 30);
+  MarkersWithLabel(southLatLng, southReading, psiIcon, 30);
 
   // reflect change in html
-  $("#weather_psi").html(psiReading);
+  $("#psi_table").html(psiReading);
 }
