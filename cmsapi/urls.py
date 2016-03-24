@@ -14,11 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 
-from django.conf.urls import url, include
-from views import ReportViewSet
+from django.conf.urls import url
+from views import ReportViewSet, ReportDetailView
 
 app_name="cmsapp"
 
 urlpatterns = [
-    url(r'^reports/$', ReportViewSet.as_view({"get": "list"}), name="reports")
+    url(r'^reports/$', ReportViewSet.as_view({"get": "list"}), name="reports"),
+    url(r'^reports/(?P<pk>[0-9]+)/$', ReportDetailView.as_view(), name="report_detail")
 ]
