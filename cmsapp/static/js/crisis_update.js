@@ -11,7 +11,7 @@ function pullDecisions() {
   $.ajax({
    type: "GET",
    dataType: "json",
-   url: "/api/decisions/",
+   url: "http://localhost:8888/api/decisions/",
    success: function(data){
     new_l = data.length;
 
