@@ -28,12 +28,12 @@ function updateDengueInHome(dengueData) {
 		place = cdata[5].getElementsByTagName("td")[5].innerHTML;
 		numOfCases = cdata[5].getElementsByTagName("td")[7].innerHTML;
 		if (numOfCases != 0){
-			dengueDisplay += "<tr><td height</td>"+ place + "</td>" + "<td>"+ numOfCases + "</td></tr>";
+			dengueDisplay += "<tr><td style='width:80%'>"+ place + "</td>" + "<td style='width:20%;' align = 'center'>"+ numOfCases + "</td></tr>";
 		}
 	}
 	// var cdata = area[0].getElementsByTagName("description")[0].firstChild.nodeValue;
 	// cdata = $.parseHTML(cdata);
-	
+
 	// console.log(cdata1)
 	// console.log(cdata1[5].getElementsByTagName("td")[5].innerHTML);
 	// console.log(cdata1[5].getElementsByTagName("td")[7].innerHTML);

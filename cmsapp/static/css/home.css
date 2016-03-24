@@ -23,3 +23,8 @@
 .btn-group {
   width: 100%;
 }
+
+.dengue-table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
