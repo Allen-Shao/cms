@@ -15,11 +15,15 @@ Including another URLconf
 """
 
 from django.conf.urls import url
-from views import ReportViewSet, ReportDetailView
+from views import ReportViewSet, ReportDetailView, DecisionViewSet, DecisionDetailView, ResourceRequestViewSet, ResourceRequestDetailView
 
 app_name="cmsapp"
 
 urlpatterns = [
     url(r'^reports/$', ReportViewSet.as_view({"get": "list"}), name="reports"),
-    url(r'^reports/(?P<pk>[0-9]+)/$', ReportDetailView.as_view(), name="report_detail")
+    url(r'^reports/(?P<pk>[0-9]+)/$', ReportDetailView.as_view(), name="report_detail"),
+    url(r'^decisions/$', DecisionViewSet.as_view({"get": "list"}), name="decisions"),
+    url(r'^decisions/(?P<pk>[0-9]+)/$', DecisionDetailView.as_view(), name="decision_detail"),
+    url(r'^requests/$', ResourceRequestViewSet.as_view({"get": "list"}), name="requests"),
+    url(r'^requests/(?P<pk>[0-9]+)/$', ResourceRequestDetailView.as_view(), name="request_detail")
 ]

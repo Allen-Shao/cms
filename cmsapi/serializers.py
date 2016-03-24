@@ -1,4 +1,4 @@
-from cmsapp.models import CallCenterReport, Decision
+from cmsapp.models import CallCenterReport, Decision, ResourceRequest
 from rest_framework import serializers
 
 class ReportSerializer(serializers.ModelSerializer):
@@ -38,3 +38,22 @@ class DecisionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Decision
         exclude = ["active"]
+
+class DecisionPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Decision
+        fields = ["active"]
+
+class ResourceRequestSerializer(serializers.ModelSerializer):
+    """
+    Serializer for resource request
+    """
+
+    class Meta:
+        model = ResourceRequest
+        exclude = ["active"]
+
+class ResourceRequestPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ResourceRequest
+        fields = ["active"]
