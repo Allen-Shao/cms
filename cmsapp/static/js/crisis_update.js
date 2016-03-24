@@ -13,24 +13,24 @@ function pullDecisions() {
    dataType: "json",
    url: "http://localhost:8888/api/decisions/",
    success: function(data){
-    new_l = data.length;
+    new_l = data.results.length;
 
     if (new_l != old_l) {
-      for (var x = old_l; x < data.length; x++) {
-          if (data[x].active){
+      for (var x = old_l; x < new_l; x++) {
+        html = "";
+          // if (data[x].active){
             html += "<tr>";
             html += "<th class='col-md-2'>";
-            html += data[x].type_of_crisis;
+            html += data.results[x].type_of_crisis;
             html += "</th><th class='col-md-2'>";
-            html += data[x].description;
+            html += data.results[x].description;
             html += "</th><th class='col-md-3'>";
-            html += data[x].date_time;
+            html += data.results[x].date_time;
             html += "</th></tr>";
 
             console.log(html);
             $("#DecisionsContent").append(html);
-            html = '';
-          }
+          // }
         }
 
         old_l = new_l;
