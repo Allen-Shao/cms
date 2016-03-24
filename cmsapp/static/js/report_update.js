@@ -15,13 +15,13 @@ function pullReports() {
   $.ajax({
    type: "GET",
    dataType: "json",
-   url: "/api/reports/",
+   url: "http://localhost:8888/api/reports/",
    success: function(data){
-    new_l = data.length;
+    new_l = data.results.length;
 
     if (new_l != old_l) {
-      for (var x = old_l; x < data.length; x++) {
-
+      for (var x = old_l; x < new_l; x++) {
+            html = "";
             // html += "<div class='row'>";
             // html += "<div class='col-md-2'>";
             // html += data[x].name;
@@ -41,20 +41,19 @@ function pullReports() {
             // html += "</div>";
             html += "<tr>";
             html += "<th class='col-md-2'>";
-            html += data[x].name;
+            html += data.results[x].name;
             html += "</th><th class='col-md-2'>";
-            html += data[x].location;
+            html += data.results[x].location;
             html += "</th><th class='col-md-3'>";
-            html += data[x].description;
+            html += data.results[x].description;
             html += "</th><th class='col-md-3'>";
-            html += data[x].type_of_assistance;
+            html += data.results[x].type_of_assistance;
             html += "</th><th class='col-md-2'>";
-            html += data[x].type_of_crisis;
+            html += data.results[x].type_of_crisis;
             html += "</th></tr>";
 
             console.log(html);
             $("#AJAXcontent").append(html);
-            html = '';
           }
 
           old_l = new_l;
