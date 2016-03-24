@@ -105,6 +105,7 @@ class ResourceRequest(models.Model):
     resource = models.CharField(max_length=50)
     description = models.TextField()
     date_time = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
 
     def __unicode__(self):
         return "%s - %s" % (self.crisis, self.resource)
