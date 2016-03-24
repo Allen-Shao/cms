@@ -121,11 +121,13 @@ function weatherFullNama(weatherAbbr){
 
 
 function updateWeatherInHome(weatherData) {
+
 	var numberOfAreas = 47;
 	var area, lat, lon, weatherAbbr, weather, name, location;
 	var weatherIcon;
 	var i;
 	var weatherDisplay = "";
+	markers_weather = [];
 	for (i=0;i<numberOfAreas;i++){
 		//Process xml data
 		area = weatherData.getElementsByTagName("area")[i];
@@ -141,7 +143,7 @@ function updateWeatherInHome(weatherData) {
   		};
 
   		//Display marker
-  		MarkersWithLabel(location, weather, weatherIcon, 10);
+  		MarkersWithLabel(location, weather, weatherIcon, 10, markers_weather);
 
   		//Compose html tags
   		weatherDisplay += "<tr><td height</td>"+ name + "</td>" + "<td>"+ weather + "</td></tr>";
