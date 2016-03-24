@@ -35,7 +35,7 @@
 
   {% if active_decision %}
     <div class="alert alert-danger" role="alert">
-      <strong>Crisis!</strong> 
+      <strong>Crisis!</strong>
     </div>
 
     <div>
@@ -54,25 +54,24 @@
     <div class="alert alert-success">
       There is no crisis right now! ^_^
     </div>
-    
+
   {% endif %}
 
   <!--google map display-->
   <div id="map" style="width:100%;height:650px;"></div>
 
   <br>
+
   <div class="row">
-      <div class="col-md-1"></div>
-      <input class="btn btn-info col-md-2" type="button" value="Weather" onclick="weatherButtonClicked();">
+
+      <div class="btn-group" role="group" aria-label="...">
+      <input class="btn btn-default col-md-4" type="button" value="Weather" onclick="weatherButtonClicked();">
       </input>
-      <div class="col-md-2"></div>
-      <input class="btn btn-info col-md-2" type="button" value="PSI" onclick="psiButtonClicked();">
+      <input class="btn btn-default col-md-4" type="button" value="PSI" onclick="psiButtonClicked();">
       </input>
-      <div class="col-md-2"></div>
-      <input class="btn btn-info col-md-2" type="button" value="Dengue" onclick="dengueButtonClicked();">
+      <input class="btn btn-default col-md-4" type="button" value="Dengue" onclick="dengueButtonClicked();">
       </input>
-      <div class="col-md-1"></div>
-  </div>
+  </div></div>
   <br>
 
   <hr>
@@ -179,11 +178,11 @@
         </div><!--/.col3-->
       </div><!-- /.row -->
 
-      
-      
-        
 
-    
+
+
+
+
 
 
 
@@ -204,8 +203,8 @@
 <<<<<<< HEAD
     <script src="{% static "js/weather_update.js" %}"></script>
 =======
-    <script src="{% static "js/weather_update.js" %}"></script> 
-     <script src="{% static "js/dengue_update.js" %}"></script>     
+    <script src="{% static "js/weather_update.js" %}"></script>
+     <script src="{% static "js/dengue_update.js" %}"></script>
 >>>>>>> origin/master
     <!-- <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGj5ZV0D8vf7pIhN29NbzJk9EzON8sIMI&callback=initMap">
