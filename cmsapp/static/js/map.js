@@ -78,7 +78,8 @@ function initMap() {
     zoom: 12,
     center: new google.maps.LatLng(1.354241, 103.82000),
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    streetViewControl: false
+    streetViewControl: false,
+    scrollwheel: false
   });
 
   // psi icon
