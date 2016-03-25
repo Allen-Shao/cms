@@ -97,7 +97,8 @@ function initMap() {
 
   //create dengue cluster
   dengueKmlLayer = new google.maps.KmlLayer({
-    url: 'https://data.gov.sg/dataset/e7536645-6126-4358-b959-a02b22c6c473/resource/c1d04c0e-3926-40bc-8e97-2dfbb1c51c3a/download/denguecluster.kml',
+    url: "https://ref.data.gov.sg/common/Handler.ashx?ThemeName=DENGUE_CLUSTER&Format=kml&MetaDataID=228454",
+    // url: 'https://data.gov.sg/dataset/e7536645-6126-4358-b959-a02b22c6c473/resource/c1d04c0e-3926-40bc-8e97-2dfbb1c51c3a/download/denguecluster.kml',
     map: null
   });
 }
