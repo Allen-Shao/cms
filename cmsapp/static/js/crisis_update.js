@@ -26,7 +26,6 @@ function pullDecisions() {
             html += data.results[x].date_time;
             html += "</th></tr>";
 
-            console.log(html);
             $("#DecisionsContent").append(html);
           // }
         }

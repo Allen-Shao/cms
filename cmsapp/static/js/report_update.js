@@ -52,7 +52,6 @@ function pullReports() {
           html += data.results[x].type_of_crisis;
           html += "</th></tr>";
 
-          console.log(html);
           $("#AJAXcontent").append(html);
         }
 
