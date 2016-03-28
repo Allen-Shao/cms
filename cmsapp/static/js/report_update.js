@@ -52,7 +52,7 @@ function pullReports() {
           html += data.results[x].type_of_crisis;
           html += "</th></tr>";
 
-          $("#AJAXcontent").append(html);
+          $("#ReportContent").append(html);
         }
 
         report_old_l = report_new_l;
