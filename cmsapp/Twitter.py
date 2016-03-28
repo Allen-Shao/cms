@@ -1,8 +1,8 @@
 import twitter
-api = twitter.Api(consumer_key='Q9TOD65OJ6faFrqizhjAvnPaE',
-                  consumer_secret=' ytV8LUtA7Q9xJdVfUe9NKlS46rBtr3gsGXYWR7XXALhZNxXGpP',
-                  access_token_key='2997098035-6cPjdMExmBcSrrC37SWFx8qE7Zmp0TzJaYHutVK',
-                  access_token_secret='CYCUVLlkmNPnrPV2Kfm1JKJyxtMgc9uLM1Wximz1ROka5')
+api = twitter.Api(consumer_key='3stEJXIAniL9suX2kr2VZiXTa',
+                  consumer_secret=' HBMsON2iHg6UGoCZ1o1WpsOQYlrrKIwssIQLrib6XunxMhQZU3',
+                  access_token_key='713015202682253312-iXDC2g0FHosO26tdO6ZuSh402LjJoGS',
+                  access_token_secret='gNKCMOBfG6z4IlhRqFG8GqRTH947s7HtmwicX7YsVo5Up')
 
 def postontwitter(message):
 	api.PostUpdate(message)
