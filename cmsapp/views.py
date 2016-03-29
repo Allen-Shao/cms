@@ -93,7 +93,7 @@ class ProcessReportsView(CmsBaseView, SuccessMessageMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super(ProcessReportsView, self).get_context_data(**kwargs)
         context["form"] = CallCenterReportForm
-        context["report_active"] = "active"
+        context["process_report_active"] = "active"
         return context
 
     def form_valid(self, form):
@@ -209,3 +209,4 @@ class AboutView(CmsBaseView, TemplateView):
         context = super(AboutView, self).get_context_data(**kwargs)
         context["about_active"] = "active"
         return context
+
