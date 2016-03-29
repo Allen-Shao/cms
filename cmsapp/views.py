@@ -9,7 +9,13 @@ from django.contrib.auth import authenticate, login, logout
 
 from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceForm, DecisionForm
 
-from models import CallCenterReport,Decision, Notification
+
+from models import CallCenterReport,Decision
+from django.shortcuts import redirect
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from models import CallCenterReport,Decision, Agency
+
 
 #SocialMedia Imports
 #from Facebook import share_on_facebook
@@ -42,8 +48,10 @@ class HomeView(CmsBaseView, TemplateView):
        print context["active_decision"]
        return context
 
-
+@method_decorator(login_required, name='dispatch')
 class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
+
+    
 
     template_name = "dashboard.html"
     form_class = DecisionForm
@@ -58,12 +66,23 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
             context["form2"] = NotificationForm
         context["dashboard_active"] = "active"
         context["reports"] = CallCenterReport.objects.all()
-        context["agencies"]=Notification.objects.all()
+        context["agencies"]=Agency.objects.all()
+        print Agency.objects.all()
+        print "agencies in context"
         return context
 
     def form_valid(self, form):
         form.save()
-        report = CallCenterReport.objects.get(id=form.cleaned_data["type_of_crisis"])
+        report = CallCenterReport.objects.filter(type_of_crisis=form.cleaned_data["type_of_crisis"])
+        print self.request.POST.getlist('agency')
+        agencies = Agency.objects.filter(name__in= self.request.POST.getlist('agency'))
+        for agency in agencies:
+            print agency.contact
+            print agency.name
+            #Note
+            #send_sms(agency.contact, "EMERGENCY!!!" + title)
+
+        print report
         title = report.type_of_crisis
         #share_on_facebook(title, form.cleaned_data["description"])
         post_on_twitter("EMERGENCY!! " + title)
@@ -74,6 +93,8 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
         return super(DashboardView, self).form_valid(form)
 
 
+
+@method_decorator(login_required, name='dispatch')
 class ProcessReportsView(CmsBaseView, SuccessMessageMixin, FormView):
 
     template_name = "process-reports.html"
@@ -84,7 +105,7 @@ class ProcessReportsView(CmsBaseView, SuccessMessageMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super(ProcessReportsView, self).get_context_data(**kwargs)
         context["form"] = CallCenterReportForm
-        context["report_active"] = "active"
+        context["process_report_active"] = "active"
         return context
 
     def form_valid(self, form):
@@ -96,6 +117,7 @@ class ProcessReportsView(CmsBaseView, SuccessMessageMixin, FormView):
 
 
 
+@method_decorator(login_required, name='dispatch')
 class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
 
     template_name = "notification.html"
@@ -117,7 +139,7 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
         #context["notification_view"]
         return context
 
-
+@method_decorator(login_required, name='dispatch')
 class ReportView(CmsBaseView, SuccessMessageMixin, FormView):
 
     template_name = "report.html"
@@ -199,3 +221,4 @@ class AboutView(CmsBaseView, TemplateView):
         context = super(AboutView, self).get_context_data(**kwargs)
         context["about_active"] = "active"
         return context
+
