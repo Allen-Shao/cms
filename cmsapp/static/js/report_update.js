@@ -1,6 +1,6 @@
 var report_old_l = 0;
 var report_new_l = 0;
-
+var currentURL = "http://localhost:8888/api/reports/";
 pullReports();
 
 setInterval(pullReports, 5000);
@@ -10,7 +10,7 @@ function pullReports() {
   $.ajax({
     type: "GET",
     dataType: "json",
-    url: "http://localhost:8888/api/reports/",
+    url: currentURL,
     success: function(data){
       report_new_l = data.results.length;
 
@@ -55,5 +55,7 @@ function updateReportStatus(reportID, newStatus) {
     }
   });
 
-  $("#row" + reportID).remove();
+  // $("#row" + reportID).remove();
+  // refresh the reports after removal
+  pullReports();
 }
