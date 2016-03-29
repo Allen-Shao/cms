@@ -154,3 +154,5 @@ CELERYBEAT_SCHEDULE = {
         'args': ()
     },
 }
+
+LOGIN_URL = "/login/"

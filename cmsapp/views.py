@@ -10,6 +10,9 @@ from django.contrib.auth import authenticate, login, logout
 from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceForm, DecisionForm
 
 from models import CallCenterReport,Decision
+from django.shortcuts import redirect
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 #SocialMedia Imports
 from Facebook import share_on_facebook
@@ -42,8 +45,10 @@ class HomeView(CmsBaseView, TemplateView):
        print context["active_decision"]
        return context
 
-
+@method_decorator(login_required, name='dispatch')
 class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
+
+    
 
     template_name = "dashboard.html"
     form_class = DecisionForm
@@ -69,7 +74,7 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
         print self.success_message
         return super(DashboardView, self).form_valid(form)
 
-
+@method_decorator(login_required, name='dispatch')
 class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
 
     template_name = "notification.html"
@@ -91,7 +96,7 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
         #context["notification_view"]
         return context
 
-
+@method_decorator(login_required, name='dispatch')
 class ReportView(CmsBaseView, SuccessMessageMixin, FormView):
 
     template_name = "report.html"
