@@ -22,23 +22,6 @@ function pullReports() {
   if (report_new_l != report_old_l) {
     for (var x = report_old_l; x < report_new_l; x++) {
           html = "";
-          // html += "<div class='row'>";
-          // html += "<div class='col-md-2'>";
-          // html += data[x].name;
-          // html += "</div>";
-          // html += "<div class='col-md-2'>";
-          // html += data[x].location;
-          // html += "</div>";
-          // html += "<div class='col-md-3'>";
-          // html += data[x].description;
-          // html += "</div>";
-          // html += "<div class='col-md-3'>";
-          // html += data[x].type_of_assistance;
-          // html += "</div>";
-          // html += "<div class='col-md-2'>";
-          // html += data[x].type_of_crisis;
-          // html += "</div>";
-          // html += "</div>";
           html += "<tr>";
           html += "<th class='col-md-2'>";
           html += data.results[x].name;
@@ -52,7 +35,7 @@ function pullReports() {
           html += data.results[x].type_of_crisis;
           html += "</th></tr>";
 
-          $("#AJAXcontent").append(html);
+          $("#ReportContent").append(html);
         }
 
         report_old_l = report_new_l;

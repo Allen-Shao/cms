@@ -1,5 +1,7 @@
 updateWeather();
 
+setInterval(updateWeather, 3600000);
+
 /* Update 2-hour weather nowcast*/
 function updateWeather() {
   $.ajax({

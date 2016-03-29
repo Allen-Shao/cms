@@ -5,3 +5,5 @@ python-twitter
 djangorestframework
 markdown
 django-filter
+redis
+celery

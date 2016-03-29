@@ -1,5 +1,7 @@
 updatePSI();
 
+setInterval(updatePSI, 1800000);
+
 /**
   * update psi readings
   */

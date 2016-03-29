@@ -11,6 +11,12 @@ from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceFor
 
 from models import CallCenterReport,Decision
 
+#SocialMedia Imports
+from Facebook import share_on_facebook
+from Twitter import post_on_twitter
+from Email import send_to_pres,send_to_agency
+from SMS import send_sms
+
 # Create your views here.
 class CmsBaseView(ContextMixin):
 
@@ -53,6 +59,12 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
 
     def form_valid(self, form):
         form.save()
+        report = CallCenterReport.objects.get(id=form.cleaned_data["type_of_crisis"])
+        title = report.type_of_crisis
+        share_on_facebook(title, form.cleaned_data["description"])
+        post_on_twitter("EMERGENCY!! " + title)
+        send_to_pres("EMERGENCY!!\n\n" + title + "\n\n" + form.cleaned_data["description"])
+        send_sms("EMERGENCY!! " + title)
         self.success_message = "success"
         print self.success_message
         return super(DashboardView, self).form_valid(form)
@@ -67,6 +79,8 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
 
     def form_valid(self, form):
         form.save()
+        send_to_agency(form.cleaned_data["decision"] + "\n\n" + form.cleaned_data["description"])
+        send_sms("NOTIFICATION" + form.cleaned_data["decision"])
         self.success_message = "success"
         return super(NotificationView, self).form_valid(form)
 
