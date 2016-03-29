@@ -1,10 +1,5 @@
-// Include JQuery on HTML using:
-// <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 var report_old_l = 0;
 var report_new_l = 0;
-
-
-// $("#AJAXreports").append("<table class='table table-striped'><tbody id='AJAXcontent'></tbody></table>");
 
 pullReports();
 
@@ -22,7 +17,7 @@ function pullReports() {
   if (report_new_l != report_old_l) {
     for (var x = report_old_l; x < report_new_l; x++) {
           html = "";
-          html += "<tr>";
+          html += "<tr id='row" + data.results[x].id + "'>";
           html += "<th class='col-md-2'>";
           html += data.results[x].name;
           html += "</th><th class='col-md-2'>";
@@ -33,6 +28,7 @@ function pullReports() {
           html += data.results[x].type_of_assistance;
           html += "</th><th class='col-md-2'>";
           html += data.results[x].type_of_crisis;
+          html += "</th><th class='col-md-1'><button style='width:100%;' type='button' id='" + data.results[x].id + "' class='btn btn-xs btn-danger' onClick='dismissReport(this.id)'><span class='glyphicon glyphicon-trash'></span>&nbsp;</button>"
           html += "</th></tr>";
 
           $("#ReportContent").append(html);
