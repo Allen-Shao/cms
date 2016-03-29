@@ -12,13 +12,13 @@ function pullReports() {
       var html = '';
       for (var x = 0; x < data.results.length; x++) {
         html += "<tr id='row" + data.results[x].id + "'>";
-        html += "<th class='col-md-2'>";
+        html += "<th class='col-md-1'>";
         html += data.results[x].name;
         html += "</th><th class='col-md-2'>";
         html += data.results[x].location;
         html += "</th><th class='col-md-3'>";
         html += data.results[x].description;
-        html += "</th><th class='col-md-3'>";
+        html += "</th><th class='col-md-2'>";
         html += data.results[x].type_of_assistance;
         html += "</th><th class='col-md-2'>";
         html += data.results[x].type_of_crisis;
