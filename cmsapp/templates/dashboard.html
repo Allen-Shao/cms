@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head_extra %}
-<title>CMS - Dashboard</title>
+<title xmlns="http://www.w3.org/1999/html">CMS - Dashboard</title>
 {% endblock %}
 
 {% block content %}
@@ -74,6 +74,7 @@
       <form class="form-horizontal" role = "form" style="margin-top:30px" action="/dashboard/" method="post">
         {% csrf_token %}
 <!--         {{ form }} -->
+<!--         {{ form2 }}           -->
         <div class = "form-group">
           <label for="inputTypeofCrisis" class="control-label col-sm-2">Type of Crisis: </label>
           <div class="col-sm-2">
@@ -92,6 +93,16 @@
           <div class="col-sm-6">
             <textarea type="text" name="description" rows="5"id="description" class="form-control" placeholder="Please discribe the crisis in detail" required></textarea>
           </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAgency" class="control-label col-sm-2">Agencies to Notify:</label>
+            <div class="col-sm-2">
+                {% for notif in form2.agency.field.queryset %}
+                <input type="checkbox" value="{{ notif.agency }}">
+                    {{ notif.agency }}
+                    </input>
+                {% endfor %}
+            </div>
         </div>
         <div class="col-sm-2 col-sm-offset-2">
         <button class="btn btn-sm btn-primary btn-block" type="submit">Submit</button>
