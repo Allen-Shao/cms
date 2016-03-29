@@ -9,13 +9,10 @@ from django.contrib.auth import authenticate, login, logout
 
 from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceForm, DecisionForm
 
-
-from models import CallCenterReport,Decision
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from models import CallCenterReport,Decision, Agency
-
+from models import CallCenterReport, Decision, Agency, Crisis
 
 #SocialMedia Imports
 #from Facebook import share_on_facebook
@@ -50,8 +47,6 @@ class HomeView(CmsBaseView, TemplateView):
 
 @method_decorator(login_required, name='dispatch')
 class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
-
-    
 
     template_name = "dashboard.html"
     form_class = DecisionForm
@@ -94,26 +89,26 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
 
 
 
-@method_decorator(login_required, name='dispatch')
-class ProcessReportsView(CmsBaseView, SuccessMessageMixin, FormView):
+#@method_decorator(login_required, name='dispatch')
+class ProcessReportsView(CmsBaseView, SuccessMessageMixin, TemplateView):
 
     template_name = "process-reports.html"
-    form_class = CallCenterReportForm
-    success_url = "/process-reports/"
-    success_message = "fail"
+    #form_class = CallCenterReportForm
+    #success_url = "/process-reports/"
 
     def get_context_data(self, **kwargs):
         context = super(ProcessReportsView, self).get_context_data(**kwargs)
-        context["form"] = CallCenterReportForm
-        context["process_report_active"] = "active"
+        #context["form"] = CallCenterReportForm
+        #context["process_report_active"] = "active"
+        context["type_of_crisis"] = Crisis.objects.all()
         return context
 
-    def form_valid(self, form):
-        #model = CallCenterReport
-        #recordstodelete = model.objects.filter().delete()
-        form.save()
-        self.success_message = "success"
-        return super(ProcessReportsView, self).form_valid(form)
+    #def form_valid(self, form):
+    #    #model = CallCenterReport
+    #    #recordstodelete = model.objects.filter().delete()
+    #    form.save()
+    #    self.success_message = "success"
+    #    return super(ProcessReportsView, self).form_valid(form)
 
 
 
