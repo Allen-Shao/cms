@@ -7,6 +7,17 @@
 {% endblock %}
 
 {% block content %}
+<div class="row">
+  <h3 class="col-md-10">Reports</h3>
+  <div class="col-md-2" style="margin-top:20px">
+  <select class="form-control" onchange="pullReports()">
+    <option value="">All</option>
+    <option value="Haze">Haze</option>
+    <option value="Dengue">Dengue</option>
+  </select>
+</div>
+</div>
+  <hr>
     <div>
       <table class="table table-striped">
       <thead>
