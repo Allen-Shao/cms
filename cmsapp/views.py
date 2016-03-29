@@ -9,7 +9,13 @@ from django.contrib.auth import authenticate, login, logout
 
 from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceForm, DecisionForm
 
+
+from models import CallCenterReport,Decision
+from django.shortcuts import redirect
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from models import CallCenterReport,Decision, Agency
+
 
 #SocialMedia Imports
 #from Facebook import share_on_facebook
@@ -42,8 +48,10 @@ class HomeView(CmsBaseView, TemplateView):
        print context["active_decision"]
        return context
 
-
+@method_decorator(login_required, name='dispatch')
 class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
+
+    
 
     template_name = "dashboard.html"
     form_class = DecisionForm
@@ -66,7 +74,6 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
     def form_valid(self, form):
         form.save()
         report = CallCenterReport.objects.filter(type_of_crisis=form.cleaned_data["type_of_crisis"])
-        #agencies = Notification.objects.get(agency__in= form.cleaned_data["agency"])
         print self.request.POST.getlist('agency')
         agencies = Agency.objects.filter(name__in= self.request.POST.getlist('agency'))
         for agency in agencies:
@@ -86,6 +93,8 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
         return super(DashboardView, self).form_valid(form)
 
 
+
+@method_decorator(login_required, name='dispatch')
 class ProcessReportsView(CmsBaseView, SuccessMessageMixin, FormView):
 
     template_name = "process-reports.html"
@@ -96,7 +105,7 @@ class ProcessReportsView(CmsBaseView, SuccessMessageMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super(ProcessReportsView, self).get_context_data(**kwargs)
         context["form"] = CallCenterReportForm
-        context["report_active"] = "active"
+        context["process_report_active"] = "active"
         return context
 
     def form_valid(self, form):
@@ -108,6 +117,7 @@ class ProcessReportsView(CmsBaseView, SuccessMessageMixin, FormView):
 
 
 
+@method_decorator(login_required, name='dispatch')
 class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
 
     template_name = "notification.html"
@@ -129,7 +139,7 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
         #context["notification_view"]
         return context
 
-
+@method_decorator(login_required, name='dispatch')
 class ReportView(CmsBaseView, SuccessMessageMixin, FormView):
 
     template_name = "report.html"
@@ -211,3 +221,4 @@ class AboutView(CmsBaseView, TemplateView):
         context = super(AboutView, self).get_context_data(**kwargs)
         context["about_active"] = "active"
         return context
+
