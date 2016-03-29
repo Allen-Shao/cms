@@ -26,22 +26,7 @@
           <th class ='col-md-2'>LOCATION</th>
           <th class ='col-md-3'>DESCRIPTION</th>
           <th class ='col-md-2'>TYPE OF ASSISTANCE</th>
-<<<<<<< HEAD
-
-          <th class ='col-md-2'>
-            <select class="form-control selectpicker" type="text" name="type_of_crisis" id="typepfcrisis">
-              <option value="" selected="selected"> TYPE OF CRISIS </option>
-              {% for report in form.type_of_crisis.field.queryset %}
-                <option value="{{report.id}}">
-                  {{report.type_of_crisis}}
-                </option>
-              {% endfor %}
-            </select>
-          </th>
-
-=======
           <th class ='col-md-2'>TYPE OF CRISIS</th>
->>>>>>> origin/master
           <th class ='col-md-1'>CONFIRM</th>
           <th class ='col-md-1'>DISMISS</th>
           </tr>
