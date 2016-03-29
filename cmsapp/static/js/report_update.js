@@ -28,8 +28,8 @@ function pullReports() {
           html += data.results[x].type_of_assistance;
           html += "</th><th class='col-md-2'>";
           html += data.results[x].type_of_crisis;
-          html += "</th><th class='col-md-1'><button style='width:100%;' type='button' id='" + data.results[x].id + "' class='btn btn-xs btn-success' onClick='updateReportStatus(this.id)'><span class='glyphicon glyphicon-ok'></span>&nbsp;</button>"
-          html += "</th><th class='col-md-1'><button style='width:100%;' type='button' id='" + data.results[x].id + "' class='btn btn-xs btn-danger' onClick='updateReportStatus(this.id)'><span class='glyphicon glyphicon-remove'></span>&nbsp;</button>"
+          html += "</th><th class='col-md-1'><button style='width:100%;' type='button' id='" + data.results[x].id + "' class='btn btn-xs btn-success' onClick='updateReportStatus(this.id, true)'><span class='glyphicon glyphicon-ok'></span>&nbsp;</button>"
+          html += "</th><th class='col-md-1'><button style='width:100%;' type='button' id='" + data.results[x].id + "' class='btn btn-xs btn-danger' onClick='updateReportStatus(this.id, false)'><span class='glyphicon glyphicon-remove'></span>&nbsp;</button>"
           html += "</th></tr>";
 
           $("#ReportContent").append(html);
@@ -52,11 +52,12 @@ function updateReportStatus(reportID, newStatus) {
     contentType: 'application/json',
     dataType: "json",
     success: function(data) {
+      pullReports();
       console.log("Report status updated");
     }
   });
 
   // $("#row" + reportID).remove();
   // refresh the reports after removal
-  pullReports();
+  // console.log("pulled");
 }
