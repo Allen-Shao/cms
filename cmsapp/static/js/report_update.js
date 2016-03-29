@@ -1,13 +1,21 @@
 var currentURL = "http://localhost:8888/api/reports/";
+var type = "";
 pullReports();
 
 setInterval(pullReports, 5000);
 
 function pullReports() {
+  var urlToRequest;
+  if (type != "") {
+    urlToRequest = currentURL + "?type=" + type;
+  } else {
+    urlToRequest = currentURL;
+  }
+  console.log(urlToRequest);
   $.ajax({
     type: "GET",
     dataType: "json",
-    url: currentURL,
+    url: urlToRequest,
     success: function(data){
       var html = '';
       for (var x = 0; x < data.results.length; x++) {
@@ -42,7 +50,7 @@ function updateReportStatus(reportID, newStatus) {
     contentType: 'application/json',
     dataType: "json",
     success: function(data) {
-      pullReports();
+      pullReports(type);
       console.log("Report status updated");
     }
   });
@@ -50,4 +58,10 @@ function updateReportStatus(reportID, newStatus) {
   // $("#row" + reportID).remove();
   // refresh the reports after removal
   // console.log("pulled");
+}
+
+function changeType() {
+  type = $("#type-filter").val();
+  console.log(type);
+  pullReports();
 }
