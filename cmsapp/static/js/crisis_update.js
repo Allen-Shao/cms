@@ -24,9 +24,10 @@ function pullDecisions() {
             html += data.results[x].date_time;
             html += "</th></tr>";
 
-            $("#DecisionsContent").html(html);
+            
           // }
         }
+        $("#DecisionsContent").html(html);
     }
   });
 }
