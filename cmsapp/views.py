@@ -9,10 +9,10 @@ from django.contrib.auth import authenticate, login, logout
 
 from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceForm, DecisionForm
 
-from models import CallCenterReport,Decision
+from models import CallCenterReport,Decision, Notification
 
 #SocialMedia Imports
-from Facebook import share_on_facebook
+#from Facebook import share_on_facebook
 from Twitter import post_on_twitter
 from Email import send_to_pres,send_to_agency
 from SMS import send_sms
@@ -47,27 +47,53 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
 
     template_name = "dashboard.html"
     form_class = DecisionForm
+    second_form_class = NotificationForm
     success_url="/dashboard/"
     success_message = "fail"
 
     def get_context_data(self, **kwargs):
         context = super(DashboardView, self).get_context_data(**kwargs)
         context["form"] = DecisionForm
+        if 'form2' not in context:
+            context["form2"] = NotificationForm
         context["dashboard_active"] = "active"
         context["reports"] = CallCenterReport.objects.all()
+        context["agencies"]=Notification.objects.all()
         return context
 
     def form_valid(self, form):
         form.save()
         report = CallCenterReport.objects.get(id=form.cleaned_data["type_of_crisis"])
         title = report.type_of_crisis
-        share_on_facebook(title, form.cleaned_data["description"])
+        #share_on_facebook(title, form.cleaned_data["description"])
         post_on_twitter("EMERGENCY!! " + title)
         send_to_pres("EMERGENCY!!\n\n" + title + "\n\n" + form.cleaned_data["description"])
         send_sms("EMERGENCY!! " + title)
         self.success_message = "success"
         print self.success_message
         return super(DashboardView, self).form_valid(form)
+
+
+class ProcessReportsView(CmsBaseView, SuccessMessageMixin, FormView):
+
+    template_name = "process-reports.html"
+    form_class = CallCenterReportForm
+    success_url = "/process-reports/"
+    success_message = "fail"
+
+    def get_context_data(self, **kwargs):
+        context = super(ProcessReportsView, self).get_context_data(**kwargs)
+        context["form"] = CallCenterReportForm
+        context["report_active"] = "active"
+        return context
+
+    def form_valid(self, form):
+        #model = CallCenterReport
+        #recordstodelete = model.objects.filter().delete()
+        form.save()
+        self.success_message = "success"
+        return super(ProcessReportsView, self).form_valid(form)
+
 
 
 class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
