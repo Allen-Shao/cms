@@ -97,19 +97,20 @@
         </div>
         <div class="form-group">
             <label for="inputAgency" class="control-label col-sm-2">Agencies to Notify:</label>
-            <div class="col-sm-2">
+
                 {% if agencies %} {% for notif in agencies %}
-                <input type="checkbox" value="{{ notif.agency }}">
+                <input type="checkbox" name="agency" id="{{ notif.agency }}" value="{{ notif.agency }}">
                     {{ notif.agency }}
-                    </input>
+                    </input><br>
                 {% endfor %}
                 {% else %}
-             <div class = "row">
+
+        {% endif %}
+
+        </div>
+        <div class = "row">
              <p>No Reports Available</p>
             </div>
-        {% endif %}
-            </div>
-        </div>
         <div class="col-sm-2 col-sm-offset-2">
         <button class="btn btn-sm btn-primary btn-block" type="submit">Submit</button>
         </div>
