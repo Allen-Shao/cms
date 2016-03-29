@@ -1,4 +1,6 @@
 var currentURL = "http://localhost:8888/api/reports/";
+var preURL;
+var nextURL;
 pullReports();
 
 setInterval(pullReports, 5000);
@@ -10,6 +12,8 @@ function pullReports() {
     url: currentURL,
     success: function(data){
       var html = '';
+      preURL = data.previous;
+      nextURL = data.next;
       for (var x = 0; x < data.results.length; x++) {
         html += "<tr id='row" + data.results[x].id + "'>";
         html += "<th class='col-md-1'>";
@@ -27,9 +31,24 @@ function pullReports() {
         html += "</th></tr>";
       }
       $("#ReportContent").html(html);
+      if (preURL == null){
+        $("#prepage").attr("class", "disabled");
+      }
+      else{
+        $("#prepage").attr("class", "active");
+      }
+      if (nextURL == null){
+        $("#nextpage").attr("class", "disabled");
+      }
+      else{
+        $("#nextpage").attr("class", "active");
+      }
+
     }
   });
 }
+
+
 
 function updateReportStatus(reportID, newStatus) {
   var csrf_token = getCookie("csrftoken");
@@ -46,8 +65,15 @@ function updateReportStatus(reportID, newStatus) {
       console.log("Report status updated");
     }
   });
-
-  // $("#row" + reportID).remove();
-  // refresh the reports after removal
-  // console.log("pulled");
 }
+
+function prePage(){
+    currentURL = preURL;
+    pullReports();
+}
+
+function nextPage(){
+    currentURL = nextURL;
+    pullReports();
+}
+
