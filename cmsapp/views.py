@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceForm, DecisionForm
 
-from models import CallCenterReport,Decision, Notification
+from models import CallCenterReport,Decision, Agency
 
 #SocialMedia Imports
 #from Facebook import share_on_facebook
@@ -58,12 +58,24 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
             context["form2"] = NotificationForm
         context["dashboard_active"] = "active"
         context["reports"] = CallCenterReport.objects.all()
-        context["agencies"]=Notification.objects.all()
+        context["agencies"]=Agency.objects.all()
+        print Agency.objects.all()
+        print "agencies in context"
         return context
 
     def form_valid(self, form):
         form.save()
-        report = CallCenterReport.objects.get(id=form.cleaned_data["type_of_crisis"])
+        report = CallCenterReport.objects.filter(type_of_crisis=form.cleaned_data["type_of_crisis"])
+        #agencies = Notification.objects.get(agency__in= form.cleaned_data["agency"])
+        print self.request.POST.getlist('agency')
+        agencies = Agency.objects.filter(name__in= self.request.POST.getlist('agency'))
+        for agency in agencies:
+            print agency.contact
+            print agency.name
+            #Note
+            #send_sms(agency.contact, "EMERGENCY!!!" + title)
+
+        print report
         title = report.type_of_crisis
         #share_on_facebook(title, form.cleaned_data["description"])
         post_on_twitter("EMERGENCY!! " + title)
