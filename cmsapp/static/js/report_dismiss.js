@@ -18,15 +18,18 @@ function getCookie(name) {
 var csrf_token = getCookie("csrftoken");
 console.log(csrf_token);
 
-// send a patch request to change the status
-$.ajax({
-    url: "http://localhost:8888/api/reports/1/",
-    headers: {"X-CSRFToken": csrf_token},
-    data: '{"status": true}',
-    method: "PATCH",
-    contentType: 'application/json',
-    dataType: "json",
-    success: function(data) {
-        console.log(data);
-    }
-});
+function dismissReport(reportID) {
+    $.ajax({
+        url: "http://localhost:8888/api/reports/"+reportID+"/",
+        headers: {"X-CSRFToken": csrf_token},
+        data: '{"status": false}',
+        method: "PATCH",
+        contentType: 'application/json',
+        dataType: "json",
+        success: function(data) {
+            console.log(data);
+        }
+    });
+
+    $("#row" + reportID).remove();
+}
