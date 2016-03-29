@@ -14,22 +14,3 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-
-var csrf_token = getCookie("csrftoken");
-console.log(csrf_token);
-
-function dismissReport(reportID) {
-    $.ajax({
-        url: "http://localhost:8888/api/reports/"+reportID+"/",
-        headers: {"X-CSRFToken": csrf_token},
-        data: '{"status": false}',
-        method: "PATCH",
-        contentType: 'application/json',
-        dataType: "json",
-        success: function(data) {
-            console.log(data);
-        }
-    });
-
-    $("#row" + reportID).remove();
-}
