@@ -5,7 +5,45 @@
 {% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
     
+=======
+    <!-- <h3>Reports</h3>
+    <hr> -->
+        <!-- {% if reports %} {% for report in reports %}
+        <div class="row">
+          <div class ="col-md-4">
+              {{ report.name }}
+          </div>
+          <div class ="col-md-4">
+              {{ report.location }}
+          </div>
+          <div class ="col-md-4">
+              {{ report.type_of_crisis }}
+          </div>
+        </div>{% endfor %}
+        {% else %}
+        <div class = "row">
+          <p>No Reports Available</p>
+        </div>
+        {% endif %} -->
+        
+
+    <!-- <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class ='col-md-2'>NAME</th>
+                <th class ='col-md-2'>LOCATION</th>
+                <th class ='col-md-3'>DESCRIPTION</th>
+                <th class ='col-md-3'>TYPE OF ASSISTANCE</th>
+                <th class ='col-md-2'>TYPE OF CRISIS</th>
+                
+              </tr>
+            </thead>
+            <tbody id='AJAXcontent'></tbody>
+      </table> -->
+
+>>>>>>> origin/master
     <div>
         <h3>Active Crisis</h3>
         <hr>
@@ -63,19 +101,20 @@
         </div>
         <div class="form-group">
             <label for="inputAgency" class="control-label col-sm-2">Agencies to Notify:</label>
-            <div class="col-sm-2">
+
                 {% if agencies %} {% for notif in agencies %}
-                <input type="checkbox" value="{{ notif.agency }}">
+                <input type="checkbox" name="agency" id="{{ notif.agency }}" value="{{ notif.agency }}">
                     {{ notif.agency }}
-                    </input>
+                    </input><br>
                 {% endfor %}
                 {% else %}
-             <div class = "row">
+
+        {% endif %}
+
+        </div>
+        <div class = "row">
              <p>No Reports Available</p>
             </div>
-        {% endif %}
-            </div>
-        </div>
         <div class="col-sm-2 col-sm-offset-2">
         <button class="btn btn-sm btn-primary btn-block" type="submit">Submit</button>
         </div>

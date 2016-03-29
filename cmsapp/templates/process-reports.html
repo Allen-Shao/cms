@@ -1,20 +1,32 @@
 {% extends 'base.html' %}
 {% block head_extra %}
     <title>CMS - Process Reports</title>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <!--  <script src="https://maps.googleapis.com/maps/api/js"></script> -->
     {% load staticfiles %}
     <link href="{% static "css/home.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
+<div class="row">
+  <h3 class="col-md-10">Reports</h3>
+  <div class="col-md-2" style="margin-top:20px">
+  <select class="form-control" onchange="pullReports()">
+    <option value="">All</option>
+    <option value="Haze">Haze</option>
+    <option value="Dengue">Dengue</option>
+  </select>
+</div>
+</div>
+  <hr>
     <div>
       <table class="table table-striped">
       <thead>
         <tr>
-          <th class ='col-md-2'>NAME</th>
+          <th class ='col-md-1'>NAME</th>
           <th class ='col-md-2'>LOCATION</th>
           <th class ='col-md-3'>DESCRIPTION</th>
           <th class ='col-md-2'>TYPE OF ASSISTANCE</th>
+<<<<<<< HEAD
 
           <th class ='col-md-2'>
             <select class="form-control selectpicker" type="text" name="type_of_crisis" id="typepfcrisis">
@@ -27,13 +39,26 @@
             </select>
           </th>
 
+=======
+          <th class ='col-md-2'>TYPE OF CRISIS</th>
+>>>>>>> origin/master
           <th class ='col-md-1'>CONFIRM</th>
           <th class ='col-md-1'>DISMISS</th>
           </tr>
         </thead>
         <tbody id='ReportContent'></tbody>
       </table>
+      <ul class="pager">
+      <li class="active"><a href="#">Previous</a></li>
+      <li class="active"><a href="#">Next</a></li>
+</ul>
     </div>
+
+    <style>
+      th {
+        text-align: center;
+      }
+    </style>
  {% endblock %}
 
 {% block js %}

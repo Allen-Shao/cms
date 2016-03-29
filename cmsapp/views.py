@@ -14,7 +14,7 @@ from models import CallCenterReport,Decision
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from models import CallCenterReport,Decision, Notification
+from models import CallCenterReport,Decision, Agency
 
 
 #SocialMedia Imports
@@ -66,12 +66,23 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
             context["form2"] = NotificationForm
         context["dashboard_active"] = "active"
         context["reports"] = CallCenterReport.objects.all()
-        context["agencies"]=Notification.objects.all()
+        context["agencies"]=Agency.objects.all()
+        print Agency.objects.all()
+        print "agencies in context"
         return context
 
     def form_valid(self, form):
         form.save()
-        report = CallCenterReport.objects.get(id=form.cleaned_data["type_of_crisis"])
+        report = CallCenterReport.objects.filter(type_of_crisis=form.cleaned_data["type_of_crisis"])
+        print self.request.POST.getlist('agency')
+        agencies = Agency.objects.filter(name__in= self.request.POST.getlist('agency'))
+        for agency in agencies:
+            print agency.contact
+            print agency.name
+            #Note
+            #send_sms(agency.contact, "EMERGENCY!!!" + title)
+
+        print report
         title = report.type_of_crisis
         #share_on_facebook(title, form.cleaned_data["description"])
         post_on_twitter("EMERGENCY!! " + title)
@@ -80,6 +91,7 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
         self.success_message = "success"
         print self.success_message
         return super(DashboardView, self).form_valid(form)
+
 
 
 @method_decorator(login_required, name='dispatch')
