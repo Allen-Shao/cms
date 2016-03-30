@@ -30,7 +30,7 @@ class ResourceForm(forms.ModelForm):
 
 	class Meta:
 		model = ResourceRequest
-		exclude = ['date_time']
+		exclude = ['date_time', 'active']
 
 
 class CallCenterReportForm(forms.ModelForm):
