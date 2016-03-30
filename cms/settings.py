@@ -115,7 +115,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -137,7 +137,8 @@ GOOGLE_MAP_API_KEY = "AIzaSyBGj5ZV0D8vf7pIhN29NbzJk9EzON8sIMI"
 # settings for rest framework
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 12
+    'PAGE_SIZE': 12,
+    'DATETIME_FORMAT': "%d/%m/%Y %H:%M:%S"
 }
 
 #setting for background services - celery and redis server
