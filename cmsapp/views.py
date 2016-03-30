@@ -78,7 +78,7 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
             #send_sms(agency.contact, "EMERGENCY!!!" + title)
 
         print report
-        title = report.type_of_crisis
+        title = form.cleaned_data['type_of_crisis'].type_of_crisis
         #share_on_facebook(title, form.cleaned_data["description"])
         post_on_twitter("EMERGENCY!! " + title)
         send_to_pres("EMERGENCY!!\n\n" + title + "\n\n" + form.cleaned_data["description"])
@@ -216,4 +216,3 @@ class AboutView(CmsBaseView, TemplateView):
         context = super(AboutView, self).get_context_data(**kwargs)
         context["about_active"] = "active"
         return context
-

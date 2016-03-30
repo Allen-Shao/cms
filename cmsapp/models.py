@@ -8,12 +8,6 @@ class CallCenterReport(models.Model):
     Call center reports
     """
 
-    #TYPE_OF_CRISIS_CHOICE = (
-    #    ("DG", "Dengue"),
-    #    ("HZ", "Haze"),
-    #    ("TR", "Terrorism")
-    #)
-
     TYPE_OF_ASSISTANCE_CHOICE = (
         ("EA", "Emergency Ambulance"),
         ("RE", "Rescue and Evacuation"),
