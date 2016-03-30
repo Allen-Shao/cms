@@ -2,10 +2,29 @@ var currentURL = "http://localhost:8888/api/reports/";
 var type = "";
 var preURL;
 var nextURL;
+var newestDataId;
+
 
 pullReports();
 
-setInterval(pullReports, 5000);
+setInterval(checkUpdate, 5000);
+
+function checkUpdate(){
+  var notification="";
+  $.ajax({
+    type: "GET",
+    dataType: "json",
+    url: currentURL,
+    success: function(data){
+      if (newestDataId != data.results[0].id){
+          notification = "<strong>There are new reports!</strong><input class='btn btn-info col-md-4' type='button' value='Refresh' onclick='pullReports();'>";
+      }
+      $("#new-notification").html(notification);     
+    }
+  });
+
+
+}
 
 function pullReports() {
   var urlToRequest;
@@ -24,6 +43,7 @@ function pullReports() {
       var html = '';
       preURL = data.previous;
       nextURL = data.next;
+      newestDataId = data.results[0].id;
       for (var x = 0; x < data.results.length; x++) {
         html += "<tr id='row" + data.results[x].id + "'>";
         html += "<th class='col-md-1'>";
