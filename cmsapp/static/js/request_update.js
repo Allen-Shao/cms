@@ -5,7 +5,20 @@ var nextURL;
 
 pullRequests();
 
-setInterval(pullRequests, 5000);
+setInterval(checkUpdate, 5000);
+
+function checkUpdate(){
+  $.ajax({
+    type: "GET",
+    dataType: "json",
+    url: currentURL,
+    success: function(data){
+      if (newestDataId != data.results[0].id) {
+          $("#new-notification").html("<input class='btn btn-info col-md-4' type='button' value='New Requests Available! Click to Update!' onclick='pullRequests();'>");
+      }     
+    }
+  });
+}
 
 function pullRequests() {
   $.ajax({
