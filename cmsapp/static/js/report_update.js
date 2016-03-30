@@ -10,20 +10,16 @@ pullReports();
 setInterval(checkUpdate, 5000);
 
 function checkUpdate(){
-  var notification;
   $.ajax({
     type: "GET",
     dataType: "json",
     url: currentURL,
     success: function(data){
       if (newestDataId != data.results[0].id) {
-          notification = "<input class='btn btn-info col-md-4' type='button' value='New Reports Available! Click to Update!' onclick='pullReports();'>";
-      }
-      $("#new-notification").html(notification);
+          $("#new-notification").html("<input class='btn btn-info col-md-4' type='button' value='New Reports Available! Click to Update!' onclick='pullReports();'>");
+      }     
     }
   });
-
-
 }
 
 function pullReports() {
