@@ -29,6 +29,8 @@ function pullRequests() {
       var html = '';
       preURL = data.previous;
       nextURL = data.next;
+      newestDataId = data.result[0].id;
+      $("new-notification").html("");
       for (var x = 0; x < data.results.length; x++) {
         html += "<tr id='row" + data.results[x].id + "'>";
         html += "<th class='col-md-2'>";
