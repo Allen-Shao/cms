@@ -12,7 +12,7 @@ class ReportViewSet(viewsets.ModelViewSet):
     serializer_class = ReportSerializer
 
     def get_queryset(self):
-        queryset = CallCenterReport.objects.filter(status__isnull = True)
+        queryset = CallCenterReport.objects.filter(status__isnull = True).order_by("-date_time")
         type_of_crisis = self.request.query_params.get("type", None)
         if type_of_crisis is not None:
             queryset = queryset.filter(type_of_crisis__type_of_crisis=type_of_crisis)
