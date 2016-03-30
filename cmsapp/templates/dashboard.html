@@ -14,8 +14,9 @@
       <thead>
         <tr>
           <th class ='col-md-2'>TYPE OF CRISIS</th>
-          <th class ='col-md-3'>DESCRIPTION</th>
+          <th class ='col-md-6'>DESCRIPTION</th>
           <th class ='col-md-3'>TIME</th>
+          <th class='col-md-1'>DEACTIVATE</th>
           </tr>
         </thead>
         <tbody id='DecisionsContent'></tbody>
@@ -80,7 +81,7 @@
 
 {% block js %}
 {% load staticfiles %}
-<script src="{% static "js/report_update.js" %}"></script>
+<script src="{% static "js/cookie.js" %}"></script>
 <script src="{% static "js/crisis_update.js" %}"></script>
 <script src="{% static "js/timeout.js" %}"></script>
 {% endblock %}
