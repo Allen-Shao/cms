@@ -40,8 +40,9 @@
     {% block head_extra %}
     {% endblock %}
   </head>
-
   <body>
+    <div id = "wrapper">
+    <div id = "main-content">
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -93,13 +94,25 @@
     {% block content %}
     {% endblock %}
     </div>
+    </div>
 
-    <footer class="web-footer">
+    <div id = "footer">
       <p>CRISIS MANAGEMENT SYSTEM build by <a href="https://www.facebook.com/Crisis-Management-Team-484771021710765/?skip_nax_wizard=true">@AllStar</a>.</p>
       <p>
         <a href="#">Back to top</a>
       </p>
-    </footer>
+    </div>
+
+    </div>
+
+
+    <!-- <div class="web-footer">
+      <p>CRISIS MANAGEMENT SYSTEM build by <a href="https://www.facebook.com/Crisis-Management-Team-484771021710765/?skip_nax_wizard=true">@AllStar</a>.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </div> -->
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
