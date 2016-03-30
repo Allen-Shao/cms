@@ -96,6 +96,7 @@ class ProcessReportsView(CmsBaseView, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ProcessReportsView, self).get_context_data(**kwargs)
+        context["process_report_active"] = "active"
         context["type_of_crisis"] = Crisis.objects.all()
         return context
 
@@ -105,6 +106,7 @@ class ProcessRequestsView(CmsBaseView, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ProcessRequestsView, self).get_context_data(**kwargs)
+        context["process_request_active"] = "active"
         context["agency_list"] = Agency.objects.all()
         return context
 
