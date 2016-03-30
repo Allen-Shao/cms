@@ -1,4 +1,7 @@
-// this function is to get the csrf token for sending patch request
+/**
+ * Get cookie from the current web page
+ * @param name Name of the cookie
+ */
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {
