@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block head_extra %}
+    <title>CMS - Process Resource Requests</title>
+{% endblock %}
+
+{% block content %}
+  <h3>Resource Requests</h3>
+  <hr>
+    <div>
+      <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="col-md-2">CRISIS</th>
+          <th class='col-md-2'>RESOURCE</th>
+          <th class='col-md-4'>DESCRIPTION</th>
+          <th class="col-md-2">AGENCY</th>
+          <th class="col-md-2">PROCESS</th>
+          </tr>
+        </thead>
+        <tbody id='RequestContent'></tbody>
+      </table>
+      <ul class="pager">
+        <li id='prepage'class="disabled" onclick="prePage()"><a>Previous</a></li>
+        <li id='nextpage' class="active" onclick="nextPage()"><a>Next</a></li>
+      </ul>
+    </div>
+
+    <style>
+      th {
+        text-align: center;
+      }
+    </style>
+ {% endblock %}
+
+{% block js %}
+{% load staticfiles %}
+    <script>
+      // This is magical code, do not touch, hahahah
+      var agencyList = [];
+      {% for agency in agency_list %}
+        agencyList.push("{{ agency.name }}");
+      {% endfor %}
+
+      var agencySelect = "<select id='agency' class='form-control'>";
+      for (var i = 0; i < agencyList.length; i++) {
+        agencySelect += "<option value='" + agencyList[i] + "'>" + agencyList[i] + "</option>";
+      }
+      agencySelect += "</select>"
+    </script>
+    <script src="{% static "js/cookie.js" %}"></script>
+    <script src="{% static "js/request_update.js" %}"></script>
+{% endblock %}

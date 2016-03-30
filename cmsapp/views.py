@@ -90,27 +90,23 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
 
 
 #@method_decorator(login_required, name='dispatch')
-class ProcessReportsView(CmsBaseView, SuccessMessageMixin, TemplateView):
+class ProcessReportsView(CmsBaseView, TemplateView):
 
     template_name = "process-reports.html"
-    #form_class = CallCenterReportForm
-    #success_url = "/process-reports/"
 
     def get_context_data(self, **kwargs):
         context = super(ProcessReportsView, self).get_context_data(**kwargs)
-        #context["form"] = CallCenterReportForm
-        #context["process_report_active"] = "active"
         context["type_of_crisis"] = Crisis.objects.all()
         return context
 
-    #def form_valid(self, form):
-    #    #model = CallCenterReport
-    #    #recordstodelete = model.objects.filter().delete()
-    #    form.save()
-    #    self.success_message = "success"
-    #    return super(ProcessReportsView, self).form_valid(form)
+class ProcessRequestsView(CmsBaseView, TemplateView):
 
+    template_name = "process-requests.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(ProcessRequestsView, self).get_context_data(**kwargs)
+        context["agency_list"] = Agency.objects.all()
+        return context
 
 @method_decorator(login_required, name='dispatch')
 class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
