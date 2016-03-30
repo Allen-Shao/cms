@@ -17,7 +17,7 @@ function checkUpdate(){
     url: currentURL,
     success: function(data){
       if (newestDataId != data.results[0].id){
-          notification = "<strong>There are new reports!</strong><input class='btn btn-info col-md-4' type='button' value='Refresh' onclick='pullReports();'>";
+          notification = "    <input class='btn btn-info col-md-4' type='button' value='New Reports Available! Click to Update!' onclick='pullReports();'>";
       }
       $("#new-notification").html(notification);     
     }
