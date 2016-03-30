@@ -11,9 +11,8 @@ function pullDecisions() {
     success: function(data){
       length = data.results.length;
       html = "";
-      
+
       for (var x = 0; x < length; x++) {
-        // if (data[x].active){
         html += "<tr>";
         html += "<th class='col-md-2'>";
         html += data.results[x].type_of_crisis;
@@ -22,10 +21,8 @@ function pullDecisions() {
         html += "</th><th class='col-md-3'>";
         html += data.results[x].date_time;
         html += "</th></tr>";
-
-
-        // }
       }
+      
       $("#DecisionsContent").html(html);
     }
   });
