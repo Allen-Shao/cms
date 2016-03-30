@@ -9,12 +9,13 @@ setInterval(pullReports, 5000);
 
 function pullReports() {
   var urlToRequest;
+
   if (type != "") {
     urlToRequest = addParameter(currentURL, "type", type, false);
   } else {
     urlToRequest = currentURL;
   }
-  console.log(urlToRequest);
+
   $.ajax({
     type: "GET",
     dataType: "json",
@@ -57,8 +58,6 @@ function pullReports() {
   });
 }
 
-
-
 function updateReportStatus(reportID, newStatus) {
   var csrf_token = getCookie("csrftoken");
   var dataToPost = {"status": newStatus}
@@ -92,7 +91,7 @@ function nextPage(){
     pullReports();
 }
 
-function addParameter(url, parameterName, parameterValue, atStart/*Add param before others*/){
+function addParameter(url, parameterName, parameterValue, atStart){
     replaceDuplicates = true;
     if(url.indexOf('#') > 0){
         var cl = url.indexOf('#');
