@@ -1,5 +1,6 @@
 var currentURL = "http://localhost:8888/api/requests/";
 // var type = "";
+var newestDataId;
 var preURL;
 var nextURL;
 
@@ -14,8 +15,9 @@ function checkUpdate(){
     url: currentURL,
     success: function(data){
       if (newestDataId != data.results[0].id) {
+         console.log("appear!");
           $("#new-notification").html("<input class='btn btn-info col-md-4' type='button' value='New Requests Available! Click to Update!' onclick='pullRequests();'>");
-      }     
+      }
     }
   });
 }
@@ -26,11 +28,13 @@ function pullRequests() {
     dataType: "json",
     url: currentURL,
     success: function(data){
+      console.log(data);
       var html = '';
       preURL = data.previous;
       nextURL = data.next;
-      newestDataId = data.result[0].id;
-      $("new-notification").html("");
+      newestDataId = data.results[0].id;
+      $("#new-notification").html("");
+      console.log("disappeared");
       for (var x = 0; x < data.results.length; x++) {
         html += "<tr id='row" + data.results[x].id + "'>";
         html += "<th class='col-md-2'>";

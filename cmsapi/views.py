@@ -41,7 +41,7 @@ class DecisionViewSet(viewsets.ModelViewSet):
     """
 
     serializer_class = DecisionSerializer
-    queryset = Decision.objects.filter(active = True)
+    queryset = Decision.objects.filter(active = True).order_by("-date_time")
 
 class DecisionDetailView(UpdateAPIView):
     """
@@ -64,7 +64,7 @@ class ResourceRequestViewSet(viewsets.ModelViewSet):
     """
 
     serializer_class = ResourceRequestSerializer
-    queryset = ResourceRequest.objects.filter(active = True)
+    queryset = ResourceRequest.objects.filter(active = True).order_by("-date_time")
 
 class ResourceRequestDetailView(UpdateAPIView):
     """
