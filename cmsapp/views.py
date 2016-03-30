@@ -83,13 +83,13 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
         post_on_twitter("EMERGENCY!! " + title)
         send_to_pres("EMERGENCY!!\n\n" + title + "\n\n" + form.cleaned_data["description"])
         send_sms("EMERGENCY!! " + title)
-        self.success_message = "success"
+        self.success_message = "success_submission"
         print self.success_message
         return super(DashboardView, self).form_valid(form)
 
 
 
-#@method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class ProcessReportsView(CmsBaseView, TemplateView):
 
     template_name = "process-reports.html"
@@ -100,6 +100,7 @@ class ProcessReportsView(CmsBaseView, TemplateView):
         context["type_of_crisis"] = Crisis.objects.all()
         return context
 
+@method_decorator(login_required, name='dispatch')
 class ProcessRequestsView(CmsBaseView, TemplateView):
 
     template_name = "process-requests.html"
@@ -122,7 +123,7 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
         form.save()
         send_to_agency(form.cleaned_data["decision"] + "\n\n" + form.cleaned_data["description"])
         send_sms("NOTIFICATION" + form.cleaned_data["decision"])
-        self.success_message = "success"
+        self.success_message = "success_submission"
         return super(NotificationView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -148,9 +149,10 @@ class ReportView(CmsBaseView, SuccessMessageMixin, FormView):
 
     def form_valid(self, form):
         form.save()
-        self.success_message = "success"
+        self.success_message = "success_submission"
         return super(ReportView, self).form_valid(form)
 
+@method_decorator(login_required, name='dispatch')
 class ResourceView(CmsBaseView, SuccessMessageMixin ,FormView):
 
     template_name = "resource.html"
@@ -167,7 +169,7 @@ class ResourceView(CmsBaseView, SuccessMessageMixin ,FormView):
 
     def form_valid(self, form):
         form.save()
-        self.success_message = "success"
+        self.success_message = "success_submission"
         return super(ResourceView, self).form_valid(form)
         # NOTE: Send an SMS/Email to respective agency
 
@@ -178,6 +180,13 @@ class LoginView(CmsBaseView, SuccessMessageMixin, FormView):
     success_url = "/"
     success_message = "fail"
 
+    def get_context_data(self, **kwargs):
+        context = super(LoginView, self).get_context_data(**kwargs)
+        next_url = self.request.GET.get("next", None)
+        if next_url is not None:
+            context["next"] = self.request.GET["next"]
+        return context
+
     def form_valid(self, form):
         username = form.cleaned_data["username"]
         password = form.cleaned_data["password"]
@@ -187,7 +196,10 @@ class LoginView(CmsBaseView, SuccessMessageMixin, FormView):
                 login(self.request, user)
                 # Redirect to a success page.
                 self.success_message = "success"
-                print self.success_message
+                # decide which page to jump to
+                next_url = self.request.POST.get("next", None)
+                if next_url is not None:
+                    self.success_url = next_url
                 return super(LoginView, self).form_valid(form)
             else:
                 # Return a 'disabled account' error message
