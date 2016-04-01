@@ -56,15 +56,18 @@ class Notification(models.Model):
 
     decision = models.ForeignKey("Decision")
     description = models.TextField()
-    agency = models.ForeignKey("Agency")
+    place = models.ForeignKey("Place")
 
     def __unicode__(self):
-        return "%s - %s" % (self.decision, self.agency)
+        return "%s - %s" % (self.decision, self.place)
 
 class Place(models.Model):
 
     name = models.CharField(max_length=100, unique=True)
     contact = models.CharField(max_length=8)
+
+    def __unicode__(self):
+        return self.name
 
 class Agency(Place):
     """
