@@ -12,7 +12,7 @@ from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceFor
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from models import CallCenterReport, Decision, Agency, Crisis
+from models import CallCenterReport, Decision, Agency, Crisis, Notification, Place
 
 #SocialMedia Imports
 #from Facebook import share_on_facebook
@@ -62,7 +62,6 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
         context["dashboard_active"] = "active"
         context["reports"] = CallCenterReport.objects.all()
         context["agencies"]=Agency.objects.all()
-        print Agency.objects.all()
         print "agencies in context"
         return context
 
@@ -120,15 +119,23 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
     success_message = "fail"
 
     def form_valid(self, form):
-        form.save()
-        send_to_agency(form.cleaned_data["decision"] + "\n\n" + form.cleaned_data["description"])
-        send_sms("NOTIFICATION" + form.cleaned_data["decision"])
+        #form.save()
+        print "her"
+        print self.request.POST.getlist('place')
+        for place in self.request.POST.getlist('place'):
+            notif = Notification(place=Place.objects.get(id=place), decision=form.cleaned_data["decision"], description=form.cleaned_data["description"])
+            notif.save()
+        #print str(form.cleaned_data["decision"])[4:] + "\n\n" + form.cleaned_data["description"]
+        send_to_agency(str(form.cleaned_data["decision"])[4:] + "\n\n" + form.cleaned_data["description"])
+        send_sms("NOTIFICATION" + str(form.cleaned_data["decision"])[4:])
         self.success_message = "success_submission"
         return super(NotificationView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super(NotificationView, self).get_context_data(**kwargs)
         context["form"] = NotificationForm
+        context["agencies"] = Agency.objects.all()
+        context["places"]=Place.objects.filter(agency=None)
         context["notification_active"] = "active"
         #context["notification_view"]
         return context
