@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block head_extra %}
-    <title>CMS - Notification</title>
+    <title xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">CMS - Notification</title>
 {% endblock %}
 
 {% block content %}
@@ -8,62 +8,83 @@
         {% csrf_token %}
         <h2>Notification</h2>
 
-    {% if messages %}
-        {% for message in messages %}
-          {% if message.tags == "success_submission" %}
-            <div id="fastfade" class="alert alert-success">
-              <strong>Success!</strong> Form is submitted.
-            </div>
-          {% endif %}
-        {% endfor %}
-      {% endif %}
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "success_submission" %}
+                    <div id="fastfade" class="alert alert-success">
+                        <strong>Success!</strong> Form is submitted.
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
 
         <!-- Decision -->
         <div class = "form-group">
-          <label for="inputDescision" class="control-label col-sm-2">Decision: </label>
-          <div class="col-sm-4">
-            <select class="form-control" type="text" name="decision" id="decision">
-              <option value="" selected="selected">---------</option>
-              {% for notification in form.decision.field.queryset %}
-                <option value="{{notification.id}}">
-                  {{notification}}
-                </option>
-              {% endfor %}
-            </select>
-          </div>
+            <label for="inputDescision" class="control-label col-sm-2">Decision: </label>
+            <div class="col-sm-4">
+                <select class="form-control" type="text" name="decision" id="decision">
+                    <option value="" selected="selected">---------</option>
+                    {% for notification in form.decision.field.queryset %}
+                        <option value="{{notification.id}}">
+                            {{notification.type_of_crisis}} - {{ notification.date_time }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
 
         <!-- Description -->
         <div class = "form-group">
-          <label for="inputDescription" class="control-label col-sm-2">Description: </label>
-          <div class="col-sm-8">
-            <textarea rows="10" type="text" name="description" id="description" class="form-control" placeholder="Please discribe the notification in detail" required></textarea>
-          </div>
+            <label for="inputDescription" class="control-label col-sm-2">Description: </label>
+            <div class="col-sm-8">
+                <textarea rows="10" type="text" name="description" id="description" class="form-control" placeholder="Please discribe the notification in detail" required></textarea>
+            </div>
         </div>
 
         <!-- Agency -->
         <div class = "form-group">
-          <label for="inputDescision" class="control-label col-sm-2">Agency: </label>
-          <div class="col-sm-4">
-            <select class="form-control" type="text" name="agency" id="agency">
-              <option value="" selected="selected">---------</option>
-              {% for notification in form.agency.field.queryset %}
-                <option value="{{notification.id}}">
-                  {{notification}}
-                </option>
-              {% endfor %}
-            </select>
-          </div>
+            <label class="control-label col-sm-2">Notify: </label>
+            <div class="col-sm-4">
+                {% for notification in places %}
+                    <input type="checkbox" name="place" id="{{ notification.id }}" value="{{ notification.id }}">
+                    <b>{{ notification.name }}</b>
+                    </input>
+                {% endfor %}
+                <input type="checkbox" name="agencyCheck" id="agencyCheck" value="agencyCheck" onclick="ShowHideDiv(this)"><b>&ensp;Agencies&ensp;</b></input>
+            </div>
+            <br><br>
+            <div id="agencies" style="display: none">
+                <label class="control-label col-sm-2">Agencies: </label>
+                <div class="col-sm-4">
+                    {% for notification in agencies %}
+                        <input type="checkbox" name="place" id="{{ notification.id }}" value="{{ notification.id }}">
+                        <b>{{ notification.name }}</b>
+                        </input>
+                        <br>
+
+                    {% endfor %}
+                    <!-- </select> -->
+                </div>
+            </div>
         </div>
 
         <div class="col-lg-3">
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
         </div>
 
-      </form>
+    </form>
+
+    <script type="text/javascript">
+        function ShowHideDiv(agencyCheck) {
+            var agencyDiv = document.getElementById("agencies");
+            agencyDiv.style.display = agencyCheck.checked ? "block" : "none";
+        }
+    </script>
 {% endblock %}
 
+
+
 {% block js %}
-{% load staticfiles %}
+    {% load staticfiles %}
     <script src="{% static "js/timeout.js" %}"></script>
 {% endblock %}
