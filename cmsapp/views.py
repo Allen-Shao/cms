@@ -22,6 +22,9 @@ from SMS import send_sms
 
 # Create your views here.
 class CmsBaseView(ContextMixin):
+    """
+    Authenticates the user
+    """
 
     def get_context_data(self, **kwargs):
         context = super(CmsBaseView, self).get_context_data(**kwargs)
@@ -34,19 +37,41 @@ class CmsBaseView(ContextMixin):
         return context
 
 class HomeView(CmsBaseView, TemplateView):
+    """
+    Displays all the active crisis on the home page.
+
+    **Context**
+    ``active_decision``
+        An instance of :model:`active_decision.Decision`.
+
+    **Template:**
+    :template:`templates/home.html`
+    """
 
     template_name = "home.html"
 
     def get_context_data(self, **kwargs):
-       context = super(HomeView, self).get_context_data(**kwargs)
-       context["home_active"] = "active"
-       context["user_authenticated"] = self.request.user.is_authenticated()
-       context["active_decision"] = Decision.objects.filter(active = True).exists()
-       print context["active_decision"]
-       return context
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context["home_active"] = "active"
+        context["user_authenticated"] = self.request.user.is_authenticated()
+        context["active_decision"] = Decision.objects.filter(active = True).exists()
+        print context["active_decision"]
+        return context
 
 @method_decorator(login_required, name='dispatch')
 class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
+    """
+    Display the general dashboard. Consists of all the active notifications and enable the decision maker to declare a crisis.
+
+    **Context**
+    ``reports``
+        An instance of :model:`reports.CallCenterReport`.
+    ``agencies``
+        An instance of :model:`agencies.Agency`.
+
+    **Template:**
+    :template:`templates/dashboard.html`
+    """
 
     template_name = "dashboard.html"
     form_class = DecisionForm
@@ -90,6 +115,18 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
 
 @method_decorator(login_required, name='dispatch')
 class ProcessReportsView(CmsBaseView, TemplateView):
+    """
+    Display an individual :model:`report.CallCenterReport`. Processing the reports from the call center staff
+
+    **Context**
+    ``report``
+        An instance of :model:`report.CallCenterReport`.
+    ``type_of_crisis``
+        An instance of :model:`type_of_crisis.Crisis`
+
+    **Template:**
+    :template:`templates/process-reports.html`
+    """
 
     template_name = "process-reports.html"
 
@@ -101,6 +138,18 @@ class ProcessReportsView(CmsBaseView, TemplateView):
 
 @method_decorator(login_required, name='dispatch')
 class ProcessRequestsView(CmsBaseView, TemplateView):
+    """
+    Display an individual :model:`resourceRequest.ResourceRequest`. Processing the requests made by agencies
+
+    **Context**
+    ``agency_list``
+        An instance of :model:`agency_list.Agency`.
+    ``resourceRequest``
+        An instance of :model:`resourceRequest.ResourceRequest`.
+
+    **Template:**
+    :template:`templates/process-requests.html`
+    """
 
     template_name = "process-requests.html"
 
@@ -112,6 +161,18 @@ class ProcessRequestsView(CmsBaseView, TemplateView):
 
 @method_decorator(login_required, name='dispatch')
 class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
+    """
+    Display an individual :model:`notification.Notification`. Sending notifications to the required parties.
+
+    **Context**
+    ``notification``
+        An instance of :model:`notification.Notification`.
+    ``place``
+        An instance of :model: `place.Places`
+
+    **Template:**
+    :template:`templates/notification.html`
+    """
 
     template_name = "notification.html"
     form_class = NotificationForm
@@ -142,6 +203,16 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
 
 @method_decorator(login_required, name='dispatch')
 class ReportView(CmsBaseView, SuccessMessageMixin, FormView):
+    """
+    Display an individual :model:`report.CallCenterReport`. Allowing the call center staffs to make reports
+
+    **Context**
+    ``report``
+        An instance of :model:`report.CallCenterReport`.
+
+    **Template:**
+    :template:`templates/report.html`
+    """
 
     template_name = "report.html"
     form_class = CallCenterReportForm
@@ -161,6 +232,16 @@ class ReportView(CmsBaseView, SuccessMessageMixin, FormView):
 
 @method_decorator(login_required, name='dispatch')
 class ResourceView(CmsBaseView, SuccessMessageMixin ,FormView):
+    """
+    To request resources upon reaching the required position. Used by the agency staffs
+
+    **Context**
+    ``resourceRequest``
+        An instance of :model:`resourceRequest.ResourceRequest`.
+
+    **Template:**
+    :template:`templates/resource.html`
+    """
 
     template_name = "resource.html"
     form_class = ResourceForm
@@ -181,6 +262,12 @@ class ResourceView(CmsBaseView, SuccessMessageMixin ,FormView):
         # NOTE: Send an SMS/Email to respective agency
 
 class LoginView(CmsBaseView, SuccessMessageMixin, FormView):
+    """
+    Logs the user in the system. The user can be either the decision maker, a CMS staff, a call center staff, an agency staff or the django admin.
+
+    **Template:**
+    :template:`templates/login.html`
+    """
 
     template_name = "login.html"
     form_class = LoginForm
@@ -218,6 +305,9 @@ class LoginView(CmsBaseView, SuccessMessageMixin, FormView):
             return render_to_response(self.template_name, context)
 
 class LogoutView(RedirectView):
+    """
+    Logs the user out of the system
+    """
 
     url = "/"
 
@@ -226,6 +316,12 @@ class LogoutView(RedirectView):
         return super(LogoutView, self).get_redirect_url(*args, **kwargs)
 
 class AboutView(CmsBaseView, TemplateView):
+    """
+    Information about the Crisis Management System
+
+    **Template:**
+    :template:`templates/about.html`
+    """
 
     template_name = "about.html"
 
