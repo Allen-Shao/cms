@@ -5,7 +5,7 @@ from django.db import models
 # Create your models here.
 class CallCenterReport(models.Model):
     """
-    Call center reports
+    Call center reports, related to :model: `type_of_crisis.Crisis`
     """
 
     TYPE_OF_ASSISTANCE_CHOICE = (
@@ -28,7 +28,7 @@ class CallCenterReport(models.Model):
 
 class Decision(models.Model):
     """
-    Decisions made by decision makers
+    Decisions made by decision makers, related to :model: `type_of_crisis.Crisis`
     """
 
     type_of_crisis = models.ForeignKey("Crisis")
@@ -51,24 +51,30 @@ class Crisis(models.Model):
 
 class Notification(models.Model):
     """
-    Notifications to be sent
+    Notifications to be sent, related to :model: `decision.Decision` and :model: `place.Place`
     """
 
     decision = models.ForeignKey("Decision")
     description = models.TextField()
-    agency = models.ForeignKey("Agency")
+    place = models.ForeignKey("Place")
 
     def __unicode__(self):
-        return "%s - %s" % (self.decision, self.agency)
+        return "%s - %s" % (self.decision, self.place)
 
 class Place(models.Model):
+    """
+    All the different places, such as PMO, Public, Agencies
+    """
 
     name = models.CharField(max_length=100, unique=True)
     contact = models.CharField(max_length=8)
 
+    def __unicode__(self):
+        return self.name
+
 class Agency(Place):
     """
-    Government agency information
+    Government agency information, extended from :model: `place.Place`
     """
 
     def __unicode__(self):
@@ -76,7 +82,7 @@ class Agency(Place):
 
 class UsefulPlace(Place):
     """
-    Hospitals and etc.
+    Hospitals and etc., extended from :model: `place.Place`
     """
 
     TYPE_OF_PLACE = (
@@ -92,7 +98,7 @@ class UsefulPlace(Place):
 
 class ResourceRequest(models.Model):
     """
-    Resource requests information
+    Resource requests information, related to :model: `crisis.Decision`
     """
 
     crisis = models.ForeignKey("Decision")

@@ -17,7 +17,7 @@ class NotificationForm(forms.ModelForm):
 	"""
 	class Meta:
 		model = Notification
-		fields = ['decision','description','agency']
+		fields = ['decision','description','place']
         #widgets = {
         #    #"decision": Select(attrs={"class": "form-control"})
         #    "decision": BootstrapSelect

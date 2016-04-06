@@ -6,6 +6,7 @@ setInterval(updatePSI, 1800000);
   * update psi readings
   */
 function updatePSI() {
+  markers_psi = [];
   $.ajax({
     type: "GET",
     dataType: "xml",
@@ -34,7 +35,7 @@ function updatePSIInHome(psiData) {
   psiReading += "<tr><td>West</td>" + "<td>" + westReading + "</td></tr>";
   psiReading += "<tr><td>South</td>" + "<td>" + southReading + "</td></tr>";
 
-  markers_psi = [];
+
 
   MarkersWithLabel(northLatLng, northReading, psiIcon, 30, markers_psi);
   MarkersWithLabel(centralLatLng, centralReading, psiIcon, 30, markers_psi);
