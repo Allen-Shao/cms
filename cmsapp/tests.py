@@ -3,6 +3,23 @@ from django.contrib.auth.models import User, Group
 from models import CallCenterReport, Crisis, Decision, Notification, Place, ResourceRequest
 
 class ViewTestCase(TestCase):
+    def setUp(self):
+        self.create_group_and_user("dm1", "Decision Maker")
+        self.create_group_and_user("cmsstaff", "CMS Staff")
+        self.create_group_and_user("agency1", "Agency Staff")
+        self.create_group_and_user("ccs1", "Call Center Staff")
+
+    def create_user(self, username, password):
+        user = User.objects.create(username=username)
+        user.set_password(password)
+        user.save()
+        return user
+
+    def create_group_and_user(self, username, group_name):
+        group = Group.objects.create(name=group_name)
+        user = self.create_user(username, "cmscz3003")
+        user.groups.add(group)
+
     def test_home_page(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
@@ -24,26 +41,19 @@ class ViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_dashboard_page(self):
-        user = User.objects.create(username='testuser')
-        user.set_password('12345')
-        user.save()
-        self.client.login(username="testuser", password="12345")
+        self.client.login(username="dm1", password="cmscz3003")
         response = self.client.get("/dashboard/")
         self.assertEqual(response.status_code, 200)
+        self.assertIn("dashboard_active", response.context)
+        self.assertEqual(response.context["dashboard_active"], "active")
 
     def test_process_report_page(self):
-        user = User.objects.create(username='testuser')
-        user.set_password('12345')
-        user.save()
-        self.client.login(username="testuser", password="12345")
+        self.client.login(username="dm1", password="cmscz3003")
         response = self.client.get("/process-reports/")
         self.assertEqual(response.status_code, 200)
 
     def test_process_request_page(self):
-        user = User.objects.create(username='testuser')
-        user.set_password('12345')
-        user.save()
-        self.client.login(username="testuser", password="12345")
+        self.client.login(username="dm1", password="cmscz3003")
         response = self.client.get("/process-requests/")
         self.assertEqual(response.status_code, 200)
 
