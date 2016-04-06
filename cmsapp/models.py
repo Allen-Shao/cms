@@ -59,7 +59,6 @@ class Notification(models.Model):
     place = models.ForeignKey("Place")
 
     def __unicode__(self):
-        #return "sss"
         return "%s - %s" % (self.decision, self.place)
 
 class Place(models.Model):
