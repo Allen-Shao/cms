@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-
 import os
 from datetime import timedelta
 
@@ -152,10 +151,11 @@ CELERY_IMPORTS = ('cmsapp.tasks')
 
 CELERYBEAT_SCHEDULE = {
     'send-pmo-email-every-halfhour': {
-        'task': 'pmo-emailer',
+        'task': 'tasks.email_pmo',
         'schedule': timedelta(seconds=30),
         'args': ()
     },
 }
+CELERY_TIMEZONE = 'UTC'
 
 LOGIN_URL = "/login/"
