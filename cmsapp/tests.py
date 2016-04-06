@@ -1,8 +1,12 @@
 from django.test import TestCase
 from django.contrib.auth.models import User, Group
-from models import CallCenterReport, Crisis, Decision, Notification, Place, ResourceRequest
+from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceForm, DecisionForm
+from models import CallCenterReport, Crisis, Decision, Notification, Place, Agency, ResourceRequest
 
 class ViewTestCase(TestCase):
+
+    self.mt = ModelTestCase()
+
     def setUp(self):
         self.create_group_and_user("dm1", "Decision Maker")
         self.create_group_and_user("cmsstaff", "CMS Staff")
@@ -41,11 +45,22 @@ class ViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_dashboard_page(self):
+        report = self.mt.create_report(self.mt.create_crisis())
+        agency = self.mt.create_agency()
         self.client.login(username="dm1", password="cmscz3003")
         response = self.client.get("/dashboard/")
         self.assertEqual(response.status_code, 200)
         self.assertIn("dashboard_active", response.context)
         self.assertEqual(response.context["dashboard_active"], "active")
+        self.assertIn("form", response.context)
+        self.assertEqual(response.context["form"], DesicionForm)
+        self.assertIn("form2", response.context)
+        self.assertEqual(response.context["form2"], NotificationForm)
+        self.assertIn("report", response.context)
+        self.assertEqual(response.context["report"], report)
+        self.assertIn("agency", response.context)
+        self.assertEqual(response.context["agency"], agency)
+
 
     def test_process_report_page(self):
         self.client.login(username="dm1", password="cmscz3003")
@@ -81,6 +96,12 @@ class ViewTestCase(TestCase):
         response = self.client.get("/resource/")
         self.assertEqual(response.status_code, 200)
 
+
+
+
+
+
+
 class ModelTestCase(TestCase):
     def create_report(self, crisis):
         return CallCenterReport.objects.create(
@@ -112,6 +133,12 @@ class ModelTestCase(TestCase):
         return Place.objects.create(
             name="test place",
             contact="111111"
+        )
+
+    def create_agency(self):
+        return Agency.objects.create(
+            name = "test agency",
+            contact = "11111111"
         )
 
 
