@@ -117,38 +117,59 @@ class ViewTestCase(TestCase):
 
 
     def test_process_report_page(self):
+        crisis = ObjectCreationHelper.create_crisis()
         self.client.login(username="dm1", password="cmscz3003")
         response = self.client.get("/process-reports/")
         self.assertEqual(response.status_code, 200)
+        self.assertIn("process_report_active", response.context)
+        self.assertEqual(response.context["process_report_active"], "active")
+        self.assertIn("type_of_crisis", response.context)
+        self.assertEqual([c.__unicode__() for c in response.context["type_of_crisis"]], [crisis.__unicode__()])
+
 
     def test_process_request_page(self):
+        agency = ObjectCreationHelper.create_agency()
         self.client.login(username="dm1", password="cmscz3003")
         response = self.client.get("/process-requests/")
         self.assertEqual(response.status_code, 200)
+        self.assertIn("process_request_active", response.context)
+        self.assertEqual(response.context["process_request_active"], "active")
+        self.assertIn("agency_list", response.context)
+        self.assertEqual([a.__unicode__() for a in response.context["agency_list"]], [agency.__unicode__()])
+
+
 
     def test_notification_page(self):
-        user = User.objects.create(username='testuser')
-        user.set_password('12345')
-        user.save()
-        self.client.login(username="testuser", password="12345")
+        agency = ObjectCreationHelper.create_agency()
+        self.client.login(username="dm1", password="cmscz3003")
         response = self.client.get("/notification/")
         self.assertEqual(response.status_code, 200)
+        self.assertIn("notification_active", response.context)
+        self.assertEqual(response.context["notification_active"], "active")
+        self.assertIn("form", response.context)
+        self.assertEqual(response.context["form"], NotificationForm)
+        self.assertIn("agencies", response.context)
+        self.assertEqual([a.__unicode__() for a in response.context["agencies"]], [agency.__unicode__()])
+        #place not yet tested
+
 
     def test_report_page(self):
-        user = User.objects.create(username='testuser')
-        user.set_password('12345')
-        user.save()
-        self.client.login(username="testuser", password="12345")
+        self.client.login(username="ccs1", password="cmscz3003")
         response = self.client.get("/report/")
         self.assertEqual(response.status_code, 200)
+        self.assertIn("report_active", response.context)
+        self.assertEqual(response.context["report_active"], "active")
+        self.assertIn("form", response.context)
+        self.assertEqual(response.context["form"], CallCenterReportForm)
 
     def test_resource_page(self):
-        user = User.objects.create(username='testuser')
-        user.set_password('12345')
-        user.save()
-        self.client.login(username="testuser", password="12345")
+        self.client.login(username="agency1", password="cmscz3003")
         response = self.client.get("/resource/")
         self.assertEqual(response.status_code, 200)
+        self.assertIn("resource_active", response.context)
+        self.assertEqual(response.context["resource_active"], "active")
+        self.assertIn("form", response.context)
+        self.assertEqual(response.context["form"], ResourceForm)
 
 class ModelTestCase(TestCase):
 
