@@ -19,6 +19,7 @@ from models import CallCenterReport, Decision, Agency, Crisis, Notification, Pla
 from Twitter import post_on_twitter
 from Email import send_to_president
 from SMS import send_sms
+from Facebook import share_on_facebook
 
 # Create your views here.
 class CmsBaseView(ContextMixin):
