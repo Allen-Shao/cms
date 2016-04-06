@@ -147,15 +147,5 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-CELERY_IMPORTS = ('cmsapp.tasks')
-
-CELERYBEAT_SCHEDULE = {
-    'send-pmo-email-every-halfhour': {
-        'task': 'tasks.email_pmo',
-        'schedule': timedelta(seconds=30),
-        'args': ()
-    },
-}
 CELERY_TIMEZONE = 'UTC'
-
 LOGIN_URL = "/login/"

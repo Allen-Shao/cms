@@ -1,9 +1,8 @@
 from django.core.mail import send_mail
-from django.apps import AppConfig
+from models import Decision
 
 def send_email():
     flag = True
-    Decision = sender.get_model('Decision')
     for decision in Decision.objects.all():
       if decision.active == True:
         message = "Dear Sir,\n\nThe following crisis has occured: " + \

@@ -22,14 +22,5 @@ cmscelery = Celery('cmsapp',
 cmscelery.config_from_object('django.conf:settings')
 cmscelery.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
-
-CELERYBEAT_SCHEDULE = {
-    'send-pmo-email-every-halfhour': {
-        'task': 'tasks.email_pmo',
-        'schedule': timedelta(seconds=30),
-        'args': ()
-    },
-}
-
 if __name__ == '__main__':
     cmscelery.start()

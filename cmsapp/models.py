@@ -26,6 +26,9 @@ class CallCenterReport(models.Model):
     def __unicode__(self):
         return "%s - %s" % (self.id, self.name)
 
+    class Meta:
+        app_label = 'cmsapp'
+
 class Decision(models.Model):
     """
     Decisions made by decision makers, related to :model: `type_of_crisis.Crisis`
@@ -38,6 +41,8 @@ class Decision(models.Model):
 
     def __unicode__(self):
         return "%s - %s" % (self.id, self.type_of_crisis)
+    class Meta:
+        app_label = 'cmsapp'
 
 class Crisis(models.Model):
     """
@@ -48,6 +53,8 @@ class Crisis(models.Model):
 
     def __unicode__(self):
         return self.type_of_crisis
+    class Meta:
+        app_label = 'cmsapp'
 
 class Notification(models.Model):
     """
@@ -60,6 +67,8 @@ class Notification(models.Model):
 
     def __unicode__(self):
         return "%s - %s" % (self.decision, self.agency)
+    class Meta:
+        app_label = 'cmsapp'
 
 class Place(models.Model):
     """
@@ -71,12 +80,15 @@ class Place(models.Model):
 
     def __unicode__(self):
         return self.name
+    class Meta:
+        app_label = 'cmsapp'
 
 class Agency(Place):
     """
     Government agency information, extended from :model: `place.Place`
     """
-
+    class Meta:
+        app_label = 'cmsapp'
 
 class UsefulPlace(Place):
     """
@@ -90,7 +102,8 @@ class UsefulPlace(Place):
 
     location = models.CharField(max_length=100)
     type_of_place = models.CharField(max_length=1, choices=TYPE_OF_PLACE)
-
+    class Meta:
+        app_label = 'cmsapp'
 
 class ResourceRequest(models.Model):
     """
@@ -105,3 +118,5 @@ class ResourceRequest(models.Model):
 
     def __unicode__(self):
         return "%s - %s" % (self.crisis, self.resource)
+    class Meta:
+        app_label = 'cmsapp'
