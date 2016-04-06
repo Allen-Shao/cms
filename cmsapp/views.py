@@ -56,7 +56,6 @@ class HomeView(CmsBaseView, TemplateView):
         context["home_active"] = "active"
         context["user_authenticated"] = self.request.user.is_authenticated()
         context["active_decision"] = Decision.objects.filter(active = True).exists()
-        print context["active_decision"]
         return context
 
 @method_decorator(login_required, name='dispatch')
@@ -88,7 +87,7 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
         context["dashboard_active"] = "active"
         context["reports"] = CallCenterReport.objects.all()
         context["agencies"]=Agency.objects.all()
-        print "agencies in context"
+        #print "agencies in context"
         return context
 
     def form_valid(self, form):
@@ -184,8 +183,8 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
         agencies = Agency.objects.filter(name__in= self.request.POST.getlist('agency'))
         for agency in agencies:
             notif = Notification(
-                agency=Agency.objects.get(name=agency), 
-                decision=form.cleaned_data["decision"], 
+                agency=Agency.objects.get(name=agency),
+                decision=form.cleaned_data["decision"],
                 description=form.cleaned_data["description"]
                 )
             send_sms(agency.contact,"NOTIFICATION " + str(form.cleaned_data["decision"])[4:])

@@ -186,6 +186,24 @@ class ViewTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response["Location"], "/report/")
 
+    def test_request_post(self):
+        ObjectCreationHelper.create_decision()
+        self.client.login(username="agency1", password="cmscz3003")
+        post_data = {
+            "crisis": 1,
+            "resource": "sand bag",
+            "description": "help"
+        }
+        response = self.client.post("/resource/", post_data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response["Location"], "/resource/")
+
+    def test_decision_post(self):
+        pass
+
+    def test_notification_post(self):
+        pass
+
 class ModelTestCase(TestCase):
 
     def test_call_center_report(self):
