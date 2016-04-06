@@ -17,7 +17,7 @@ from models import CallCenterReport, Decision, Agency, Crisis, Notification, Pla
 #SocialMedia Imports
 #from Facebook import share_on_facebook
 from Twitter import post_on_twitter
-from Email import send_to_pres,send_to_agency
+from Email import send_to_president
 from SMS import send_sms
 
 # Create your views here.
@@ -93,20 +93,19 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
     def form_valid(self, form):
         form.save()
         report = CallCenterReport.objects.filter(type_of_crisis=form.cleaned_data["type_of_crisis"])
-        print self.request.POST.getlist('agency')
+        title = form.cleaned_data['type_of_crisis'].type_of_crisis
+
         agencies = Agency.objects.filter(name__in= self.request.POST.getlist('agency'))
         for agency in agencies:
             print agency.contact
             print agency.name
-            #Note
-            #send_sms(agency.contact, "EMERGENCY!!!" + title)
+            send_sms(agency.contact, "EMERGENCY!!!" + title)
 
-        print report
-        title = form.cleaned_data['type_of_crisis'].type_of_crisis
-        #share_on_facebook(title, form.cleaned_data["description"])
+        share_on_facebook(title, form.cleaned_data["description"])
         post_on_twitter("EMERGENCY!! " + title)
-        send_to_pres("EMERGENCY!!\n\n" + title + "\n\n" + form.cleaned_data["description"])
-        send_sms("EMERGENCY!! " + title)
+        send_to_president("EMERGENCY!!\n\n" + title + "\n\n" + form.cleaned_data["description"])
+        send_sms("86897793","EMERGENCY!! " + title)
+
         self.success_message = "success_submission"
         print self.success_message
         return super(DashboardView, self).form_valid(form)
@@ -181,15 +180,16 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
 
     def form_valid(self, form):
         #form.save()
-        print "her"
+        print "HERE"
         print self.request.POST.getlist('place')
         for place in self.request.POST.getlist('place'):
             notif = Notification(place=Place.objects.get(id=place), decision=form.cleaned_data["decision"], description=form.cleaned_data["description"])
             notif.save()
         #print str(form.cleaned_data["decision"])[4:] + "\n\n" + form.cleaned_data["description"]
-        send_to_agency(str(form.cleaned_data["decision"])[4:] + "\n\n" + form.cleaned_data["description"])
-        send_sms("NOTIFICATION" + str(form.cleaned_data["decision"])[4:])
+        agency = Agency.objects.get(name=form.cleaned_data["agency"])
+        send_sms(agency.contact,"NOTIFICATION " + str(form.cleaned_data["decision"])[4:])
         self.success_message = "success_submission"
+
         return super(NotificationView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):

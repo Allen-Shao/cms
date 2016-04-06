@@ -57,7 +57,7 @@
                 <label class="control-label col-sm-2">Agencies: </label>
                 <div class="col-sm-4">
                     {% for notification in agencies %}
-                        <input type="checkbox" name="place" id="{{ notification.id }}" value="{{ notification.id }}">
+                        <input type="checkbox" name="agency" id="agency" value="{{ notification.name }}">
                         <b>{{ notification.name }}</b>
                         </input>
                         <br>

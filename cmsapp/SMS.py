@@ -1,15 +1,15 @@
 from twilio.rest import TwilioRestClient
 
 
-def send_sms(message):
+def send_sms(contact, message):
     """
     Send sms to the given number
 
     :param message: The message to be sent to the number
     :return: None
     """
-    account_sid = "ACb9185852cd063d3a5a1df3cb93314620"
-    auth_token = "23156710162562e7ac98eeedd1120460"
+    account_sid = "AC205861da24ebabcdaf9c11c51fed2e13"
+    auth_token = "34abeb0f09c29f9632812e079dc97333"
     client = TwilioRestClient(account_sid, auth_token)
-
-    client.sms.messages.create(body=message, to="+6590571662", from_="+15005550006")
+    client.messages.create(body=message, to="+65"+contact, from_="+14846481449")
+    print("SMS has been sent to " + "+65"+contact)
