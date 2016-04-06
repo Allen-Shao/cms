@@ -4,6 +4,9 @@ setInterval(updateWeather, 3600000);
 
 /* Update 2-hour weather nowcast*/
 function updateWeather() {
+  for (var i=0;i<markers_weather.length;i++){
+    markers_weather[i].setMap(null);
+  }
   markers_weather = [];
   $.ajax({
     type: "GET",
