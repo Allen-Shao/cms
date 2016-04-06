@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from models import CallCenterReport, Crisis, Decision, Notification, Place, ResourceRequest
 
 class ViewTestCase(TestCase):
@@ -29,6 +29,46 @@ class ViewTestCase(TestCase):
         user.save()
         self.client.login(username="testuser", password="12345")
         response = self.client.get("/dashboard/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_process_report_page(self):
+        user = User.objects.create(username='testuser')
+        user.set_password('12345')
+        user.save()
+        self.client.login(username="testuser", password="12345")
+        response = self.client.get("/process-reports/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_process_request_page(self):
+        user = User.objects.create(username='testuser')
+        user.set_password('12345')
+        user.save()
+        self.client.login(username="testuser", password="12345")
+        response = self.client.get("/process-requests/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_notification_page(self):
+        user = User.objects.create(username='testuser')
+        user.set_password('12345')
+        user.save()
+        self.client.login(username="testuser", password="12345")
+        response = self.client.get("/notification/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_report_page(self):
+        user = User.objects.create(username='testuser')
+        user.set_password('12345')
+        user.save()
+        self.client.login(username="testuser", password="12345")
+        response = self.client.get("/report/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_resource_page(self):
+        user = User.objects.create(username='testuser')
+        user.set_password('12345')
+        user.save()
+        self.client.login(username="testuser", password="12345")
+        response = self.client.get("/resource/")
         self.assertEqual(response.status_code, 200)
 
 class ModelTestCase(TestCase):
@@ -69,7 +109,7 @@ class ModelTestCase(TestCase):
         return ResourceRequest.objects.create(
             crisis = self.create_decision(self.create_crisis()),
             resource = "test resource",
-            description = "test description",           
+            description = "test description",
         )
 
 
