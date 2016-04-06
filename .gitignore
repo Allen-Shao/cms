@@ -6,3 +6,6 @@
 
 # ignore virtualenv
 ENV/
+
+# ignore coverage
+.coverage

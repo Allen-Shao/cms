@@ -1,15 +1,12 @@
 from __future__ import absolute_import
-from celery.decorators import task
-from celery.utils.log import get_task_logger
+from celery.decorators import task, periodic_task
 from celery import group
 from datetime import timedelta
 from . import Email
+from celery.task.schedules import crontab
 
-logger = get_task_logger(__name__)
-
-
-@task(name="pmo-emailer", bind=True)
-def email_pmo(self):
+@periodic_task(run_every=(crontab(minute='*/1')), name="pmo_emailer", ignore_result=True)
+def email_pmo():
     """
         Send PMO Email every half hour
     """
