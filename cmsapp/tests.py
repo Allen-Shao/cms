@@ -150,6 +150,21 @@ class ViewTestCase(TestCase):
         response = self.client.get("/resource/")
         self.assertEqual(response.status_code, 200)
 
+    def test_report_post(self):
+        ObjectCreationHelper.create_crisis()
+        self.client.login(username="ccs1", password="cmscz3003")
+        post_data = {
+            "name": "tester",
+            "mobile_number": "19230123",
+            "location": "singapore",
+            "description": "help",
+            "type_of_crisis": 1,
+            "type_of_assistance": "EA"
+        }
+        response = self.client.post("/report/", post_data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response["Location"], "/report/")
+
 class ModelTestCase(TestCase):
 
     def test_call_center_report(self):

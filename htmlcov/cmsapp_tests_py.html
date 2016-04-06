@@ -8,7 +8,7 @@
     
     
     <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for cmsapp/tests.py: 100%</title>
+    <title>Coverage for cmsapp/tests.py: 99%</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     
     <script type="text/javascript" src="jquery.min.js"></script>
@@ -24,15 +24,15 @@
 <div id="header">
     <div class="content">
         <h1>Coverage for <b>cmsapp/tests.py</b> :
-            <span class="pc_cov">100%</span>
+            <span class="pc_cov">99%</span>
         </h1>
 
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
 
         <h2 class="stats">
-            119 statements &nbsp;
-            <span class="run hide_run shortkey_r button_toggle_run">119 run</span>
-            <span class="mis shortkey_m button_toggle_mis">0 missing</span>
+            125 statements &nbsp;
+            <span class="run hide_run shortkey_r button_toggle_run">124 run</span>
+            <span class="mis shortkey_m button_toggle_mis">1 missing</span>
             <span class="exc shortkey_x button_toggle_exc">0 excluded</span>
 
             
@@ -223,17 +223,17 @@
 <p id="n154" class="pln"><a href="#n154">154</a></p>
 <p id="n155" class="stm run hide_run"><a href="#n155">155</a></p>
 <p id="n156" class="stm run hide_run"><a href="#n156">156</a></p>
-<p id="n157" class="stm run hide_run"><a href="#n157">157</a></p>
-<p id="n158" class="stm run hide_run"><a href="#n158">158</a></p>
+<p id="n157" class="pln"><a href="#n157">157</a></p>
+<p id="n158" class="pln"><a href="#n158">158</a></p>
 <p id="n159" class="pln"><a href="#n159">159</a></p>
-<p id="n160" class="stm run hide_run"><a href="#n160">160</a></p>
-<p id="n161" class="stm run hide_run"><a href="#n161">161</a></p>
-<p id="n162" class="stm run hide_run"><a href="#n162">162</a></p>
-<p id="n163" class="stm run hide_run"><a href="#n163">163</a></p>
-<p id="n164" class="pln"><a href="#n164">164</a></p>
+<p id="n160" class="pln"><a href="#n160">160</a></p>
+<p id="n161" class="pln"><a href="#n161">161</a></p>
+<p id="n162" class="pln"><a href="#n162">162</a></p>
+<p id="n163" class="pln"><a href="#n163">163</a></p>
+<p id="n164" class="stm run hide_run"><a href="#n164">164</a></p>
 <p id="n165" class="stm run hide_run"><a href="#n165">165</a></p>
-<p id="n166" class="stm run hide_run"><a href="#n166">166</a></p>
-<p id="n167" class="stm run hide_run"><a href="#n167">167</a></p>
+<p id="n166" class="stm mis"><a href="#n166">166</a></p>
+<p id="n167" class="pln"><a href="#n167">167</a></p>
 <p id="n168" class="stm run hide_run"><a href="#n168">168</a></p>
 <p id="n169" class="pln"><a href="#n169">169</a></p>
 <p id="n170" class="stm run hide_run"><a href="#n170">170</a></p>
@@ -250,6 +250,21 @@
 <p id="n181" class="stm run hide_run"><a href="#n181">181</a></p>
 <p id="n182" class="stm run hide_run"><a href="#n182">182</a></p>
 <p id="n183" class="stm run hide_run"><a href="#n183">183</a></p>
+<p id="n184" class="pln"><a href="#n184">184</a></p>
+<p id="n185" class="stm run hide_run"><a href="#n185">185</a></p>
+<p id="n186" class="stm run hide_run"><a href="#n186">186</a></p>
+<p id="n187" class="stm run hide_run"><a href="#n187">187</a></p>
+<p id="n188" class="stm run hide_run"><a href="#n188">188</a></p>
+<p id="n189" class="pln"><a href="#n189">189</a></p>
+<p id="n190" class="stm run hide_run"><a href="#n190">190</a></p>
+<p id="n191" class="stm run hide_run"><a href="#n191">191</a></p>
+<p id="n192" class="stm run hide_run"><a href="#n192">192</a></p>
+<p id="n193" class="stm run hide_run"><a href="#n193">193</a></p>
+<p id="n194" class="pln"><a href="#n194">194</a></p>
+<p id="n195" class="stm run hide_run"><a href="#n195">195</a></p>
+<p id="n196" class="stm run hide_run"><a href="#n196">196</a></p>
+<p id="n197" class="stm run hide_run"><a href="#n197">197</a></p>
+<p id="n198" class="stm run hide_run"><a href="#n198">198</a></p>
                 
             </td>
             <td class="text">
@@ -405,37 +420,52 @@
 <p id="t150" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">response</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">client</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">&quot;/resource/&quot;</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t151" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">response</span><span class="op">.</span><span class="nam">status_code</span><span class="op">,</span> <span class="num">200</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t152" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t153" class="stm run hide_run"><span class="key">class</span> <span class="nam">ModelTestCase</span><span class="op">(</span><span class="nam">TestCase</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t154" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t155" class="stm run hide_run">&nbsp; &nbsp; <span class="key">def</span> <span class="nam">test_call_center_report</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t156" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">report</span> <span class="op">=</span> <span class="nam">ObjectCreationHelper</span><span class="op">.</span><span class="nam">create_report</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t157" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertTrue</span><span class="op">(</span><span class="nam">isinstance</span><span class="op">(</span><span class="nam">report</span><span class="op">,</span> <span class="nam">CallCenterReport</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t158" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">report</span><span class="op">.</span><span class="nam">__unicode__</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="str">&quot;%s - %s&quot;</span> <span class="op">%</span> <span class="op">(</span><span class="nam">report</span><span class="op">.</span><span class="nam">id</span><span class="op">,</span> <span class="nam">report</span><span class="op">.</span><span class="nam">name</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t159" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t160" class="stm run hide_run">&nbsp; &nbsp; <span class="key">def</span> <span class="nam">test_decision</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t161" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">decision</span> <span class="op">=</span> <span class="nam">ObjectCreationHelper</span><span class="op">.</span><span class="nam">create_decision</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t162" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertTrue</span><span class="op">(</span><span class="nam">isinstance</span><span class="op">(</span><span class="nam">decision</span><span class="op">,</span> <span class="nam">Decision</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t163" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">decision</span><span class="op">.</span><span class="nam">__unicode__</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="str">&quot;%s - %s&quot;</span> <span class="op">%</span> <span class="op">(</span><span class="nam">decision</span><span class="op">.</span><span class="nam">id</span><span class="op">,</span> <span class="nam">decision</span><span class="op">.</span><span class="nam">type_of_crisis</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t164" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t165" class="stm run hide_run">&nbsp; &nbsp; <span class="key">def</span> <span class="nam">test_crisis</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t166" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">crisis</span> <span class="op">=</span> <span class="nam">ObjectCreationHelper</span><span class="op">.</span><span class="nam">create_crisis</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t167" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertTrue</span><span class="op">(</span><span class="nam">isinstance</span><span class="op">(</span><span class="nam">crisis</span><span class="op">,</span> <span class="nam">Crisis</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t168" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">crisis</span><span class="op">.</span><span class="nam">__unicode__</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="nam">crisis</span><span class="op">.</span><span class="nam">type_of_crisis</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t153" class="stm run hide_run">&nbsp; &nbsp; <span class="key">def</span> <span class="nam">test_report_post</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t154" class="pln">&nbsp; &nbsp; &nbsp; &nbsp; <span class="com">#ObjectCreationHelper.create_crisis()</span><span class="strut">&nbsp;</span></p>
+<p id="t155" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">client</span><span class="op">.</span><span class="nam">login</span><span class="op">(</span><span class="nam">username</span><span class="op">=</span><span class="str">&quot;ccs1&quot;</span><span class="op">,</span> <span class="nam">password</span><span class="op">=</span><span class="str">&quot;cmscz3003&quot;</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t156" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">post_data</span> <span class="op">=</span> <span class="op">{</span><span class="strut">&nbsp;</span></p>
+<p id="t157" class="pln">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="str">&quot;name&quot;</span><span class="op">:</span> <span class="str">&quot;tester&quot;</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t158" class="pln">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="str">&quot;mobile_number&quot;</span><span class="op">:</span> <span class="str">&quot;19230123&quot;</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t159" class="pln">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="str">&quot;location&quot;</span><span class="op">:</span> <span class="str">&quot;singapore&quot;</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t160" class="pln">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="str">&quot;description&quot;</span><span class="op">:</span> <span class="str">&quot;help&quot;</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t161" class="pln">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="str">&quot;type_of_crisis&quot;</span><span class="op">:</span> <span class="num">1</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t162" class="pln">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="str">&quot;type_of_assistance&quot;</span><span class="op">:</span> <span class="str">&quot;EA&quot;</span><span class="strut">&nbsp;</span></p>
+<p id="t163" class="pln">&nbsp; &nbsp; &nbsp; &nbsp; <span class="op">}</span><span class="strut">&nbsp;</span></p>
+<p id="t164" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">response</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">client</span><span class="op">.</span><span class="nam">post</span><span class="op">(</span><span class="str">&quot;/report/&quot;</span><span class="op">,</span> <span class="nam">post_data</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t165" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">response</span><span class="op">.</span><span class="nam">status_code</span><span class="op">,</span> <span class="num">302</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t166" class="stm mis">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">response</span><span class="op">[</span><span class="str">&quot;Location&quot;</span><span class="op">]</span><span class="op">,</span> <span class="str">&quot;/report/&quot;</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t167" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t168" class="stm run hide_run"><span class="key">class</span> <span class="nam">ModelTestCase</span><span class="op">(</span><span class="nam">TestCase</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t169" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t170" class="stm run hide_run">&nbsp; &nbsp; <span class="key">def</span> <span class="nam">test_notification</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t171" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">notification</span> <span class="op">=</span> <span class="nam">ObjectCreationHelper</span><span class="op">.</span><span class="nam">create_notification</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t172" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertTrue</span><span class="op">(</span><span class="nam">isinstance</span><span class="op">(</span><span class="nam">notification</span><span class="op">,</span> <span class="nam">Notification</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t173" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">notification</span><span class="op">.</span><span class="nam">__unicode__</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="str">&quot;%s - %s&quot;</span> <span class="op">%</span> <span class="op">(</span><span class="nam">notification</span><span class="op">.</span><span class="nam">decision</span><span class="op">,</span> <span class="nam">notification</span><span class="op">.</span><span class="nam">agency</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t170" class="stm run hide_run">&nbsp; &nbsp; <span class="key">def</span> <span class="nam">test_call_center_report</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t171" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">report</span> <span class="op">=</span> <span class="nam">ObjectCreationHelper</span><span class="op">.</span><span class="nam">create_report</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t172" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertTrue</span><span class="op">(</span><span class="nam">isinstance</span><span class="op">(</span><span class="nam">report</span><span class="op">,</span> <span class="nam">CallCenterReport</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t173" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">report</span><span class="op">.</span><span class="nam">__unicode__</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="str">&quot;%s - %s&quot;</span> <span class="op">%</span> <span class="op">(</span><span class="nam">report</span><span class="op">.</span><span class="nam">id</span><span class="op">,</span> <span class="nam">report</span><span class="op">.</span><span class="nam">name</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t174" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t175" class="stm run hide_run">&nbsp; &nbsp; <span class="key">def</span> <span class="nam">test_place</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t176" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">place</span> <span class="op">=</span> <span class="nam">ObjectCreationHelper</span><span class="op">.</span><span class="nam">create_place</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t177" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertTrue</span><span class="op">(</span><span class="nam">isinstance</span><span class="op">(</span><span class="nam">place</span><span class="op">,</span> <span class="nam">Place</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t178" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">place</span><span class="op">.</span><span class="nam">__unicode__</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="nam">place</span><span class="op">.</span><span class="nam">name</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t175" class="stm run hide_run">&nbsp; &nbsp; <span class="key">def</span> <span class="nam">test_decision</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t176" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">decision</span> <span class="op">=</span> <span class="nam">ObjectCreationHelper</span><span class="op">.</span><span class="nam">create_decision</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t177" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertTrue</span><span class="op">(</span><span class="nam">isinstance</span><span class="op">(</span><span class="nam">decision</span><span class="op">,</span> <span class="nam">Decision</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t178" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">decision</span><span class="op">.</span><span class="nam">__unicode__</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="str">&quot;%s - %s&quot;</span> <span class="op">%</span> <span class="op">(</span><span class="nam">decision</span><span class="op">.</span><span class="nam">id</span><span class="op">,</span> <span class="nam">decision</span><span class="op">.</span><span class="nam">type_of_crisis</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t179" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t180" class="stm run hide_run">&nbsp; &nbsp; <span class="key">def</span> <span class="nam">test_resource_requests</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t181" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">resource_request</span> <span class="op">=</span> <span class="nam">ObjectCreationHelper</span><span class="op">.</span><span class="nam">create_resource_request</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t182" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertTrue</span><span class="op">(</span><span class="nam">isinstance</span><span class="op">(</span><span class="nam">resource_request</span><span class="op">,</span> <span class="nam">ResourceRequest</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t183" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">resource_request</span><span class="op">.</span><span class="nam">__unicode__</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="str">&quot;%s - %s&quot;</span> <span class="op">%</span> <span class="op">(</span><span class="nam">resource_request</span><span class="op">.</span><span class="nam">crisis</span><span class="op">,</span> <span class="nam">resource_request</span><span class="op">.</span><span class="nam">resource</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t180" class="stm run hide_run">&nbsp; &nbsp; <span class="key">def</span> <span class="nam">test_crisis</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t181" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">crisis</span> <span class="op">=</span> <span class="nam">ObjectCreationHelper</span><span class="op">.</span><span class="nam">create_crisis</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t182" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertTrue</span><span class="op">(</span><span class="nam">isinstance</span><span class="op">(</span><span class="nam">crisis</span><span class="op">,</span> <span class="nam">Crisis</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t183" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">crisis</span><span class="op">.</span><span class="nam">__unicode__</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="nam">crisis</span><span class="op">.</span><span class="nam">type_of_crisis</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t184" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t185" class="stm run hide_run">&nbsp; &nbsp; <span class="key">def</span> <span class="nam">test_notification</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t186" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">notification</span> <span class="op">=</span> <span class="nam">ObjectCreationHelper</span><span class="op">.</span><span class="nam">create_notification</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t187" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertTrue</span><span class="op">(</span><span class="nam">isinstance</span><span class="op">(</span><span class="nam">notification</span><span class="op">,</span> <span class="nam">Notification</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t188" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">notification</span><span class="op">.</span><span class="nam">__unicode__</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="str">&quot;%s - %s&quot;</span> <span class="op">%</span> <span class="op">(</span><span class="nam">notification</span><span class="op">.</span><span class="nam">decision</span><span class="op">,</span> <span class="nam">notification</span><span class="op">.</span><span class="nam">agency</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t189" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t190" class="stm run hide_run">&nbsp; &nbsp; <span class="key">def</span> <span class="nam">test_place</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t191" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">place</span> <span class="op">=</span> <span class="nam">ObjectCreationHelper</span><span class="op">.</span><span class="nam">create_place</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t192" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertTrue</span><span class="op">(</span><span class="nam">isinstance</span><span class="op">(</span><span class="nam">place</span><span class="op">,</span> <span class="nam">Place</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t193" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">place</span><span class="op">.</span><span class="nam">__unicode__</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="nam">place</span><span class="op">.</span><span class="nam">name</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t194" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t195" class="stm run hide_run">&nbsp; &nbsp; <span class="key">def</span> <span class="nam">test_resource_requests</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t196" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">resource_request</span> <span class="op">=</span> <span class="nam">ObjectCreationHelper</span><span class="op">.</span><span class="nam">create_resource_request</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t197" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertTrue</span><span class="op">(</span><span class="nam">isinstance</span><span class="op">(</span><span class="nam">resource_request</span><span class="op">,</span> <span class="nam">ResourceRequest</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t198" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">resource_request</span><span class="op">.</span><span class="nam">__unicode__</span><span class="op">(</span><span class="op">)</span><span class="op">,</span> <span class="str">&quot;%s - %s&quot;</span> <span class="op">%</span> <span class="op">(</span><span class="nam">resource_request</span><span class="op">.</span><span class="nam">crisis</span><span class="op">,</span> <span class="nam">resource_request</span><span class="op">.</span><span class="nam">resource</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
                 
             </td>
         </tr>
@@ -446,7 +476,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.org">coverage.py v4.0.3</a>,
-            created at 2016-04-07 00:58
+            created at 2016-04-07 01:54
         </p>
     </div>
 </div>
