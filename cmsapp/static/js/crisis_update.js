@@ -1,3 +1,5 @@
+var url = baseUrl + "/api/decisions/";
+
 pullDecisions();
 
 setInterval(pullDecisions, 5000);
@@ -7,7 +9,7 @@ function pullDecisions() {
   $.ajax({
     type: "GET",
     dataType: "json",
-    url: "http://localhost:8888/api/decisions/",
+    url: url,
     success: function(data){
       length = data.results.length;
       html = "";
@@ -34,7 +36,7 @@ function updateDecisionStatus(decisionID, newStatus) {
   var csrf_token = getCookie("csrftoken");
   var dataToPost = {"active": newStatus}
   $.ajax({
-    url: "http://localhost:8888/api/decisions/" + decisionID + "/",
+    url: url + decisionID + "/",
     headers: {"X-CSRFToken": csrf_token},
     data: JSON.stringify(dataToPost),
     method: "PATCH",

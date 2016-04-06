@@ -1,4 +1,4 @@
-var currentURL = "http://localhost:8888/api/reports/";
+var currentURL = baseUrl + "/api/reports/";
 var type = "";
 var preURL;
 var nextURL;
@@ -79,7 +79,7 @@ function updateReportStatus(reportID, newStatus) {
   var csrf_token = getCookie("csrftoken");
   var dataToPost = {"status": newStatus}
   $.ajax({
-    url: "http://localhost:8888/api/reports/"+reportID+"/",
+    url: currentURL + reportID + "/",
     headers: {"X-CSRFToken": csrf_token},
     data: JSON.stringify(dataToPost),
     method: "PATCH",

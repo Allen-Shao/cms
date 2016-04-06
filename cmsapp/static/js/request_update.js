@@ -1,4 +1,4 @@
-var currentURL = "http://localhost:8888/api/requests/";
+var currentURL = baseUrl + "/api/requests/";
 // var type = "";
 var newestDataId;
 var preURL;
