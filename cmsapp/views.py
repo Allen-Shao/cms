@@ -100,7 +100,7 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
         for agency in agencies:
             print agency.contact
             print agency.name
-            send_sms(agency.contact, "EMERGENCY!!!" + title)
+            send_sms(agency.contact, "EMERGENCY!! " + title)
 
         share_on_facebook(title, form.cleaned_data["description"])
         post_on_twitter("EMERGENCY!! " + title)
@@ -181,16 +181,22 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
 
     def form_valid(self, form):
         #form.save()
-        print "HERE"
-        print self.request.POST.getlist('place')
-        for place in self.request.POST.getlist('place'):
-            notif = Notification(place=Place.objects.get(id=place), decision=form.cleaned_data["decision"], description=form.cleaned_data["description"])
+        agencies = Agency.objects.filter(name__in= self.request.POST.getlist('agency'))
+        for agency in agencies:
+            notif = Notification(
+                agency=Agency.objects.get(name=agency), 
+                decision=form.cleaned_data["decision"], 
+                description=form.cleaned_data["description"]
+                )
+            send_sms(agency.contact,"NOTIFICATION " + str(form.cleaned_data["decision"])[4:])
             notif.save()
         #print str(form.cleaned_data["decision"])[4:] + "\n\n" + form.cleaned_data["description"]
-        agency = Agency.objects.get(name=form.cleaned_data["agency"])
-        send_sms(agency.contact,"NOTIFICATION " + str(form.cleaned_data["decision"])[4:])
         self.success_message = "success_submission"
 
+        return super(NotificationView, self).form_valid(form)
+
+    def form_invalid(self,form):
+        print("INVALID FORM")
         return super(NotificationView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):

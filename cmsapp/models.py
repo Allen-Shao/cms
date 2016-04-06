@@ -56,10 +56,10 @@ class Notification(models.Model):
 
     decision = models.ForeignKey("Decision")
     description = models.TextField()
-    place = models.ForeignKey("Place")
+    agency = models.ForeignKey("Agency", default="")
 
     def __unicode__(self):
-        return "%s - %s" % (self.decision, self.place)
+        return "%s - %s" % (self.decision, self.agency)
 
 class Place(models.Model):
     """
