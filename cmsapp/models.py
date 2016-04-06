@@ -77,8 +77,6 @@ class Agency(Place):
     Government agency information, extended from :model: `place.Place`
     """
 
-    def __unicode__(self):
-        return self.name
 
 class UsefulPlace(Place):
     """
@@ -93,8 +91,6 @@ class UsefulPlace(Place):
     location = models.CharField(max_length=100)
     type_of_place = models.CharField(max_length=1, choices=TYPE_OF_PLACE)
 
-    def __unicode__(self):
-        return self.name
 
 class ResourceRequest(models.Model):
     """

@@ -6,6 +6,9 @@ setInterval(updatePSI, 1800000);
   * update psi readings
   */
 function updatePSI() {
+  for (var i=0;i<markers_psi.length;i++){
+    markers_psi[i].setMap(null);
+  }
   markers_psi = [];
   $.ajax({
     type: "GET",

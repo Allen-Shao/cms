@@ -1,13 +1,84 @@
 from django.test import TestCase
-from models import CallCenterReport, Crisis, Decision, Notification, Place
+from django.contrib.auth.models import User, Group
+from models import CallCenterReport, Crisis, Decision, Notification, Place, ResourceRequest
 
-class HomeViewTestCase(TestCase):
+class ViewTestCase(TestCase):
+    def setUp(self):
+        self.create_group_and_user("dm1", "Decision Maker")
+        self.create_group_and_user("cmsstaff", "CMS Staff")
+        self.create_group_and_user("agency1", "Agency Staff")
+        self.create_group_and_user("ccs1", "Call Center Staff")
+
+    def create_user(self, username, password):
+        user = User.objects.create(username=username)
+        user.set_password(password)
+        user.save()
+        return user
+
+    def create_group_and_user(self, username, group_name):
+        group = Group.objects.create(name=group_name)
+        user = self.create_user(username, "cmscz3003")
+        user.groups.add(group)
+
     def test_home_page(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
 
     def test_login_page(self):
         response = self.client.get("/login/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_about_page(self):
+        response = self.client.get("/about/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_logout_page(self):
+        response = self.client.get("/logout/")
+        self.assertEqual(response.status_code, 302)
+
+    def test_login_nexturl(self):
+        response = self.client.get("/login/?next=/dashboard/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_dashboard_page(self):
+        self.client.login(username="dm1", password="cmscz3003")
+        response = self.client.get("/dashboard/")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("dashboard_active", response.context)
+        self.assertEqual(response.context["dashboard_active"], "active")
+
+    def test_process_report_page(self):
+        self.client.login(username="dm1", password="cmscz3003")
+        response = self.client.get("/process-reports/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_process_request_page(self):
+        self.client.login(username="dm1", password="cmscz3003")
+        response = self.client.get("/process-requests/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_notification_page(self):
+        user = User.objects.create(username='testuser')
+        user.set_password('12345')
+        user.save()
+        self.client.login(username="testuser", password="12345")
+        response = self.client.get("/notification/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_report_page(self):
+        user = User.objects.create(username='testuser')
+        user.set_password('12345')
+        user.save()
+        self.client.login(username="testuser", password="12345")
+        response = self.client.get("/report/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_resource_page(self):
+        user = User.objects.create(username='testuser')
+        user.set_password('12345')
+        user.save()
+        self.client.login(username="testuser", password="12345")
+        response = self.client.get("/resource/")
         self.assertEqual(response.status_code, 200)
 
 class ModelTestCase(TestCase):
@@ -43,6 +114,15 @@ class ModelTestCase(TestCase):
             contact="111111"
         )
 
+
+    def create_resource_request(self):
+        return ResourceRequest.objects.create(
+            crisis = self.create_decision(self.create_crisis()),
+            resource = "test resource",
+            description = "test description",
+        )
+
+
     def test_call_center_report(self):
         crisis = self.create_crisis()
         report = self.create_report(crisis)
@@ -72,3 +152,8 @@ class ModelTestCase(TestCase):
         place = self.create_place()
         self.assertTrue(isinstance(place, Place))
         self.assertEqual(place.__unicode__(), place.name)
+
+    def test_resource_requests(self):
+        resource_request = self.create_resource_request()
+        self.assertTrue(isinstance(resource_request, ResourceRequest))
+        self.assertEqual(resource_request.__unicode__(), "%s - %s" % (resource_request.crisis, resource_request.resource))
