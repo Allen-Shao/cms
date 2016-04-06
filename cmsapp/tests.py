@@ -82,6 +82,7 @@ class ViewTestCase(TestCase):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
 
+
     def test_login_page(self):
         response = self.client.get("/login/")
         self.assertEqual(response.status_code, 200)
@@ -114,7 +115,6 @@ class ViewTestCase(TestCase):
         self.assertEqual([r.__unicode__() for r in response.context["reports"]], [report.__unicode__()])
         self.assertIn("agencies", response.context)
         self.assertEqual([a.__unicode__() for a in response.context["agencies"]], [agency.__unicode__()])
-
 
     def test_process_report_page(self):
         crisis = ObjectCreationHelper.create_crisis()
