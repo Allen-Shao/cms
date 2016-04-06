@@ -9,3 +9,4 @@ ENV/
 
 # ignore coverage
 .coverage
+htmlcov/
