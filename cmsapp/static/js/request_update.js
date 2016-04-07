@@ -1,5 +1,5 @@
 var currentURL = baseUrl + "/api/requests/";
-// var type = "";
+
 var newestDataId;
 var preURL;
 var nextURL;
@@ -37,47 +37,44 @@ function pullRequests() {
       console.log("disappeared");
       for (var x = 0; x < data.results.length; x++) {
         html += "<tr id='row" + data.results[x].id + "'>";
-        html += "<th class='col-md-2'>";
+        html += "<td class='col-md-2'>";
         html += data.results[x].crisis;
-        html += "</th><th class='col-md-2'>";
+        html += "</td><td class='col-md-2'>";
         html += data.results[x].resource;
-        html += "</th><th class='col-md-4'>";
+        html += "</td><td class='col-md-4'>";
         html += data.results[x].description;
-        html += "</th><th class='col-md-2'>";
+        html += "</td><td class='col-md-2'>";
+        html += "<select id='agency" + data.results[x].id + "' class='form-control'>"
         html += agencySelect;
-        html += "</th><th class='col-md-2'><button style='width:100%;' type='button' id='" + data.results[x].id + "' class='btn btn-xs btn-success' onClick='updateRequestStatus(this.id, agencySelect)'><span class='glyphicon glyphicon-send'></span>&nbsp;</button>";
-        html += "</th></tr>";
+        html += "</select>"
+        html += "</td><td class='col-md-2'><button style='width:100%;' type='button' id='" + data.results[x].id + "' class='btn btn-xs btn-success' onClick='updateRequestStatus(this.id)'><span class='glyphicon glyphicon-send'></span>&nbsp;</button>";
+        html += "</td></tr>";
       }
       $("#RequestContent").html(html);
 
       if (preURL == null){
         $("#prepage").attr("class", "disabled");
-      }
-      else{
+      } else {
         $("#prepage").attr("class", "active");
       }
 
       if (nextURL == null){
         $("#nextpage").attr("class", "disabled");
-      }
-      else{
+      } else {
         $("#nextpage").attr("class", "active");
       }
     }
   });
 }
 
-function updateRequestStatus(requestID, agency) {
+function updateRequestStatus(requestID) {
   var csrf_token = getCookie("csrftoken");
-  var dataToPost = {"id": requestID,
-                    "Agency": agency}
+  var dataToPost = "csrfmiddlewaretoken=" + csrf_token + "&id=" + requestID + "&Agency=" + $("#agency" + requestID).val();
   $.ajax({
-    url: baseUrl+"/process-requests/",
-    headers: {"X-CSRFToken": csrf_token},
-    data: JSON.stringify(dataToPost),
+    url: baseUrl + "/process-requests/",
+    data: dataToPost,
     method: "POST",
-    contentType: 'application/json',
-    dataType: "json",
+    contentType: 'application/x-www-form-urlencoded',
     success: function(data) {
       pullRequests();
       $("process-success").html("<div id='fastfade' class='alert alert-success'><strong>Process Succeeded!</strong></div>");
@@ -88,10 +85,10 @@ function updateRequestStatus(requestID, agency) {
 
 function prePage(){
     currentURL = preURL;
-    pullReports();
+    pullRequests();
 }
 
 function nextPage(){
     currentURL = nextURL;
-    pullReports();
+    pullRequests();
 }

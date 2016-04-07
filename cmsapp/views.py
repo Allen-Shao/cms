@@ -151,6 +151,7 @@ class ProcessRequestsView(CmsBaseView, FormView):
 
     template_name = "process-requests.html"
     form_class = ProcessRequestForm
+    success_url = "/login/"
 
     def get_context_data(self, **kwargs):
         context = super(ProcessRequestsView, self).get_context_data(**kwargs)
@@ -165,8 +166,10 @@ class ProcessRequestsView(CmsBaseView, FormView):
         agency = Agency.objects.get(name=agency_name)
         print agency.__unicode__()
         print request.__unicode__()
+        request.active = False
+        request.save()
 
-        return super(ProcessRequestForm, self).form_valid(form)
+        return super(ProcessRequestsView, self).form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')
