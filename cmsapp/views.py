@@ -167,6 +167,8 @@ class ProcessRequestsView(CmsBaseView, FormView):
         print agency.__unicode__()
         print request.__unicode__()
         request.active = False
+        send_sms(agency.contact,"RESOURCE REQUEST: \nType Of Crisis: " + request.crisis.type_of_crisis +
+                "\nResource Requested: " + request.resource + "\nDescription: " + request.description) 
         request.save()
 
         return super(ProcessRequestsView, self).form_valid(form)
@@ -194,16 +196,41 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
 
     def form_valid(self, form):
         #form.save()
+        print self.request.POST.get("facebook")
+        print self.request.POST.get("twitter")
+        print self.request.POST.get("pmo")
+        print self.request.POST.get("agency_check")
+        print form.cleaned_data["decision"]
+        decision = Decision.objects.all().get(id=self.request.POST.get("decision"))
+        title = decision.type_of_crisis.type_of_crisis
+        notify = ""
+        #Push Notifications
+        if self.request.POST.get("facebook") == "facebook":
+            share_on_facebook(title, form.cleaned_data["description"])
+            notify += "Facebook,"
+        if self.request.POST.get("twitter") == "twitter":
+            post_on_twitter(title + " " +form.cleaned_data["description"])
+            notify += "Twitter,"
+        if self.request.POST.get("pmo") == "pmo":
+            send_to_president("NOTIFICATION!!\n\n" + title + "\n\n" + str(form.cleaned_data["description"]))
+            notify += "Email,"
+        
         agencies = Agency.objects.filter(name__in= self.request.POST.getlist('agency'))
-        for agency in agencies:
-            notif = Notification(
-                agency=Agency.objects.get(name=agency),
-                decision=form.cleaned_data["decision"],
-                description=form.cleaned_data["description"]
-                )
-            send_sms(agency.contact,"NOTIFICATION " + str(form.cleaned_data["decision"])[4:])
-            notif.save()
-        #print str(form.cleaned_data["decision"])[4:] + "\n\n" + form.cleaned_data["description"]
+        if agencies != None:
+            for agency in agencies:
+                notify += agency.name + ","
+                send_sms(agency.contact,"NOTIFICATION " + str(form.cleaned_data["decision"])[4:])
+
+        
+        #Saving the notification to the database.
+        notif = Notification(
+                    notify = notify,
+                    decision=form.cleaned_data["decision"],
+                    description=form.cleaned_data["description"]
+                    )
+        notif.save()
+
+        print str(form.cleaned_data["decision"])[4:] + "\n\n" + form.cleaned_data["description"]
         self.success_message = "success_submission"
 
         return super(NotificationView, self).form_valid(form)
@@ -212,7 +239,6 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
         context = super(NotificationView, self).get_context_data(**kwargs)
         context["form"] = NotificationForm
         context["agencies"] = Agency.objects.all()
-        context["places"]=Place.objects.filter(agency=None)
         context["notification_active"] = "active"
         #context["notification_view"]
         return context

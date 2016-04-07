@@ -63,10 +63,10 @@ class Notification(models.Model):
 
     decision = models.ForeignKey("Decision")
     description = models.TextField()
-    agency = models.ForeignKey("Agency", default="")
+    notify = models.TextField(default="")
 
     def __unicode__(self):
-        return "%s - %s" % (self.decision, self.agency)
+        return "%s - %s" % (self.decision, self.notify)
     class Meta:
         app_label = 'cmsapp'
 
