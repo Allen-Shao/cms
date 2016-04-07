@@ -69,7 +69,7 @@ function pullRequests() {
 
 function updateRequestStatus(requestID, agency) {
   var csrf_token = getCookie("csrftoken");
-  var dataToPost = {"id": requestID
+  var dataToPost = {"id": requestID,
                     "Agency": agency}
   $.ajax({
     url: baseUrl+"/process-requests/",
@@ -79,7 +79,8 @@ function updateRequestStatus(requestID, agency) {
     contentType: 'application/json',
     dataType: "json",
     success: function(data) {
-      pullReports(type);
+      pullRequests();
+      $("process-success").html("<div id='fastfade' class='alert alert-success'><strong>Process Succeeded!</strong></div>");
       console.log("Report status updated");
     }
   });
