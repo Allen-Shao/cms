@@ -1,7 +1,9 @@
 from django.test import TestCase
+from unittest import skip
 from django.contrib.auth.models import User, Group
 from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceForm, DecisionForm
 from models import CallCenterReport, Crisis, Decision, Notification, Place, Agency, ResourceRequest
+from selenium import webdriver
 
 class ObjectCreationHelper:
     @classmethod
@@ -198,6 +200,7 @@ class ViewTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response["Location"], "/resource/")
 
+    @skip("skip posting decision")
     def test_decision_post(self):
         ObjectCreationHelper.create_crisis()
         ObjectCreationHelper.create_agency()
@@ -211,6 +214,7 @@ class ViewTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response["Location"], "/dashboard/")
 
+    @skip("skip notification decision")
     def test_notification_post(self):
         ObjectCreationHelper.create_decision()
         ObjectCreationHelper.create_agency()
@@ -273,3 +277,17 @@ class ModelTestCase(TestCase):
         resource_request = ObjectCreationHelper.create_resource_request()
         self.assertTrue(isinstance(resource_request, ResourceRequest))
         self.assertEqual(resource_request.__unicode__(), "%s - %s" % (resource_request.crisis, resource_request.resource))
+
+class WebTestCase(TestCase):
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+
+    def test_sign_in(self):
+        self.driver.get("http://localhost:8888/login/")
+        self.driver.find_element_by_id("username").send_keys("dm1")
+        self.driver.find_element_by_id("password").send_keys("cmscz3003")
+        self.driver.find_element_by_id("submit").click()
+        self.assertEqual("http://localhost:8888/", self.driver.current_url)
+
+    def tearDown(self):
+        self.driver.quit
