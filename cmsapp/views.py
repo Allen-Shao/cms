@@ -7,12 +7,11 @@ from django.views.generic.base import TemplateView, RedirectView, ContextMixin
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login, logout
 
-from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceForm, DecisionForm
+from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceForm, DecisionForm, ProcessRequestForm
 
-from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from models import CallCenterReport, Decision, Agency, Crisis, Notification, Place
+from models import CallCenterReport, Decision, Agency, Crisis, Notification, Place, ResourceRequest
 
 #SocialMedia Imports
 #from Facebook import share_on_facebook
@@ -92,7 +91,7 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
 
     def form_valid(self, form):
         form.save()
-        report = CallCenterReport.objects.filter(type_of_crisis=form.cleaned_data["type_of_crisis"])
+        #report = CallCenterReport.objects.filter(type_of_crisis=form.cleaned_data["type_of_crisis"])
         title = form.cleaned_data['type_of_crisis'].type_of_crisis
 
         agencies = Agency.objects.filter(name__in= self.request.POST.getlist('agency'))
@@ -136,7 +135,7 @@ class ProcessReportsView(CmsBaseView, TemplateView):
         return context
 
 @method_decorator(login_required, name='dispatch')
-class ProcessRequestsView(CmsBaseView, TemplateView):
+class ProcessRequestsView(CmsBaseView, FormView):
     """
     Display an individual :model:`resourceRequest.ResourceRequest`. Processing the requests made by agencies
 
@@ -151,12 +150,24 @@ class ProcessRequestsView(CmsBaseView, TemplateView):
     """
 
     template_name = "process-requests.html"
+    form_class = ProcessRequestForm
 
     def get_context_data(self, **kwargs):
         context = super(ProcessRequestsView, self).get_context_data(**kwargs)
         context["process_request_active"] = "active"
         context["agency_list"] = Agency.objects.all()
         return context
+
+    def form_valid(self, form):
+        request_id = form.cleaned_data["id"]
+        request = ResourceRequest.objects.get(pk=request_id)
+        agency_name = form.cleaned_data["Agency"]
+        agency = Agency.objects.get(name=agency_name)
+        print agency.__unicode__()
+        print request.__unicode__()
+
+        return super(ProcessRequestForm, self).form_valid(form)
+
 
 @method_decorator(login_required, name='dispatch')
 class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):

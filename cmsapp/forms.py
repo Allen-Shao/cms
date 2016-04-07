@@ -53,3 +53,11 @@ class DecisionForm(forms.ModelForm):
     class Meta:
         model = Decision
         exclude = ['date_time','active']
+
+class ProcessRequestForm(forms.Form):
+    """
+    Form for processing resource requests
+    """
+
+    id = forms.CharField(max_length=100)
+    Agency = forms.CharField(max_length=100)
