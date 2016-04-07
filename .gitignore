@@ -10,3 +10,7 @@ ENV/
 # ignore coverage
 .coverage
 htmlcov/
+
+# ignore celery
+celerybeat.pid
+celerybeat-schedule

@@ -8,3 +8,4 @@ django-filter
 redis
 celery
 coverage
+selenium

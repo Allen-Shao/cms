@@ -6,8 +6,8 @@ def send_email():
     for decision in Decision.objects.all():
       if decision.active == True:
         message = "Dear Sir,\n\nThe following crisis has occured: " + \
-                    decision.type_of_crisis + "\n\nThe details are as follows: " +  \
-              decision.description + "\n\nDate and Time: " + decision.date_time \
+                    decision.type_of_crisis.__unicode__() + "\n\nThe details are as follows: " +  \
+              decision.description + "\n\nDate and Time: " + str(decision.date_time) \
               + "Best,\nAllStarCMS"
         send_to_president(message)
         flag = False
