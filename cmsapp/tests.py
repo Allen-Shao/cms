@@ -71,7 +71,7 @@ class ObjectCreationHelper:
             description = "test description",
         )
 
-
+@skip("skip view test case")
 class ViewTestCase(TestCase):
 
     def setUp(self):
@@ -246,6 +246,7 @@ class ViewTestCase(TestCase):
         response = self.client.post("/login/", post_data)
         self.assertEqual(response.status_code, 200)
 
+@skip("skip model test case")
 class ModelTestCase(TestCase):
 
     def test_call_center_report(self):
@@ -278,6 +279,7 @@ class ModelTestCase(TestCase):
         self.assertTrue(isinstance(resource_request, ResourceRequest))
         self.assertEqual(resource_request.__unicode__(), "%s - %s" % (resource_request.crisis, resource_request.resource))
 
+@skip("skip web test case")
 class WebTestCase(TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
