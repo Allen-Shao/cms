@@ -45,7 +45,7 @@ function pullRequests() {
         html += data.results[x].description;
         html += "</th><th class='col-md-2'>";
         html += agencySelect;
-        html += "</th><th class='col-md-2'><button style='width:100%;' type='button' id='" + data.results[x].id + "' class='btn btn-xs btn-success' onClick=''><span class='glyphicon glyphicon-send'></span>&nbsp;</button>";
+        html += "</th><th class='col-md-2'><button style='width:100%;' type='button' id='" + data.results[x].id + "' class='btn btn-xs btn-success' onClick='updateRequestStatus(this.id, agencySelect)'><span class='glyphicon glyphicon-send'></span>&nbsp;</button>";
         html += "</th></tr>";
       }
       $("#RequestContent").html(html);
@@ -67,18 +67,20 @@ function pullRequests() {
   });
 }
 
-function updateReportStatus(reportID, newStatus) {
+function updateRequestStatus(requestID, agency) {
   var csrf_token = getCookie("csrftoken");
-  var dataToPost = {"status": newStatus}
+  var dataToPost = {"id": requestID,
+                    "Agency": agency}
   $.ajax({
-    url: "http://localhost:8888/api/reports/"+reportID+"/",
+    url: baseUrl+"/process-requests/",
     headers: {"X-CSRFToken": csrf_token},
     data: JSON.stringify(dataToPost),
-    method: "PATCH",
+    method: "POST",
     contentType: 'application/json',
     dataType: "json",
     success: function(data) {
-      pullReports(type);
+      pullRequests();
+      $("process-success").html("<div id='fastfade' class='alert alert-success'><strong>Process Succeeded!</strong></div>");
       console.log("Report status updated");
     }
   });
