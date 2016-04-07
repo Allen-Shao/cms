@@ -5,18 +5,11 @@
         function validateForm() {
             var twitter = document.getElementById("twitter").value;
             var description = document.getElementById("description").value;
-            var agencies = document.getElementById("agencies").value;
             //console.log("TEST");
             if (twitter == "twitter"){
                 if(description.length >=120){
                     alert("Max allowed length for twitter is 140 characters. Your description exceeds 140 characters.");
-                    return false;
-                }
-            }
-            if (agencies == true){
-                agency = document.forms["notifform"]["agency"].value;
-                if (agency == none){
-                    alert("Please select an agency.");
+                    //console.log("in twitter");
                     return false;
                 }
             }
@@ -26,7 +19,7 @@
 {% endblock %}
 
 {% block content %}
-    <form class="form-horizontal" name="notifform" role="form" onsubmit="validateForm()" action="/notification/" method="post">
+    <form class="form-horizontal" name="notifform" role="form" onsubmit="return validateForm();" action="/notification/" method="post">
         {% csrf_token %}
         <h2>Notification</h2>
 
@@ -79,9 +72,8 @@
                     <b>&ensp;Prime Minister's Office&ensp;</b>
                     </input>
                     <br>
-                    <input type="checkbox" name="agencyCheck" id="agencyCheck" value="agencyCheck" onclick="ShowHideDiv(this)"><b>&ensp;Agencies&ensp;</b></input>
             </div>
-            <div id="agencies" style="display: none">
+            <div id="agencies" style="display: block">
                 <label class="control-label col-sm-2">Agencies: </label>
                 <div class="col-sm-4">
                     {% for notification in agencies %}
@@ -99,13 +91,6 @@
         </div>
 
     </form>
-
-    <script type="text/javascript">
-        function ShowHideDiv(agencyCheck) {
-            var agencyDiv = document.getElementById("agencies");
-            agencyDiv.style.display = agencyCheck.checked ? "block" : "none";
-        }
-    </script>
 {% endblock %}
 
 
