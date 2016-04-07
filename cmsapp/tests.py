@@ -199,10 +199,48 @@ class ViewTestCase(TestCase):
         self.assertEqual(response["Location"], "/resource/")
 
     def test_decision_post(self):
-        pass
+        ObjectCreationHelper.create_crisis()
+        ObjectCreationHelper.create_agency()
+        self.client.login(username="dm1", password="cmscz3003")
+        post_data = {
+            "type_of_crisis": 1,
+            "description": "test description",
+            "agency": "test agency"
+        }
+        response = self.client.post("/dashboard/", post_data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response["Location"], "/dashboard/")
 
     def test_notification_post(self):
-        pass
+        ObjectCreationHelper.create_decision()
+        ObjectCreationHelper.create_agency()
+        self.client.login(username="dm1", password="cmscz3003")
+        post_data = {
+            "decision": 1,
+            "description": "test description",
+            "agency": "test agency"
+        }
+        response = self.client.post("/notification/", post_data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response["Location"], "/notification/")
+
+    def test_login_post(self):
+        post_data = {
+            "username": "dm1",
+            "password": "cmscz3003",
+            "next": "/dashboard/"
+        }
+        response = self.client.post("/login/", post_data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response["Location"], "/dashboard/")
+
+    def test_login_wrong_post(self):
+        post_data = {
+            "username": "wrong",
+            "password": "cms"
+        }
+        response = self.client.post("/login/", post_data)
+        self.assertEqual(response.status_code, 200)
 
 class ModelTestCase(TestCase):
 
