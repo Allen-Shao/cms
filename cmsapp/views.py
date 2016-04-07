@@ -104,7 +104,7 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
         share_on_facebook(title, form.cleaned_data["description"])
         post_on_twitter("EMERGENCY!! " + title)
         send_to_president("EMERGENCY!!\n\n" + title + "\n\n" + form.cleaned_data["description"])
-        send_sms("86897793","EMERGENCY!! " + title)
+        #send_sms("86897793","EMERGENCY!! " + title)
 
         self.success_message = "success_submission"
         print self.success_message
@@ -192,10 +192,6 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
         #print str(form.cleaned_data["decision"])[4:] + "\n\n" + form.cleaned_data["description"]
         self.success_message = "success_submission"
 
-        return super(NotificationView, self).form_valid(form)
-
-    def form_invalid(self,form):
-        print("INVALID FORM")
         return super(NotificationView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
