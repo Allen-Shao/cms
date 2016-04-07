@@ -1,7 +1,9 @@
 updateDengue();
 
 
-/* Update Dengue data*/
+/**
+ * Update the dengue data from the government API
+ */
 function updateDengue() {
   $.ajax({
     type: "GET",
@@ -17,6 +19,11 @@ function updateDengue() {
   });
 }
 
+/**
+ * Display the dengue cases showing the places of the hotspots and the number of cases in each area.
+ *
+ * @param dengueData
+ */
 function updateDengueInHome(dengueData) {
 
   var dengueDisplay = "";

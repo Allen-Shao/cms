@@ -4,6 +4,9 @@ pullDecisions();
 
 setInterval(pullDecisions, 5000);
 
+/**
+ * Display the crises on the dashboard of the Decision Maker
+ */
 function pullDecisions() {
   var html = '';
   $.ajax({
@@ -32,7 +35,14 @@ function pullDecisions() {
   });
 }
 
+/**
+ * Update the status of the decision to manage the cases effectively
+ *
+ * @param decisionID
+ * @param newStatus
+ */
 function updateDecisionStatus(decisionID, newStatus) {
+
   var csrf_token = getCookie("csrftoken");
   var dataToPost = {"active": newStatus}
   $.ajax({
