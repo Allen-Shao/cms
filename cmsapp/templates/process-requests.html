@@ -42,12 +42,11 @@
         agencyList.push("{{ agency.name }}");
       {% endfor %}
 
-      var agencySelect = "<select id='agency' class='form-control'>";
       for (var i = 0; i < agencyList.length; i++) {
         agencySelect += "<option value='" + agencyList[i] + "'>" + agencyList[i] + "</option>";
       }
-      agencySelect += "</select>"
     </script>
+    <script src="{% static "js/timeout.js" %}"></script>
     <script src="{% static "js/global.js" %}"></script>
     <script src="{% static "js/cookie.js" %}"></script>
     <script src="{% static "js/request_update.js" %}"></script>
