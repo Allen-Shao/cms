@@ -14,3 +14,8 @@ htmlcov/
 # ignore celery
 celerybeat.pid
 celerybeat-schedule
+
+# ignore documentation
+docs/_build/
+docs/_static/
+docs/_templates/

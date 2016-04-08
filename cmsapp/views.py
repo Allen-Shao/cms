@@ -42,10 +42,11 @@ class HomeView(CmsBaseView, TemplateView):
 
     **Context**
     ``active_decision``
-        An instance of :model:`active_decision.Decision`.
+    An instance of :model:`active_decision.Decision`.
 
     **Template:**
     :template:`templates/home.html`
+
     """
 
     template_name = "home.html"
@@ -64,12 +65,15 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
 
     **Context**
     ``reports``
-        An instance of :model:`reports.CallCenterReport`.
+    An instance of :model:`reports.CallCenterReport`.
+
+    **Context**
     ``agencies``
-        An instance of :model:`agencies.Agency`.
+    An instance of :model:`agencies.Agency`.
 
     **Template:**
     :template:`templates/dashboard.html`
+
     """
 
     template_name = "dashboard.html"
@@ -118,12 +122,15 @@ class ProcessReportsView(CmsBaseView, TemplateView):
 
     **Context**
     ``report``
-        An instance of :model:`report.CallCenterReport`.
+    An instance of :model:`report.CallCenterReport`.
+
+    **Context**
     ``type_of_crisis``
-        An instance of :model:`type_of_crisis.Crisis`
+    An instance of :model:`type_of_crisis.Crisis`
 
     **Template:**
     :template:`templates/process-reports.html`
+
     """
 
     template_name = "process-reports.html"
@@ -141,12 +148,15 @@ class ProcessRequestsView(CmsBaseView, FormView):
 
     **Context**
     ``agency_list``
-        An instance of :model:`agency_list.Agency`.
+    An instance of :model:`agency_list.Agency`.
+
+    **Context**
     ``resourceRequest``
-        An instance of :model:`resourceRequest.ResourceRequest`.
+    An instance of :model:`resourceRequest.ResourceRequest`.
 
     **Template:**
     :template:`templates/process-requests.html`
+
     """
 
     template_name = "process-requests.html"
@@ -181,12 +191,15 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
 
     **Context**
     ``notification``
-        An instance of :model:`notification.Notification`.
+    An instance of :model:`notification.Notification`.
+
+    **Context**
     ``place``
-        An instance of :model: `place.Places`
+    An instance of :model: `place.Places`
 
     **Template:**
     :template:`templates/notification.html`
+
     """
 
     template_name = "notification.html"
@@ -250,10 +263,11 @@ class ReportView(CmsBaseView, SuccessMessageMixin, FormView):
 
     **Context**
     ``report``
-        An instance of :model:`report.CallCenterReport`.
+    An instance of :model:`report.CallCenterReport`.
 
     **Template:**
     :template:`templates/report.html`
+
     """
 
     template_name = "report.html"
@@ -279,10 +293,11 @@ class ResourceView(CmsBaseView, SuccessMessageMixin ,FormView):
 
     **Context**
     ``resourceRequest``
-        An instance of :model:`resourceRequest.ResourceRequest`.
+    An instance of :model:`resourceRequest.ResourceRequest`.
 
     **Template:**
     :template:`templates/resource.html`
+
     """
 
     template_name = "resource.html"
@@ -309,6 +324,7 @@ class LoginView(CmsBaseView, SuccessMessageMixin, FormView):
 
     **Template:**
     :template:`templates/login.html`
+
     """
 
     template_name = "login.html"
@@ -363,6 +379,7 @@ class AboutView(CmsBaseView, TemplateView):
 
     **Template:**
     :template:`templates/about.html`
+
     """
 
     template_name = "about.html"
