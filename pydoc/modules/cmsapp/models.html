@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models &mdash; CMS 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="CMS 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="cmsapp" href="../cmsapp.html" />
+    <link rel="prev" title="forms" href="forms.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cmsapp.models">
+<span id="models"></span><h1>models<a class="headerlink" href="#module-cmsapp.models" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="cmsapp.models.Agency">
+<em class="property">class </em><code class="descclassname">cmsapp.models.</code><code class="descname">Agency</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.models.Agency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Government agency information, extended from :model: <cite>place.Place</cite></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.models.CallCenterReport">
+<em class="property">class </em><code class="descclassname">cmsapp.models.</code><code class="descname">CallCenterReport</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.models.CallCenterReport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call center reports, related to :model: <cite>type_of_crisis.Crisis</cite></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.models.Crisis">
+<em class="property">class </em><code class="descclassname">cmsapp.models.</code><code class="descname">Crisis</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.models.Crisis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crisis description</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.models.Decision">
+<em class="property">class </em><code class="descclassname">cmsapp.models.</code><code class="descname">Decision</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.models.Decision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decisions made by decision makers, related to :model: <cite>type_of_crisis.Crisis</cite></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.models.Notification">
+<em class="property">class </em><code class="descclassname">cmsapp.models.</code><code class="descname">Notification</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.models.Notification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notifications to be sent, related to :model: <cite>decision.Decision</cite> and :model: <cite>place.Place</cite></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.models.Place">
+<em class="property">class </em><code class="descclassname">cmsapp.models.</code><code class="descname">Place</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.models.Place" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the different places, such as PMO, Public, Agencies</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.models.ResourceRequest">
+<em class="property">class </em><code class="descclassname">cmsapp.models.</code><code class="descname">ResourceRequest</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.models.ResourceRequest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resource requests information, related to :model: <cite>crisis.Decision</cite></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.models.UsefulPlace">
+<em class="property">class </em><code class="descclassname">cmsapp.models.</code><code class="descname">UsefulPlace</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.models.UsefulPlace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hospitals and etc., extended from :model: <cite>place.Place</cite></p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../cmsapp.html">cmsapp</a><ul>
+      <li>Previous: <a href="forms.html" title="previous chapter">forms</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/modules/cmsapp/models.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Team Allstars.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="../../_sources/modules/cmsapp/models.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

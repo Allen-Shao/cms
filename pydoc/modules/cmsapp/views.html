@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>views &mdash; CMS 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="CMS 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="cmsapp" href="../cmsapp.html" />
+    <link rel="next" title="forms" href="forms.html" />
+    <link rel="prev" title="cmsapp" href="../cmsapp.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cmsapp.views">
+<span id="views"></span><h1>views<a class="headerlink" href="#module-cmsapp.views" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="cmsapp.views.AboutView">
+<em class="property">class </em><code class="descclassname">cmsapp.views.</code><code class="descname">AboutView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.views.AboutView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Information about the Crisis Management System</p>
+<p><strong>Template:</strong>
+<a href="#id1"><span class="problematic" id="id2">:template:`templates/about.html`</span></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.views.CmsBaseView">
+<em class="property">class </em><code class="descclassname">cmsapp.views.</code><code class="descname">CmsBaseView</code><a class="headerlink" href="#cmsapp.views.CmsBaseView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticates the user</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.views.DashboardView">
+<em class="property">class </em><code class="descclassname">cmsapp.views.</code><code class="descname">DashboardView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.views.DashboardView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display the general dashboard. Consists of all the active notifications and enable the decision maker to declare a crisis.</p>
+<p><strong>Context</strong>
+<code class="docutils literal"><span class="pre">reports</span></code>
+An instance of <a href="#id3"><span class="problematic" id="id4">:model:`reports.CallCenterReport`</span></a>.</p>
+<p><strong>Context</strong>
+<code class="docutils literal"><span class="pre">agencies</span></code>
+An instance of <a href="#id5"><span class="problematic" id="id6">:model:`agencies.Agency`</span></a>.</p>
+<p><strong>Template:</strong>
+<a href="#id7"><span class="problematic" id="id8">:template:`templates/dashboard.html`</span></a></p>
+<dl class="attribute">
+<dt id="cmsapp.views.DashboardView.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#cmsapp.views.DashboardView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">DecisionForm</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cmsapp.views.DashboardView.second_form_class">
+<code class="descname">second_form_class</code><a class="headerlink" href="#cmsapp.views.DashboardView.second_form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">NotificationForm</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.views.HomeView">
+<em class="property">class </em><code class="descclassname">cmsapp.views.</code><code class="descname">HomeView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.views.HomeView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays all the active crisis on the home page.</p>
+<p><strong>Context</strong>
+<code class="docutils literal"><span class="pre">active_decision</span></code>
+An instance of <a href="#id9"><span class="problematic" id="id10">:model:`active_decision.Decision`</span></a>.</p>
+<p><strong>Template:</strong>
+<a href="#id11"><span class="problematic" id="id12">:template:`templates/home.html`</span></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.views.LoginView">
+<em class="property">class </em><code class="descclassname">cmsapp.views.</code><code class="descname">LoginView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.views.LoginView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs the user in the system. The user can be either the decision maker, a CMS staff, a call center staff, an agency staff or the django admin.</p>
+<p><strong>Template:</strong>
+<a href="#id13"><span class="problematic" id="id14">:template:`templates/login.html`</span></a></p>
+<dl class="attribute">
+<dt id="cmsapp.views.LoginView.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#cmsapp.views.LoginView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">LoginForm</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.views.LogoutView">
+<em class="property">class </em><code class="descclassname">cmsapp.views.</code><code class="descname">LogoutView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.views.LogoutView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs the user out of the system</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.views.NotificationView">
+<em class="property">class </em><code class="descclassname">cmsapp.views.</code><code class="descname">NotificationView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.views.NotificationView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display an individual <a href="#id15"><span class="problematic" id="id16">:model:`notification.Notification`</span></a>. Sending notifications to the required parties.</p>
+<p><strong>Context</strong>
+<code class="docutils literal"><span class="pre">notification</span></code>
+An instance of <a href="#id17"><span class="problematic" id="id18">:model:`notification.Notification`</span></a>.</p>
+<p><strong>Context</strong>
+<code class="docutils literal"><span class="pre">place</span></code>
+An instance of :model: <cite>place.Places</cite></p>
+<p><strong>Template:</strong>
+<a href="#id19"><span class="problematic" id="id20">:template:`templates/notification.html`</span></a></p>
+<dl class="attribute">
+<dt id="cmsapp.views.NotificationView.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#cmsapp.views.NotificationView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">NotificationForm</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.views.ProcessReportsView">
+<em class="property">class </em><code class="descclassname">cmsapp.views.</code><code class="descname">ProcessReportsView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.views.ProcessReportsView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display an individual <a href="#id21"><span class="problematic" id="id22">:model:`report.CallCenterReport`</span></a>. Processing the reports from the call center staff</p>
+<p><strong>Context</strong>
+<code class="docutils literal"><span class="pre">report</span></code>
+An instance of <a href="#id23"><span class="problematic" id="id24">:model:`report.CallCenterReport`</span></a>.</p>
+<p><strong>Context</strong>
+<code class="docutils literal"><span class="pre">type_of_crisis</span></code>
+An instance of <a href="#id25"><span class="problematic" id="id26">:model:`type_of_crisis.Crisis`</span></a></p>
+<p><strong>Template:</strong>
+<a href="#id27"><span class="problematic" id="id28">:template:`templates/process-reports.html`</span></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.views.ProcessRequestsView">
+<em class="property">class </em><code class="descclassname">cmsapp.views.</code><code class="descname">ProcessRequestsView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.views.ProcessRequestsView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display an individual <a href="#id29"><span class="problematic" id="id30">:model:`resourceRequest.ResourceRequest`</span></a>. Processing the requests made by agencies</p>
+<p><strong>Context</strong>
+<code class="docutils literal"><span class="pre">agency_list</span></code>
+An instance of <a href="#id31"><span class="problematic" id="id32">:model:`agency_list.Agency`</span></a>.</p>
+<p><strong>Context</strong>
+<code class="docutils literal"><span class="pre">resourceRequest</span></code>
+An instance of <a href="#id33"><span class="problematic" id="id34">:model:`resourceRequest.ResourceRequest`</span></a>.</p>
+<p><strong>Template:</strong>
+<a href="#id35"><span class="problematic" id="id36">:template:`templates/process-requests.html`</span></a></p>
+<dl class="attribute">
+<dt id="cmsapp.views.ProcessRequestsView.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#cmsapp.views.ProcessRequestsView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ProcessRequestForm</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.views.ReportView">
+<em class="property">class </em><code class="descclassname">cmsapp.views.</code><code class="descname">ReportView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.views.ReportView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display an individual <a href="#id37"><span class="problematic" id="id38">:model:`report.CallCenterReport`</span></a>. Allowing the call center staffs to make reports</p>
+<p><strong>Context</strong>
+<code class="docutils literal"><span class="pre">report</span></code>
+An instance of <a href="#id39"><span class="problematic" id="id40">:model:`report.CallCenterReport`</span></a>.</p>
+<p><strong>Template:</strong>
+<a href="#id41"><span class="problematic" id="id42">:template:`templates/report.html`</span></a></p>
+<dl class="attribute">
+<dt id="cmsapp.views.ReportView.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#cmsapp.views.ReportView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">CallCenterReportForm</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cmsapp.views.ResourceView">
+<em class="property">class </em><code class="descclassname">cmsapp.views.</code><code class="descname">ResourceView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cmsapp.views.ResourceView" title="Permalink to this definition">¶</a></dt>
+<dd><p>To request resources upon reaching the required position. Used by the agency staffs</p>
+<p><strong>Context</strong>
+<code class="docutils literal"><span class="pre">resourceRequest</span></code>
+An instance of <a href="#id43"><span class="problematic" id="id44">:model:`resourceRequest.ResourceRequest`</span></a>.</p>
+<p><strong>Template:</strong>
+<a href="#id45"><span class="problematic" id="id46">:template:`templates/resource.html`</span></a></p>
+<dl class="attribute">
+<dt id="cmsapp.views.ResourceView.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#cmsapp.views.ResourceView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ResourceForm</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../cmsapp.html">cmsapp</a><ul>
+      <li>Previous: <a href="../cmsapp.html" title="previous chapter">cmsapp</a></li>
+      <li>Next: <a href="forms.html" title="next chapter">forms</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/modules/cmsapp/views.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Team Allstars.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="../../_sources/modules/cmsapp/views.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

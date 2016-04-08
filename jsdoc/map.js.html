@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: map.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: map.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//Markers function
+/**
+ * Make a marker on the map along with a label
+ * @param location the location of the marker
+ * @param labelText text to be displayed on the label
+ * @param markerIcon icon for the marker
+ * @param size size of the text
+ * @param markers_type
+ * @constructor
+ */
+function MarkersWithLabel(location, labelText, markerIcon, size, markers_type) {
+    var label = new MapLabel({
+        text: labelText,
+        position: location,
+        map: null,
+        fontSize: size,
+        align: 'center'
+    });
+    var marker = new google.maps.Marker({
+        position: location,
+        map: null,
+        icon: markerIcon
+    });
+    marker.bindTo('map', label);
+    marker.bindTo('position', label);
+    marker.setDraggable(false);
+    marker.clickable = false;
+    //Display only psi by default
+    if (size == 30) {
+        marker.setMap(map);
+    }
+    markers_type.push(marker);
+}
+
+/**
+ * Display the markers on the map
+ *
+ * @param markers_type list of all the markers
+ */
+function showMarkers(markers_type) {
+    var i;
+    for (i = 0; i &lt; markers_type.length; i++) {
+        markers_type[i].setMap(map);
+    }
+}
+
+/**
+ * Hide the markers on the map
+ *
+ * @param markers_type list of all the markers
+ */
+function hideMarkers(markers_type) {
+    var i;
+    for (i = 0; i &lt; markers_type.length; i++) {
+        markers_type[i].setMap(null);
+    }
+}
+
+/**
+ * Toggling the map to the weather section
+ */
+function weatherButtonClicked() {
+    //display weather markers
+    showMarkers(markers_weather);
+    //hide psi markers and dengue kml
+    hideMarkers(markers_psi);
+    dengueKmlLayer.setMap(null);
+}
+
+/**
+ * Toggling the map to the PSI section
+ */
+function psiButtonClicked() {
+    //display weather markers
+    showMarkers(markers_psi);
+    //hide psi markers and dengue kml
+    hideMarkers(markers_weather);
+    dengueKmlLayer.setMap(null);
+}
+
+/**
+ * Showing the dengue hotspots and toggling off the weather and psi section
+ */
+function dengueButtonClicked() {
+    //display weather markers
+    dengueKmlLayer.setMap(map);
+    //hide psi markers and dengue kml
+    hideMarkers(markers_psi);
+    hideMarkers(markers_weather);
+}
+
+var map, psiIcon;
+
+var northLatLng;
+var centralLatLng;
+var eastLatLng;
+var westLatLng;
+var southLatLng;
+
+var markers_weather = [];
+var markers_psi = [];
+var dengueKmlLayer;
+
+/**
+ * Initializing the map
+ */
+function initMap() {
+    // create map
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: new google.maps.LatLng(1.354241, 103.82000),
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        streetViewControl: false,
+        scrollwheel: false
+    });
+
+    // psi icon
+    psiIcon = {
+        url: "http://cdn8.staztic.com/app/a/2742/2742678/psi-malaysia-haze-5-l-140x140.png",
+        scaledSize: new google.maps.Size(40, 40)
+    };
+
+    // initialize positions
+    northLatLng = new google.maps.LatLng(1.41803, 103.82000);
+    centralLatLng = new google.maps.LatLng(1.35735, 103.82000);
+    eastLatLng = new google.maps.LatLng(1.35735, 103.94000);
+    westLatLng = new google.maps.LatLng(1.35735, 103.70000);
+    southLatLng = new google.maps.LatLng(1.29587, 103.82000);
+
+
+    //create dengue cluster
+    dengueKmlLayer = new google.maps.KmlLayer({
+        url: "https://ref.data.gov.sg/common/Handler.ashx?ThemeName=DENGUE_CLUSTER&amp;Format=kml&amp;MetaDataID=228454",
+        // url: 'https://data.gov.sg/dataset/e7536645-6126-4358-b959-a02b22c6c473/resource/c1d04c0e-3926-40bc-8e97-2dfbb1c51c3a/download/denguecluster.kml',
+        map: null
+    });
+}
+
+initMap();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="MarkersWithLabel.html">MarkersWithLabel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#changeType">changeType</a></li><li><a href="global.html#checkUpdate">checkUpdate</a></li><li><a href="global.html#dengueButtonClicked">dengueButtonClicked</a></li><li><a href="global.html#getCookie">getCookie</a></li><li><a href="global.html#hideMarkers">hideMarkers</a></li><li><a href="global.html#initMap">initMap</a></li><li><a href="global.html#nextPage">nextPage</a></li><li><a href="global.html#prePage">prePage</a></li><li><a href="global.html#psiButtonClicked">psiButtonClicked</a></li><li><a href="global.html#pullDecisions">pullDecisions</a></li><li><a href="global.html#pullReports">pullReports</a></li><li><a href="global.html#pullRequests">pullRequests</a></li><li><a href="global.html#showMarkers">showMarkers</a></li><li><a href="global.html#updateDecisionStatus">updateDecisionStatus</a></li><li><a href="global.html#updateDengue">updateDengue</a></li><li><a href="global.html#updateDengueInHome">updateDengueInHome</a></li><li><a href="global.html#updatePSI">updatePSI</a></li><li><a href="global.html#updatePSIInHome">updatePSIInHome</a></li><li><a href="global.html#updateReportStatus">updateReportStatus</a></li><li><a href="global.html#updateRequestStatus">updateRequestStatus</a></li><li><a href="global.html#updateWeather">updateWeather</a></li><li><a href="global.html#updateWeatherInHome">updateWeatherInHome</a></li><li><a href="global.html#weatherButtonClicked">weatherButtonClicked</a></li><li><a href="global.html#weatherFullNama">weatherFullNama</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Apr 08 2016 10:01:57 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

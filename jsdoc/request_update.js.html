@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: request_update.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: request_update.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var currentURL = baseUrl + "/api/requests/";
+
+var newestDataId;
+var preURL;
+var nextURL;
+
+pullRequests();
+
+setInterval(checkUpdate, 5000);
+
+/**
+ * Check if there are new requests to show. If there are, show a button to update the requests
+ */
+function checkUpdate() {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: currentURL,
+        success: function (data) {
+            if (newestDataId != data.results[0].id) {
+                console.log("appear!");
+                $("#new-notification").html("&lt;input class='btn btn-info col-md-4' type='button' value='New Requests Available! Click to Update!' onclick='pullRequests();'>");
+            }
+        }
+    });
+}
+
+/**
+ * Pull new requests from the backend
+ */
+function pullRequests() {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: currentURL,
+        success: function (data) {
+            console.log(data);
+            var html = '';
+            preURL = data.previous;
+            nextURL = data.next;
+            newestDataId = data.results[0].id;
+            $("#new-notification").html("");
+            console.log("disappeared");
+            for (var x = 0; x &lt; data.results.length; x++) {
+                html += "&lt;tr id='row" + data.results[x].id + "'>";
+                html += "&lt;td class='col-md-2'>";
+                html += data.results[x].crisis;
+                html += "&lt;/td>&lt;td class='col-md-2'>";
+                html += data.results[x].resource;
+                html += "&lt;/td>&lt;td class='col-md-4'>";
+                html += data.results[x].description;
+                html += "&lt;/td>&lt;td class='col-md-2'>";
+                html += "&lt;select id='agency" + data.results[x].id + "' class='form-control'>"
+                html += agencySelect;
+                html += "&lt;/select>"
+                html += "&lt;/td>&lt;td class='col-md-2'>&lt;button style='width:100%;' type='button' id='" + data.results[x].id + "' class='btn btn-xs btn-success' onClick='updateRequestStatus(this.id)'>&lt;span class='glyphicon glyphicon-send'>&lt;/span>&amp;nbsp;&lt;/button>";
+                html += "&lt;/td>&lt;/tr>";
+            }
+            $("#RequestContent").html(html);
+
+            if (preURL == null) {
+                $("#prepage").attr("class", "disabled");
+            } else {
+                $("#prepage").attr("class", "active");
+            }
+
+            if (nextURL == null) {
+                $("#nextpage").attr("class", "disabled");
+            } else {
+                $("#nextpage").attr("class", "active");
+            }
+        }
+    });
+}
+
+/**
+ * Updating the status of the request to efficiently mange the requests
+ *
+ * @param requestID unique ID of the request
+ */
+function updateRequestStatus(requestID) {
+    var csrf_token = getCookie("csrftoken");
+    var dataToPost = "csrfmiddlewaretoken=" + csrf_token + "&amp;id=" + requestID + "&amp;Agency=" + $("#agency" + requestID).val();
+    $.ajax({
+        url: baseUrl + "/process-requests/",
+        data: dataToPost,
+        method: "POST",
+        contentType: 'application/x-www-form-urlencoded',
+        success: function (data) {
+            pullRequests();
+            $("process-success").html("&lt;div id='fastfade' class='alert alert-success'>&lt;strong>Process Succeeded!&lt;/strong>&lt;/div>");
+            console.log("Report status updated");
+        }
+    });
+}
+
+/**
+ * Pagination -- Go to the previous page
+ */
+function prePage() {
+    currentURL = preURL;
+    pullRequests();
+}
+
+/**
+ * Pagination -- Go to the next page
+ */
+function nextPage() {
+    currentURL = nextURL;
+    pullRequests();
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="MarkersWithLabel.html">MarkersWithLabel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#changeType">changeType</a></li><li><a href="global.html#checkUpdate">checkUpdate</a></li><li><a href="global.html#dengueButtonClicked">dengueButtonClicked</a></li><li><a href="global.html#getCookie">getCookie</a></li><li><a href="global.html#hideMarkers">hideMarkers</a></li><li><a href="global.html#initMap">initMap</a></li><li><a href="global.html#nextPage">nextPage</a></li><li><a href="global.html#prePage">prePage</a></li><li><a href="global.html#psiButtonClicked">psiButtonClicked</a></li><li><a href="global.html#pullDecisions">pullDecisions</a></li><li><a href="global.html#pullReports">pullReports</a></li><li><a href="global.html#pullRequests">pullRequests</a></li><li><a href="global.html#showMarkers">showMarkers</a></li><li><a href="global.html#updateDecisionStatus">updateDecisionStatus</a></li><li><a href="global.html#updateDengue">updateDengue</a></li><li><a href="global.html#updateDengueInHome">updateDengueInHome</a></li><li><a href="global.html#updatePSI">updatePSI</a></li><li><a href="global.html#updatePSIInHome">updatePSIInHome</a></li><li><a href="global.html#updateReportStatus">updateReportStatus</a></li><li><a href="global.html#updateRequestStatus">updateRequestStatus</a></li><li><a href="global.html#updateWeather">updateWeather</a></li><li><a href="global.html#updateWeatherInHome">updateWeatherInHome</a></li><li><a href="global.html#weatherButtonClicked">weatherButtonClicked</a></li><li><a href="global.html#weatherFullNama">weatherFullNama</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Apr 08 2016 10:01:57 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
