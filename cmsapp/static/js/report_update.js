@@ -2,8 +2,7 @@ var currentURL = baseUrl + "/api/reports/";
 var type = "";
 var preURL;
 var nextURL;
-var newestDataId;
-
+var newestDataId = 0;
 
 pullReports();
 
@@ -18,7 +17,7 @@ function checkUpdate() {
         dataType: "json",
         url: currentURL,
         success: function (data) {
-            if (newestDataId != data.results[0].id) {
+            if (data.count > 0 && newestDataId < data.results[0].id) {
                 $("#new-notification").html("<input class='btn btn-info col-md-4' type='button' value='New Reports Available! Click to Update!' onclick='pullReports();'>");
             }
         }
@@ -45,7 +44,11 @@ function pullReports() {
             var html = '';
             preURL = data.previous;
             nextURL = data.next;
-            newestDataId = data.results[0].id;
+            if (data.count > 0) {
+                newestDataId = data.results[0].id;
+            } else {
+                newestDataId = 0;
+            }
             $("#new-notification").html("");
             for (var x = 0; x < data.results.length; x++) {
                 html += "<tr id='row" + data.results[x].id + "'>";

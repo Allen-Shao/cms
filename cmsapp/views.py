@@ -11,7 +11,7 @@ from forms import LoginForm, CallCenterReportForm, NotificationForm, ResourceFor
 
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from models import CallCenterReport, Decision, Agency, Crisis, Notification, Place, ResourceRequest
+from models import CallCenterReport, Decision, Agency, Crisis, Notification, ResourceRequest
 
 #SocialMedia Imports
 #from Facebook import share_on_facebook
@@ -174,11 +174,9 @@ class ProcessRequestsView(CmsBaseView, FormView):
         request = ResourceRequest.objects.get(pk=request_id)
         agency_name = form.cleaned_data["Agency"]
         agency = Agency.objects.get(name=agency_name)
-        print agency.__unicode__()
-        print request.__unicode__()
         request.active = False
-        send_sms(agency.contact,"RESOURCE REQUEST: \nType Of Crisis: " + request.crisis.type_of_crisis +
-                "\nResource Requested: " + request.resource + "\nDescription: " + request.description)
+        #send_sms(agency.contact,"RESOURCE REQUEST: \nType Of Crisis: " + request.crisis.type_of_crisis + \
+        #        "\nResource Requested: " + request.resource + "\nDescription: " + request.description)
         request.save()
 
         return super(ProcessRequestsView, self).form_valid(form)

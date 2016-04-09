@@ -1,6 +1,6 @@
 var currentURL = baseUrl + "/api/requests/";
 
-var newestDataId;
+var newestDataId = 0;
 var preURL;
 var nextURL;
 
@@ -17,8 +17,7 @@ function checkUpdate() {
         dataType: "json",
         url: currentURL,
         success: function (data) {
-            if (newestDataId != data.results[0].id) {
-                console.log("appear!");
+            if (data.count > 0 && newestDataId < data.results[0].id) {
                 $("#new-notification").html("<input class='btn btn-info col-md-4' type='button' value='New Requests Available! Click to Update!' onclick='pullRequests();'>");
             }
         }
@@ -34,14 +33,16 @@ function pullRequests() {
         dataType: "json",
         url: currentURL,
         success: function (data) {
-            console.log(data);
             var html = '';
             preURL = data.previous;
             nextURL = data.next;
-            newestDataId = data.results[0].id;
+            if (data.count > 0) {
+                newestDataId = data.results[0].id;
+            } else {
+                newestDataId = 0;
+            }
             $("#new-notification").html("");
-            console.log("disappeared");
-            for (var x = 0; x < data.results.length; x++) {
+            for (var x = 0; x < data.count; x++) {
                 html += "<tr id='row" + data.results[x].id + "'>";
                 html += "<td class='col-md-2'>";
                 html += data.results[x].crisis;
@@ -88,11 +89,10 @@ function updateRequestStatus(requestID) {
         contentType: 'application/x-www-form-urlencoded',
         success: function (data) {
             pullRequests();
-            $("process-success").html("<div id='fastfade' class='alert alert-success'><strong>Process Succeeded!</strong></div>");
+            $("#process-success").html("<div id='fastfade' class='alert alert-success'><strong>Process Succeeded!</strong></div>");
             setTimeout(function () {
                 $('#fastfade').fadeOut('fast');
             }, 2000);
-            console.log("Report status updated");
         }
     });
 }
