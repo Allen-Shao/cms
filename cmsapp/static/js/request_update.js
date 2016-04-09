@@ -89,6 +89,9 @@ function updateRequestStatus(requestID) {
         success: function (data) {
             pullRequests();
             $("process-success").html("<div id='fastfade' class='alert alert-success'><strong>Process Succeeded!</strong></div>");
+            setTimeout(function () {
+                $('#fastfade').fadeOut('fast');
+            }, 2000);
             console.log("Report status updated");
         }
     });
