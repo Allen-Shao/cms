@@ -28,7 +28,7 @@ function updateWeather() {
  * @param weatherAbbr
  * @returns String The full weather name
  */
-function weatherFullNama(weatherAbbr) {
+function weatherFullName(weatherAbbr) {
     switch (weatherAbbr) {
         case "BR":
             return "Mist";
@@ -154,7 +154,7 @@ function updateWeatherInHome(weatherData) {
         lon = area.getAttribute("lon");
         location = new google.maps.LatLng(lat, lon);
         name = area.getAttribute("name");
-        weather = weatherFullNama(weatherAbbr);
+        weather = weatherFullName(weatherAbbr);
         weatherIcon = {
             url: "http://www.nea.gov.sg/Html/Nea/images/common/weather/50px/" + weatherAbbr + ".png",
             scaledSize: new google.maps.Size(30, 30)
