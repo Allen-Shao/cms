@@ -62,14 +62,13 @@
         </div>
         <div class="form-group">
             <label for="inputAgency" class="control-label col-sm-2">Agencies to Notify:</label>
-
+              <div class="list-of-agencies col-sm-offset-2">
                 {% if agencies %} {% for notif in agencies %}
                 <input type="checkbox" name="agency" id="{{ notif.agency }}" value="{{ notif.agency }}">
                     {{ notif.agency }}
                     </input><br>
                 {% endfor %}
-                {% else %}
-
+              </div>
         {% endif %}
 
         </div>
