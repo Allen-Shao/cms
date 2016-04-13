@@ -102,10 +102,10 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
         for agency in agencies:
             print agency.contact
             print agency.name
-            send_sms(agency.contact, title + form.cleaned_data["description"])
+            send_sms(agency.contact, "New Emergency!\n" + title + "\n" + form.cleaned_data["description"])
 
-        share_on_facebook(title, form.cleaned_data["description"])
-        post_on_twitter(title + " " + form.cleaned_data["description"])
+        share_on_facebook(title, "Be aware of the new emergency:\n" + form.cleaned_data["description"])
+        post_on_twitter("Be aware of the new emergency: " + title + "\n" + form.cleaned_data["description"])
         message = "Dear Sir,\n\nThe following crisis has occured: " + \
                     title + "\n\nThe details are as follows: " +  \
                form.cleaned_data["description"]+\
@@ -178,8 +178,8 @@ class ProcessRequestsView(CmsBaseView, FormView):
         agency_name = form.cleaned_data["Agency"]
         agency = Agency.objects.get(name=agency_name)
         request.active = False
-        #send_sms(agency.contact,"RESOURCE REQUEST: \nType Of Crisis: " + request.crisis.type_of_crisis + \
-        #        "\nResource Requested: " + request.resource + "\nDescription: " + request.description)
+        send_sms(agency.contact, "Resource Request: \nType Of Crisis: " + request.crisis.type_of_crisis + \
+                "\nResource Requested: " + request.resource + "\nDescription: " + request.description)
         request.save()
 
         return super(ProcessRequestsView, self).form_valid(form)
@@ -220,20 +220,20 @@ class NotificationView(CmsBaseView, SuccessMessageMixin, FormView):
         notify = ""
         #Push Notifications
         if self.request.POST.get("facebook") == "facebook":
-            #share_on_facebook(title, form.cleaned_data["description"])
+            share_on_facebook(title, form.cleaned_data["description"])
             notify += "Facebook,"
         if self.request.POST.get("twitter") == "twitter":
-            post_on_twitter(title + " " +form.cleaned_data["description"])
+            post_on_twitter(title + "\n" + form.cleaned_data["description"])
             notify += "Twitter,"
         if self.request.POST.get("pmo") == "pmo":
-            send_to_president("NOTIFICATION!!\n\n" + title + "\n\n" + str(form.cleaned_data["description"]))
+            send_to_president("Notification!\n\n" + title + "\n\n" + str(form.cleaned_data["description"]))
             notify += "Email,"
 
         agencies = Agency.objects.filter(name__in= self.request.POST.getlist('agency'))
         if agencies != None:
             for agency in agencies:
                 notify += agency.name + ","
-                #send_sms(agency.contact,"NOTIFICATION " + str(form.cleaned_data["decision"])[4:])
+                send_sms(agency.contact,"Notification: " + str(form.cleaned_data["decision"])[4:])
 
 
         #Saving the notification to the database.

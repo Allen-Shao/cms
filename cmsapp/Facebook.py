@@ -11,5 +11,5 @@ def share_on_facebook(message, description):
     :param description: Detailed description of the message
     :return: None
     """
-    graph.put_wall_post(message="EMERGENCY!!\n\n"+message+"\n\n"+description)
+    graph.put_wall_post(message=message+"\n\n"+description)
 
