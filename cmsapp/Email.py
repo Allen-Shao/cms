@@ -11,8 +11,8 @@ def send_email():
               + "Best,\nAllStarCMS"
         send_to_president(message)
         flag = False
-    if flag:
-      send_to_president()
+#    if flag:
+#      send_to_president()
 
 def send_to_president():
     """
