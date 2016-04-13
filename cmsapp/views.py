@@ -104,13 +104,13 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
             print agency.name
             send_sms(agency.contact, "New Emergency!\n" + title + "\n" + form.cleaned_data["description"])
 
-        share_on_facebook(title, "Be aware of the new emergency:\n" + form.cleaned_data["description"])
         post_on_twitter("Be aware of the new emergency: " + title + "\n" + form.cleaned_data["description"])
         message = "Dear Sir,\n\nThe following crisis has occured: " + \
                     title + "\n\nThe details are as follows: " +  \
                form.cleaned_data["description"]+\
               "\n\nBest,\nAllStarCMS"
         send_to_president(message)
+        share_on_facebook(title, "Be aware of the new emergency:\n" + form.cleaned_data["description"])
 
         self.success_message = "success_submission"
         print self.success_message

@@ -15,6 +15,10 @@ class NotificationForm(forms.ModelForm):
 	"""
 	Form for Notification
 	"""
+    	def __init__(self, **kwargs):
+        	super(NotificationForm,self).__init__(**kwargs)
+        	self.fields['decision'].queryset = Decision.objects.filter(active=True)
+
 	class Meta:
 		model = Notification
 		exclude = ["notify"]

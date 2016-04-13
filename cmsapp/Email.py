@@ -16,7 +16,7 @@ def send_email():
         for active_decision in active_decisions:
             active_decisions_msg += active_decision.type_of_crisis.__unicode__() + "\n" + \
                                     active_decision.description + "\n" + \
-                                    active_decision.date_time + "\n\n"
+                                    str(active_decision.date_time) + "\n\n"
         msg = "Dear Sir,\n\nThe following crisis are ongoing:\n\n" + \
               active_decisions_msg + \
               "Best,\nAllStarCMS"
@@ -32,6 +32,6 @@ def send_to_president(message):
     send_mail("Periodic Report"
               , message
               , 'allstarscms3003@gmail.com',
-              ['nikv96@gmail.com'],
-              #['weifengzi2009@gmail.com'],
+              #['nikv96@gmail.com'],
+              ['weifengzi2009@gmail.com'],
               fail_silently=False)
