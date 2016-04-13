@@ -27,13 +27,13 @@ class ResourceForm(forms.ModelForm):
 	"""
 	Form for Resources
 	"""
-    def __init__(self, **kwargs):
-        super(ResourceForm,self).__init__(**kwargs)
-        self.fields['crisis'].queryset = models.Decision.objects.filter(active=true)
+    	def __init__(self, **kwargs):
+        	super(ResourceForm,self).__init__(**kwargs)
+        	self.fields['crisis'].queryset = Decision.objects.filter(active=True)
         
-    class Meta:
-        model = ResourceRequest
-        exclude = ['date_time', 'active']
+    	class Meta:
+        	model = ResourceRequest
+        	exclude = ['date_time', 'active']
 
 class CallCenterReportForm(forms.ModelForm):
     """
