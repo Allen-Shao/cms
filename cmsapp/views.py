@@ -109,7 +109,7 @@ class DashboardView(CmsBaseView, SuccessMessageMixin, FormView):
         message = "Dear Sir,\n\nThe following crisis has occured: " + \
                     title + "\n\nThe details are as follows: " +  \
                form.cleaned_data["description"]+\
-              + "\n\nBest,\nAllStarCMS"
+              "\n\nBest,\nAllStarCMS"
         send_to_president(message)
 
         self.success_message = "success_submission"
